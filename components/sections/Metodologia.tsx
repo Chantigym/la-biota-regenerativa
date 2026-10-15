@@ -8,12 +8,17 @@ export function Metodologia() {
   return (
     <section id="metodologia" aria-labelledby="metodologia-title" className="px-4 pb-24 sm:px-6 lg:pb-36">
       <SectionFurrow className="mx-auto max-w-[1240px]">
-        <div className="relative">
-          <ParallaxTree src="/illustrations/chanar.webp" className="absolute -top-10 right-0 hidden w-56 lg:block xl:w-64" />
-          <h2 id="metodologia-title" className="text-4xl font-extrabold sm:text-5xl">
-            {metodologia.title}
-          </h2>
-          <p className="mt-4 max-w-[60ch] text-lg text-muted">{metodologia.lead}</p>
+        <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_14rem] xl:grid-cols-[minmax(0,1fr)_16rem]">
+          <div>
+            <h2 id="metodologia-title" className="text-4xl font-extrabold sm:text-5xl">
+              {metodologia.title}
+            </h2>
+            <p className="mt-4 max-w-[60ch] text-lg text-muted">{metodologia.lead}</p>
+          </div>
+          <ParallaxTree
+            src="/illustrations/chanar.webp"
+            className="mb-12 hidden w-56 justify-self-end lg:block xl:w-64"
+          />
         </div>
 
         <div className="mt-10 gap-10 text-lg leading-relaxed text-muted lg:columns-2">

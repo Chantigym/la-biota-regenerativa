@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Figtree } from "next/font/google";
 import { MotionProvider } from "@/components/motion/MotionProvider";
 import { site } from "@/content/site";
+import { asset } from "@/lib/asset";
 import "./globals.css";
 
 const bricolage = Bricolage_Grotesque({ subsets: ["latin"], weight: ["700", "800"], variable: "--font-bricolage", display: "swap" });
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     locale: "es_AR",
     type: "website",
   },
-  icons: { icon: "/brand/logo-tractor.svg" },
+  icons: { icon: asset("/brand/logo-tractor.svg") },
 };
 
 export const viewport: Viewport = {

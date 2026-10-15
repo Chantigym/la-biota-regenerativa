@@ -1,3 +1,5 @@
+import { asset } from "@/lib/asset";
+
 type Variant = "wordmark" | "tractor" | "full";
 
 const ratios: Record<Variant, string> = {
@@ -22,7 +24,7 @@ export function Logo({
       aria-label={label}
       aria-hidden={label ? undefined : true}
       className={`ink-mask ${className}`}
-      style={{ ["--src" as string]: `url(/brand/logo-${variant}.webp)`, aspectRatio: ratios[variant] }}
+      style={{ ["--src" as string]: `url(${asset(`/brand/logo-${variant}.webp`)})`, aspectRatio: ratios[variant] }}
     />
   );
 }

@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, m } from "motion/react";
 import { List, X } from "@phosphor-icons/react";
 import { Logo } from "@/components/brand/Logo";
-import { ThemeToggle } from "@/components/motion/ThemeToggle";
 import { SoundToggle } from "@/components/motion/SoundToggle";
 import { locale, nav, ui } from "@/content/site";
 import { dur, easeOut, exitDur } from "@/lib/motion";
@@ -68,7 +67,6 @@ export function Nav() {
           {ui.lang.short}
         </a>
         <SoundToggle />
-        <ThemeToggle />
         <button
           type="button"
           className="inline-flex size-11 items-center justify-center rounded-full xl:hidden"

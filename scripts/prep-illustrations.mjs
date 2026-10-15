@@ -1,5 +1,5 @@
 // Convierte las ilustraciones (tinta negra sobre blanco) en máscaras WebP con alpha.
-// El color lo pone CSS (mask-image + background-color), así respetan el tema claro/oscuro.
+// El color lo pone CSS (mask-image + background-color), así toman el color de la tinta del sitio.
 import sharp from "sharp";
 import { readdirSync } from "node:fs";
 

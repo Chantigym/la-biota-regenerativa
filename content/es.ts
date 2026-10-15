@@ -471,8 +471,6 @@ export const ui = {
   navMobile: "Menú",
   openMenu: "Abrir menú",
   closeMenu: "Cerrar menú",
-  toNight: "Cambiar a modo noche",
-  toDay: "Cambiar a modo día",
   soundOn: "Activar sonido",
   soundOff: "Desactivar sonido",
   notFound: {

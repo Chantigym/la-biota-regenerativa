@@ -10,22 +10,22 @@ Es un sitio de una sola página que presenta la identidad de un proyecto de muje
 **Diales:** VARIANCE 6 · MOTION 3 · DENSITY 3.
 
 ## Color (tokens en `app/globals.css`)
-| Token | Claro | Oscuro | Uso |
-|---|---|---|---|
-| `--paper` | #FAFAF6 | #161914 | fondo de página |
-| `--ink` | #1D201B | #ECECE4 | texto, logo, ilustraciones, CTA |
-| `--muted` | #4D5348 | #B4B8AC | texto secundario (AA sobre paper) |
-| `--yema` | #F2B42C | #F2B42C | tinta plana de marca: fondo del hero, marcador "Estamos acá", celda Huevos |
-| `--on-yema` | #1D201B | #1D201B | texto sobre yema |
-| `--monte` | #2D4A33 | #24382A | bloque "Hacia dónde" y celda Huertas (texto paper) |
-| `--salvia` | #DFE5D5 | #222A21 | tinte suave |
-| `--barro` | #EADFD2 | #2A241F | tinte suave |
-| `--hero-bg` / `--hero-fg` | yema / ink | #1E221B / yema | hero |
-| `--cert-verde` / `--cert-amarillo` / `--cert-naranja` | #2F7A3B / #F2B42C / #E8762B | igual | niveles de autocertificación; siempre con su nombre escrito, nunca solo el color (texto encima: paper sobre verde, ink sobre amarillo y naranja) |
+| Token | Valor | Uso |
+|---|---|---|
+| `--paper` | #FAFAF6 | fondo de página |
+| `--ink` | #1D201B | texto, logo, ilustraciones, CTA |
+| `--muted` | #4D5348 | texto secundario (AA sobre paper) |
+| `--yema` | #F2B42C | tinta plana de marca: fondo del hero, marcador "Estamos acá", celda Huevos |
+| `--on-yema` | #1D201B | texto sobre yema |
+| `--monte` | #2D4A33 | bloque "Hacia dónde" y celda Huertas (texto paper) |
+| `--salvia` | #DFE5D5 | tinte suave |
+| `--barro` | #EADFD2 | tinte suave |
+| `--hero-bg` / `--hero-fg` | yema / ink | hero |
+| `--cert-verde` / `--cert-amarillo` / `--cert-naranja` | #2F7A3B / #F2B42C / #E8762B | niveles de autocertificación; siempre con su nombre escrito, nunca solo el color (texto encima: paper sobre verde, ink sobre amarillo y naranja) |
 
 **Reglas de color:**
 - Hay un solo color de marca (yema), siempre plano y nunca en degradé.
-- El CTA usa el par ink/paper, que se invierte solo en modo oscuro.
+- El CTA usa el par ink/paper de la paleta clara.
 - Nunca se usa #000 ni #fff puros.
 
 ## Tipografía
@@ -37,7 +37,7 @@ Es un sitio de una sola página que presenta la identidad de un proyecto de muje
 ## Forma
 - Los botones son píldoras (radio completo).
 - Los bloques y las celdas del bento usan radio de 20px. No llevan sombra; se separan por color de fondo o por borde de 1.5px en tinta.
-- El foco es un anillo de 3px en tinta con offset de 3px, visible en los dos modos.
+- El foco es un anillo de 3px en tinta con offset de 3px.
 
 ## Ilustración
 - El logo vectorizado está en `public/brand/*.svg`, generado con `scripts/trace-logo.mjs`. El sitio usa su versión raster `*.webp`, generada con `scripts/raster-logo.mjs`, como `mask-image`: una máscara SVG con miles de nodos es cara de pintar en celulares. Así toma el color del texto.

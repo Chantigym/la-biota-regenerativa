@@ -165,12 +165,14 @@ export const metodologia = {
   monitoringLead:
     "Para evaluar el efecto del manejo se registran indicadores de suelo y de biodiversidad. Los valores se actualizan con cada campaña de muestreo.",
   indicators: [
-    { name: "Materia orgánica del suelo", value: "XX %", method: L.short, frequency: "Anual" },
-    { name: "Infiltración de agua", value: "XX mm/h", method: L.short, frequency: "Semestral" },
-    { name: "Cobertura del suelo", value: "XX %", method: L.short, frequency: "Estacional" },
-    { name: "Diversidad vegetal", value: "XX especies", method: L.short, frequency: "Anual" },
+    // series: valores relativos de muestra (0 a 1) por campaña, solo para mostrar el gráfico
+    { name: "Materia orgánica del suelo", value: "XX %", method: L.short, frequency: "Anual", series: [0.38, 0.44, 0.52, 0.6, 0.71] },
+    { name: "Infiltración de agua", value: "XX mm/h", method: L.short, frequency: "Semestral", series: [0.3, 0.36, 0.47, 0.55, 0.66] },
+    { name: "Cobertura del suelo", value: "XX %", method: L.short, frequency: "Estacional", series: [0.5, 0.58, 0.64, 0.78, 0.86] },
+    { name: "Diversidad vegetal", value: "XX especies", method: L.short, frequency: "Anual", series: [0.34, 0.4, 0.5, 0.57, 0.69] },
   ],
-  indicatorsNote: "Valores de muestra. Línea de base: 20XX.",
+  indicatorsNote: "Valores y series de muestra. Línea de base: 20XX.",
+  seriesLabels: ["20X1", "20X2", "20X3", "20X4", "20X5"],
 };
 
 export const haciaDonde = {
@@ -220,6 +222,77 @@ export const estadoLabel: Record<HitoEstado, string> = {
   logrado: "Logrado",
   "en-marcha": "En marcha",
   pendiente: "Pendiente",
+};
+
+// Notas escritas a mano (tipografía de marcador, como el logo). Frases del Instagram de La Biota.
+export const handNotes = {
+  hero: "¡Alimento sano, de verdad, sin veneno!",
+  consumo: "Consumir local es alimentarse con posición política",
+};
+
+// Mapa ilustrado del predio. x/y en % sobre la ilustración.
+// TODO: confirmar sectores y ubicación real con La Biota (el mapa es ilustrativo).
+export const mapa = {
+  title: "El Mantillo",
+  lead: "Distribución de los sectores productivos y del monte nativo dentro del predio. Tocá cada punto para conocer qué se hace en ese lugar.",
+  note: "Mapa ilustrativo de muestra. La ubicación de cada sector se ajustará al predio real.",
+  points: [
+    { id: "huertas", title: "Huertas", x: 45, y: 27, text: "Parcelas hortícolas con cobertura permanente y mantas de protección contra heladas. " + L.short },
+    { id: "gallinero", title: "Gallinero", x: 29, y: 29, text: "Gallinas ponedoras con acceso a pastoreo. " + L.short },
+    { id: "pollos", title: "Gallineros móviles", x: 23, y: 45, text: "Pollos en pastoreo rotativo; los gallineros se trasladan sobre las parcelas. " + L.short },
+    { id: "sala", title: "Sala de elaboración", x: 58, y: 59, text: "Procesamiento de excedentes en conservas, dulces y encurtidos. " + L.short },
+    { id: "compost", title: "Compost", x: 67, y: 72, text: "Pilas de compostaje con residuos hortícolas y cama de los gallineros. " + L.short },
+    { id: "monte", title: "Monte nativo", x: 80, y: 30, text: "Sector de monte nativo bajo conservación, refugio de biodiversidad. " + L.short },
+    { id: "casa", title: "Casa y reserva de agua", x: 30, y: 63, text: "Vivienda y tanque de almacenamiento de agua para riego. " + L.short },
+  ],
+};
+
+// Calendario de estación. Meses: 0 = enero … 11 = diciembre.
+// TODO: reemplazar por la disponibilidad real de cada verdura.
+export const calendario = {
+  title: "Calendario de estación",
+  lead: "Disponibilidad estimada de cada verdura a lo largo del año, según el ciclo de cultivo en Traslasierra.",
+  note: "Calendario de muestra.",
+  months: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+  crops: [
+    { name: "Lechuga", months: [2, 3, 4, 5, 6, 7, 8, 9, 10] },
+    { name: "Acelga", months: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] },
+    { name: "Kale", months: [4, 5, 6, 7, 8, 9] },
+    { name: "Coliflor", months: [5, 6, 7, 8] },
+    { name: "Remolacha", months: [3, 4, 5, 6, 7, 8, 9, 10] },
+    { name: "Zanahoria", months: [4, 5, 6, 7, 8, 9, 10] },
+    { name: "Tomate", months: [0, 1, 2, 3, 11] },
+    { name: "Zapallo", months: [1, 2, 3, 4, 5] },
+  ],
+};
+
+// Ciclo de nutrientes entre subproyectos
+export const ciclo = {
+  title: "Cómo se conectan",
+  lead: "Los subproyectos forman un ciclo: los residuos de cada etapa se reincorporan como insumo de la siguiente y la materia orgánica vuelve al suelo.",
+  nodes: [
+    { id: "suelo", title: "Suelo vivo", text: "Nutrientes y agua para los cultivos" },
+    { id: "huerta", title: "Huerta", text: "Verdura, excedentes y residuos" },
+    { id: "aves", title: "Gallinas y pollos", text: "Huevos, carne, guano y cama" },
+    { id: "compost", title: "Compost", text: "Materia orgánica estabilizada" },
+  ],
+  outputs: [
+    { title: "Conservas", text: "Los excedentes de la huerta se procesan y no se pierden." },
+    { title: "Almacén", text: "Verdura, huevos y conservas llegan a la comunidad local." },
+  ],
+};
+
+// La biota del suelo: recorrido por capas (de la superficie hacia abajo)
+export const suelo = {
+  title: "La biota del suelo",
+  lead: "El nombre del proyecto viene de la comunidad de organismos que vive bajo tierra. Bajá para recorrer las capas de un suelo vivo.",
+  layers: [
+    { title: "Cobertura", text: "La cobertura vegetal y el mantillo protegen el suelo de la erosión, regulan su temperatura y conservan la humedad." },
+    { title: "Raíces", text: "Las raíces estructuran el suelo y liberan exudados que alimentan a la comunidad microbiana de la rizósfera." },
+    { title: "Fauna del suelo", text: "Lombrices, escarabajos y otros invertebrados fragmentan la materia orgánica y abren galerías que mejoran la infiltración y la aireación." },
+    { title: "Hongos", text: "Las redes de micelio, entre ellas las micorrizas, extienden el alcance de las raíces y facilitan la absorción de agua y nutrientes." },
+    { title: "Microorganismos", text: "Bacterias y otros microorganismos descomponen la materia orgánica y vuelven disponibles los nutrientes. Son la biota que da nombre al proyecto." },
+  ],
 };
 
 // Autocertificación: La Biota respalda con su propio conocimiento el origen de cada producto que ofrece.

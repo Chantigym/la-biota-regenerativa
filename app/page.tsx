@@ -1,5 +1,8 @@
 import { Autocertificacion } from "@/components/sections/Autocertificacion";
+import { BackToTop } from "@/components/motion/BackToTop";
 import { PageFurrow } from "@/components/motion/PageFurrow";
+import { Mapa } from "@/components/sections/Mapa";
+import { Suelo } from "@/components/sections/Suelo";
 import { DondeEstamos } from "@/components/sections/DondeEstamos";
 import { Footer } from "@/components/sections/Footer";
 import { Metodologia } from "@/components/sections/Metodologia";
@@ -21,15 +24,18 @@ export default function Home() {
       <main id="contenido">
         <Hero />
         <QuienesSomos />
+        <Mapa />
         <QueHacemos />
         <Autocertificacion />
         <Metodologia />
+        <Suelo />
         <HaciaDonde />
         <DondeEstamos />
         <Preguntas />
         <Seguinos />
       </main>
       <Footer />
+      <BackToTop />
     </>
   );
 }

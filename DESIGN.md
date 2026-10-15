@@ -63,6 +63,14 @@ Es un sitio de una sola página que presenta la identidad de un proyecto de muje
   - Se respeta `prefers-reduced-motion` (CSS más `MotionConfig reducedMotion="user"`).
 - Motion se carga con `LazyMotion` + `domAnimation` y componentes `m.*`, solo en hojas `'use client'`.
 
+## Movimiento por zona (estado actual)
+- **Hero:** el tractor se dibuja con marcador y después se entinta (CSS, sin JS); el título aparece palabra por palabra; una nota a mano.
+- **Entre secciones:** el surco ondulado se traza al entrar (`FurrowLine`); los bloques de color (Objetivos, La biota del suelo, footer) suben y se apoyan (`RiseBlock`).
+- **La biota del suelo:** recorrido fijo por capas guiado por el scroll (solo desktop; lista en mobile y con reduced motion).
+- **Elementos:** árboles del monte con parallax (`ParallaxTree`), números que cuentan, barras de indicadores que crecen, ciclo de nutrientes que se traza y semilla que lo recorre.
+- **Interacción:** zoom al punto en el mapa, calendario que viaja al mes actual, brote al pasar por botones y links (`.sprout-hover`), preguntas que se abren con altura animada, productos que se reordenan, buscador y volver arriba.
+- **Tipografía a mano:** Permanent Marker (`font-marker`) solo para notas y frases del proyecto: hero, consumo local y lema.
+
 ## Contenido de muestra
 - Mientras el contenido real no esté, los párrafos van en lorem ipsum, los datos en "XX" y las fotos en `PhotoSlot` (marco punteado con aspect-ratio final).
 - Un aviso arriba de todo (`SampleBanner`) lo explica. Se apaga con `sample.enabled = false` en `content/site.ts`.

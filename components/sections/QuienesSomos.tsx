@@ -1,18 +1,22 @@
 import { PhotoSlot } from "@/components/brand/PhotoSlot";
 import { CountUp } from "@/components/motion/CountUp";
+import { ParallaxTree } from "@/components/motion/ParallaxTree";
 import { SectionFurrow } from "@/components/brand/SectionFurrow";
-import { quienes } from "@/content/site";
+import { handNotes, quienes } from "@/content/site";
 
 export function QuienesSomos() {
   return (
     <section id="quienes-somos" aria-labelledby="quienes-title" className="px-4 pt-20 pb-24 sm:px-6 lg:pt-28 lg:pb-36">
       <SectionFurrow className="mx-auto max-w-[1240px]">
+        <div className="relative">
+        <ParallaxTree src="/illustrations/algarrobo.webp" className="absolute -top-6 right-0 hidden w-72 lg:block xl:w-80" />
         <h2 id="quienes-title" className="text-xl font-bold text-muted">
           {quienes.title}
         </h2>
         <p className="font-display mt-6 max-w-[26ch] text-[2rem] leading-[1.12] font-bold tracking-[-0.02em] sm:text-5xl lg:text-[3.4rem]">
           {quienes.statement}
         </p>
+        </div>
 
         <div className="mt-14 grid gap-10 lg:mt-20 lg:grid-cols-12 lg:gap-6">
           <p className="max-w-[52ch] text-lg leading-relaxed text-muted lg:col-span-6">{quienes.body}</p>
@@ -53,6 +57,10 @@ export function QuienesSomos() {
             ))}
           </dl>
         </div>
+
+        <p className="font-marker mx-auto mt-20 max-w-[22ch] -rotate-2 text-center text-3xl leading-snug sm:text-4xl lg:mt-28 lg:text-5xl">
+          {handNotes.consumo}
+        </p>
 
         {/* Integrantes */}
         <div className="mt-20 lg:mt-28">

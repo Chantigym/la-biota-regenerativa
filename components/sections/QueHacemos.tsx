@@ -1,5 +1,7 @@
 import { SectionFurrow } from "@/components/brand/SectionFurrow";
 import { Illustration } from "@/components/brand/Illustration";
+import { Calendario } from "@/components/sections/Calendario";
+import { Ciclo } from "@/components/sections/Ciclo";
 import { queHacemos } from "@/content/site";
 
 // Cada celda tiene su propio tamaño y tinta: el bento tiene exactamente 5 celdas, una por subproyecto.
@@ -44,7 +46,7 @@ export function QueHacemos() {
                   <p className={`mt-3 max-w-[38ch] ${c.feature ? "text-lg" : ""} opacity-90`}>{item.text}</p>
                   <a
                     href={`#detalle-${item.id}`}
-                    className="mt-4 inline-block font-semibold underline decoration-[1.5px] underline-offset-4 hover:decoration-[3px]"
+                    className="sprout-hover mt-4 inline-block font-semibold underline decoration-[1.5px] underline-offset-4 hover:decoration-[3px]"
                   >
                     Ver detalle<span className="sr-only"> de {item.title}</span>
                   </a>
@@ -53,6 +55,9 @@ export function QueHacemos() {
             );
           })}
         </ul>
+
+        <Ciclo />
+        <Calendario />
 
         {/* Detalle de cada subproyecto */}
         <h3 className="mt-20 text-3xl font-extrabold sm:text-4xl lg:mt-28">{queHacemos.detailTitle}</h3>

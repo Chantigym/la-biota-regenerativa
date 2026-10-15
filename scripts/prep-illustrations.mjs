@@ -20,3 +20,18 @@ for (const f of readdirSync("assets/illustrations").filter((f) => f.endsWith(".p
     .toFile(`public/illustrations/${name}.webp`);
   console.log(name, width, height);
 }
+
+// Imágenes no cuadradas (mapa del predio, corte del suelo): mismo tratamiento, conservando la proporción.
+import { existsSync } from "node:fs";
+const wide = { mapa: 1400, suelo: 900 };
+for (const [name, width] of Object.entries(wide)) {
+  const src = `assets/wide/${name}.png`;
+  if (!existsSync(src)) continue;
+  const gray = await sharp(src).flatten({ background: "#fff" }).grayscale().trim({ threshold: 20 }).resize({ width })
+    .raw().toBuffer({ resolveWithObject: true });
+  const { width: w, height: h } = gray.info;
+  const rgba = Buffer.alloc(w * h * 4);
+  for (let i = 0; i < w * h; i++) rgba[i * 4 + 3] = Math.max(0, Math.min(255, Math.round((235 - gray.data[i]) * 1.4)));
+  await sharp(rgba, { raw: { width: w, height: h, channels: 4 } }).webp({ quality: 80, alphaQuality: 70 }).toFile(`public/illustrations/${name}.webp`);
+  console.log(name, w, h);
+}

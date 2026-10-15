@@ -1,4 +1,6 @@
 import { CountUp } from "@/components/motion/CountUp";
+import { ParallaxTree } from "@/components/motion/ParallaxTree";
+import { SparkBars } from "@/components/motion/SparkBars";
 import { SectionFurrow } from "@/components/brand/SectionFurrow";
 import { metodologia } from "@/content/site";
 
@@ -6,10 +8,13 @@ export function Metodologia() {
   return (
     <section id="metodologia" aria-labelledby="metodologia-title" className="px-4 pb-24 sm:px-6 lg:pb-36">
       <SectionFurrow className="mx-auto max-w-[1240px]">
-        <h2 id="metodologia-title" className="text-4xl font-extrabold sm:text-5xl">
-          {metodologia.title}
-        </h2>
-        <p className="mt-4 max-w-[60ch] text-lg text-muted">{metodologia.lead}</p>
+        <div className="relative">
+          <ParallaxTree src="/illustrations/chanar.webp" className="absolute -top-10 right-0 hidden w-56 lg:block xl:w-64" />
+          <h2 id="metodologia-title" className="text-4xl font-extrabold sm:text-5xl">
+            {metodologia.title}
+          </h2>
+          <p className="mt-4 max-w-[60ch] text-lg text-muted">{metodologia.lead}</p>
+        </div>
 
         <div className="mt-10 gap-10 text-lg leading-relaxed text-muted lg:columns-2">
           {metodologia.intro.map((p, i) => (
@@ -38,6 +43,9 @@ export function Metodologia() {
                 <dt className="font-semibold">{ind.name}</dt>
                 <dd className="font-display mt-3 text-4xl font-extrabold tracking-tight">
                   <CountUp value={ind.value} />
+                </dd>
+                <dd>
+                  <SparkBars series={ind.series} labels={metodologia.seriesLabels} name={ind.name} />
                 </dd>
                 <dd className="mt-3 text-[15px] text-muted">{ind.method}</dd>
                 <dd className="mt-auto pt-4 text-sm font-semibold">Frecuencia: {ind.frequency}</dd>

@@ -1,5 +1,6 @@
 import { Plus } from "@phosphor-icons/react/dist/ssr";
 import { SectionFurrow } from "@/components/brand/SectionFurrow";
+import { ParallaxTree } from "@/components/motion/ParallaxTree";
 import { preguntas } from "@/content/site";
 
 // Acordeón nativo (details/summary): funciona sin JS y con teclado.
@@ -8,9 +9,12 @@ export function Preguntas() {
     <section id="preguntas" aria-labelledby="preguntas-title" className="px-4 pb-24 sm:px-6 lg:pb-32">
       <SectionFurrow className="mx-auto grid max-w-[1240px]">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-6">
-          <h2 id="preguntas-title" className="text-4xl font-extrabold sm:text-5xl lg:col-span-4">
-            {preguntas.title}
-          </h2>
+          <div className="lg:col-span-4">
+            <h2 id="preguntas-title" className="text-4xl font-extrabold sm:text-5xl">
+              {preguntas.title}
+            </h2>
+            <ParallaxTree src="/illustrations/espinillo.webp" className="mt-10 hidden w-60 lg:block" />
+          </div>
           <div className="lg:col-span-8">
             {preguntas.items.map((item) => (
               <details key={item.q} className="group border-t-[1.5px] border-ink last:border-b-[1.5px]">

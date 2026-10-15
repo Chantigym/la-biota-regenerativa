@@ -69,6 +69,7 @@
 
   --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-marker: var(--font-pm), "Comic Sans MS", cursive;
 
   --radius-block: 20px;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
@@ -162,6 +163,122 @@ p {
     animation: rise var(--dur-slow) var(--ease-out) both;
     animation-delay: calc(var(--i, 0) * 40ms + 80ms);
   }
+}
+
+/* Hero: el título aparece palabra por palabra */
+.hero-word {
+  display: inline-block;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-word {
+    animation: rise var(--dur-slow) var(--ease-out) both;
+    animation-delay: calc(var(--w, 0) * 40ms + 60ms);
+  }
+}
+
+/* Hero: el tractor se dibuja con marcador (contorno) y después se entinta (relleno) */
+.draw-ink path {
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+@keyframes draw-line {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes ink-fill {
+  from {
+    fill-opacity: 0;
+  }
+  to {
+    fill-opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .draw-ink path {
+    stroke-dasharray: 1;
+    animation:
+      draw-line 1.4s cubic-bezier(0.65, 0, 0.35, 1) both 0.2s,
+      ink-fill 0.6s var(--ease-out) both 1.35s;
+  }
+  .hand-note {
+    animation: rise 0.5s var(--ease-out) both 1.7s;
+  }
+}
+
+/* Brote al pasar el mouse por botones y links marcados */
+.sprout-hover {
+  position: relative;
+}
+.sprout-hover::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 18px;
+  right: -4px;
+  top: -12px;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 32'%3E%3Cpath d='M12 32C12 25 11.2 19 12 12' stroke='black' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3Cpath d='M11.6 19.5C6.5 19.8 3 16.5 2.6 11.6 7.6 11.4 11 14.6 11.6 19.5Z'/%3E%3Cpath d='M12.2 13.4C12.6 7.6 16.4 4 21.6 3.8 21.7 9.4 17.8 13 12.2 13.4Z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 32'%3E%3Cpath d='M12 32C12 25 11.2 19 12 12' stroke='black' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3Cpath d='M11.6 19.5C6.5 19.8 3 16.5 2.6 11.6 7.6 11.4 11 14.6 11.6 19.5Z'/%3E%3Cpath d='M12.2 13.4C12.6 7.6 16.4 4 21.6 3.8 21.7 9.4 17.8 13 12.2 13.4Z'/%3E%3C/svg%3E") center / contain no-repeat;
+  transform: scale(0) rotate(-20deg);
+  transform-origin: 50% 100%;
+  transition: transform var(--dur-base) var(--ease-out);
+  pointer-events: none;
+}
+.btn-solid.sprout-hover::after {
+  background: var(--ink);
+}
+@media (hover: hover) {
+  .sprout-hover:hover::after,
+  .sprout-hover:focus-visible::after {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Ciclo de nutrientes: una semilla que recorre el círculo */
+.ciclo-seed {
+  display: none;
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--yema);
+  box-shadow: 0 0 0 2px var(--ink);
+  offset-path: circle(37.5% at 50% 50%);
+  offset-anchor: 50% 50%;
+  offset-rotate: 0deg;
+}
+@keyframes orbit {
+  to {
+    offset-distance: 100%;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ciclo-seed {
+    display: block;
+    animation: orbit 12s linear infinite;
+  }
+}
+
+/* Preguntas: la respuesta se despliega con altura animada (donde el navegador lo soporta) */
+:root {
+  interpolate-size: allow-keywords;
+}
+details::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition:
+    block-size var(--dur-slow) var(--ease-out),
+    content-visibility var(--dur-slow) allow-discrete;
+}
+details[open]::details-content {
+  block-size: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {

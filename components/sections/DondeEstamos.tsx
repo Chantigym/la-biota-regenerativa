@@ -82,7 +82,7 @@ export function DondeEstamos() {
                     <p className="mt-2 max-w-[36ch] text-[16px] text-muted lg:mx-auto">{h.text}</p>
                     <a
                       href={`#objetivo-${h.goal}`}
-                      className="mt-3 inline-block text-[15px] font-semibold underline decoration-[1.5px] underline-offset-4 hover:decoration-[3px]"
+                      className="sprout-hover mt-3 inline-block text-[15px] font-semibold underline decoration-[1.5px] underline-offset-4 hover:decoration-[3px]"
                     >
                       Objetivo: {goalTitle[h.goal]}
                     </a>

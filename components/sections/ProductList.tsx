@@ -1,9 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { AnimatePresence, m } from "motion/react";
+import { LayoutGroup, m } from "motion/react";
 import { autocert, type Categoria, type Nivel } from "@/content/site";
-import { dur, easeOut, exitDur } from "@/lib/motion";
+import { dur, easeOut } from "@/lib/motion";
+
+const move = { type: "spring", stiffness: 380, damping: 38 } as const;
 
 type Vista = "nivel" | "categoria";
 
@@ -79,29 +81,29 @@ export function ProductList() {
         </div>
       </div>
 
-      {/* Lista agrupada */}
-      <AnimatePresence mode="wait" initial={false}>
-        <m.div
-          key={vista}
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0, transition: { duration: dur.base, ease: easeOut } }}
-          exit={{ opacity: 0, transition: { duration: exitDur(dur.base) } }}
-          className="mt-10 grid gap-12"
-        >
+      {/* Lista agrupada: al cambiar el orden, cada producto viaja a su nuevo lugar (layoutId) */}
+      <LayoutGroup>
+        <div className="mt-10 grid gap-12">
           {groups
             .filter((g) => g.items.length > 0)
             .map((g) => (
-              <div key={g.key}>
-                <h4 className="flex items-center gap-3 font-display text-2xl font-bold tracking-tight">
+              <m.div key={g.key} layout="position" transition={move}>
+                <m.h4
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1, transition: { duration: dur.base, ease: easeOut } }}
+                  className="flex items-center gap-3 font-display text-2xl font-bold tracking-tight"
+                >
                   {g.level && <span aria-hidden className={`size-4 shrink-0 rounded-full ${swatch[g.level]}`} />}
                   {g.title}
                   <span className="text-base font-medium text-muted">({g.items.length})</span>
-                </h4>
+                </m.h4>
                 <ul className="mt-4">
                   {g.items.map((p) => (
-                    <li
+                    <m.li
                       key={p.name}
-                      className="grid gap-2 border-t-[1.5px] border-ink/15 py-4 sm:grid-cols-[8.5rem_1fr_auto] sm:items-center sm:gap-6"
+                      layoutId={`producto-${p.name}`}
+                      transition={move}
+                      className="grid gap-2 border-t-[1.5px] border-ink/15 bg-paper py-4 sm:grid-cols-[8.5rem_1fr_auto] sm:items-center sm:gap-6"
                     >
                       <span>
                         <LevelBadge level={p.level} />
@@ -114,13 +116,13 @@ export function ProductList() {
                         <span className="block font-semibold text-ink">{autocert.categories[p.category]}</span>
                         {p.origin}
                       </span>
-                    </li>
+                    </m.li>
                   ))}
                 </ul>
-              </div>
+              </m.div>
             ))}
-        </m.div>
-      </AnimatePresence>
+        </div>
+      </LayoutGroup>
     </div>
   );
 }

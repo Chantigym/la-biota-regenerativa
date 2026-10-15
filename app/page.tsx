@@ -1,4 +1,5 @@
 import { Autocertificacion } from "@/components/sections/Autocertificacion";
+import { PageFurrow } from "@/components/motion/PageFurrow";
 import { DondeEstamos } from "@/components/sections/DondeEstamos";
 import { Footer } from "@/components/sections/Footer";
 import { Metodologia } from "@/components/sections/Metodologia";
@@ -16,6 +17,7 @@ export default function Home() {
     <>
       <SampleBanner />
       <Nav />
+      <PageFurrow />
       <main id="contenido">
         <Hero />
         <QuienesSomos />

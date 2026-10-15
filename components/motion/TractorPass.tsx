@@ -1,62 +1,93 @@
 "use client";
 
-import { m, useReducedMotion, type Variants } from "motion/react";
+import { useRef } from "react";
+import { m, useReducedMotion, useScroll, useSpring, useTransform, type MotionValue } from "motion/react";
+import { Sprout } from "@/components/motion/Sprout";
 import { asset } from "@/lib/asset";
 import { dur, easeOut } from "@/lib/motion";
 
 // Al entrar una sección, el tractor del logo la cruza de derecha a izquierda (hacia donde mira)
-// arando el surco que la separa de la anterior; detrás de él aparece el contenido.
-// Solo se anima transform y opacity. Con reduced motion, Motion salta los transforms:
-// el surco queda dibujado, el tractor no cruza y el contenido solo hace fundido.
+// guiado por el scroll: avanza si bajás y retrocede si subís. Va arando un surco ondulado y,
+// detrás de él, crecen brotes. Todo con transform/opacity y pathLength sobre motion values (sin re-render).
+// Con reduced motion: el surco y los brotes quedan quietos y completos, y el tractor no aparece.
 
-const TRACTOR_W = 104; // px; el alto sale del aspect-ratio del dibujo
-const pass = { duration: dur.pass, ease: [0.45, 0, 0.3, 1] as const };
+const TRACTOR_W = 168; // px (en mobile se escala con CSS)
+const ROW_H = 132;
 
-const track: Variants = {
-  hidden: { x: "100%" },
-  shown: { x: "0%", transition: pass },
-};
-const furrow: Variants = {
-  hidden: { scaleX: 0 },
-  shown: { scaleX: 1, transition: pass },
-};
-// Con reduced motion el tractor no cruza: el contenido no lo espera.
-const content = (reduce: boolean): Variants => ({
-  hidden: { opacity: 0, y: 16 },
-  shown: { opacity: 1, y: 0, transition: { duration: reduce ? dur.base : 0.5, ease: easeOut, delay: reduce ? 0 : dur.pass * 0.45 } },
-});
+// Surco ondulado, dibujado de derecha a izquierda (el mismo sentido que el tractor)
+const WAVE = Array.from({ length: 20 }, (_, i) => `${i === 0 ? "Q 975 4" : "T"} ${1000 - (i + 1) * 50} 10`).join(" ");
+const FURROW_D = `M 1000 10 ${WAVE}`;
+
+// Posición de cada brote sobre el surco (0 = izquierda, 1 = derecha) y su tamaño
+const SPROUTS = [
+  { at: 0.82, h: 30 },
+  { at: 0.64, h: 22 },
+  { at: 0.43, h: 34 },
+  { at: 0.21, h: 24 },
+  { at: 0.07, h: 28 },
+];
+
+function GrowingSprout({ progress, at, h }: { progress: MotionValue<number>; at: number; h: number }) {
+  // El tractor pasa por `at` cuando progress ≈ 1 - at; el brote crece justo después.
+  const start = Math.min(0.92, 1 - at + 0.04);
+  const scaleY = useTransform(progress, [start, start + 0.1], [0, 1]);
+  return (
+    <m.span
+      className="absolute bottom-[9px] block origin-bottom"
+      style={{ left: `${at * 100}%`, height: h, width: h * 0.75, scaleY }}
+    >
+      <Sprout className="size-full" />
+    </m.span>
+  );
+}
 
 export function TractorPass({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const reduce = useReducedMotion() ?? false;
+  const row = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: row, offset: ["start end", "start 20%"] });
+  // un resorte corto suaviza los saltos de la rueda del mouse sin sentirse atrasado
+  const smooth = useSpring(scrollYProgress, { stiffness: 220, damping: 40, restDelta: 0.001 });
+  const progress = useTransform(smooth, (v) => (reduce ? 1 : v));
+  const x = useTransform(progress, [0, 1], ["100%", "0%"]);
+
   return (
-    <m.div
-      className={className}
-      initial="hidden"
-      whileInView="shown"
-      viewport={{ once: true, margin: "0px 0px -22% 0px" }}
-    >
-      <div aria-hidden className="relative h-[76px] overflow-hidden">
-        {/* surco: crece desde la derecha, detrás del tractor */}
-        <m.span variants={furrow} className="absolute inset-x-0 bottom-[3px] block h-[2px] origin-right rounded-full bg-current" />
-        {/* pista: mide el ancho del surco + el tractor, así entra y sale de cuadro */}
-        <m.div
-          variants={track}
-          className="absolute top-0 bottom-0 will-change-transform"
-          style={{ left: -TRACTOR_W, right: 0 }}
-        >
-          <span
-            className="ink-mask absolute bottom-0 left-0"
-            style={{
-              ["--src" as string]: `url(${asset("/brand/logo-tractor-solo.webp")})`,
-              width: TRACTOR_W,
-              aspectRatio: "360 / 245",
-            }}
-          />
-        </m.div>
+    <div className={className}>
+      <div ref={row} aria-hidden className="relative overflow-hidden" style={{ height: ROW_H }}>
+        {/* surco pendiente (punteado) y surco arado (sólido) */}
+        <svg viewBox="0 0 1000 20" preserveAspectRatio="none" className="absolute inset-x-0 bottom-0 h-5 w-full" fill="none">
+          <path d={FURROW_D} stroke="currentColor" strokeOpacity={0.25} strokeWidth={2} strokeDasharray="2 9" strokeLinecap="round" />
+          <m.path d={FURROW_D} stroke="currentColor" strokeWidth={3} strokeLinecap="round" style={{ pathLength: progress }} />
+        </svg>
+
+        {SPROUTS.map((s) => (
+          <GrowingSprout key={s.at} progress={progress} at={s.at} h={s.h} />
+        ))}
+
+        {!reduce && (
+          <m.div className="absolute top-0 bottom-[10px] will-change-transform" style={{ left: -TRACTOR_W, right: 0, x }}>
+            <span className="tractor-pass absolute bottom-0 left-0 block w-[120px] sm:w-[168px]" style={{ aspectRatio: "360 / 245" }}>
+              <span
+                className="ink-mask absolute inset-0"
+                style={{ ["--src" as string]: `url(${asset("/brand/logo-tractor-solo.webp")})` }}
+              />
+              {/* humo: tres bocanadas que suben desde el caño de escape */}
+              <span className="smoke" style={{ ["--d" as string]: "0s" }} />
+              <span className="smoke" style={{ ["--d" as string]: "0.55s" }} />
+              <span className="smoke" style={{ ["--d" as string]: "1.1s" }} />
+            </span>
+          </m.div>
+        )}
       </div>
-      <m.div variants={content(reduce)} className="pt-10 lg:pt-14">
+
+      <m.div
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "0px 0px -15% 0px" }}
+        transition={{ duration: reduce ? dur.base : 0.5, ease: easeOut }}
+        className="pt-8 lg:pt-12"
+      >
         {children}
       </m.div>
-    </m.div>
+    </div>
   );
 }

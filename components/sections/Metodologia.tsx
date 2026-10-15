@@ -1,3 +1,4 @@
+import { CountUp } from "@/components/motion/CountUp";
 import { TractorPass } from "@/components/motion/TractorPass";
 import { metodologia } from "@/content/site";
 
@@ -35,7 +36,9 @@ export function Metodologia() {
             {metodologia.indicators.map((ind) => (
               <div key={ind.name} className="flex flex-col rounded-[var(--radius-block)] bg-paper p-5">
                 <dt className="font-semibold">{ind.name}</dt>
-                <dd className="font-display mt-3 text-4xl font-extrabold tracking-tight">{ind.value}</dd>
+                <dd className="font-display mt-3 text-4xl font-extrabold tracking-tight">
+                  <CountUp value={ind.value} />
+                </dd>
                 <dd className="mt-3 text-[15px] text-muted">{ind.method}</dd>
                 <dd className="mt-auto pt-4 text-sm font-semibold">Frecuencia: {ind.frequency}</dd>
               </div>

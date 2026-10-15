@@ -1,4 +1,5 @@
 import { PhotoSlot } from "@/components/brand/PhotoSlot";
+import { CountUp } from "@/components/motion/CountUp";
 import { TractorPass } from "@/components/motion/TractorPass";
 import { quienes } from "@/content/site";
 
@@ -19,7 +20,9 @@ export function QuienesSomos() {
             {quienes.facts.map((f) => (
               <div key={f.label} className="rounded-[var(--radius-block)] bg-salvia p-5">
                 <dt className="text-sm font-semibold text-muted">{f.label}</dt>
-                <dd className="font-display mt-1 text-2xl font-bold tracking-tight sm:text-3xl">{f.value}</dd>
+                <dd className="font-display mt-1 text-2xl font-bold tracking-tight sm:text-3xl">
+                  <CountUp value={f.value} />
+                </dd>
               </div>
             ))}
           </dl>

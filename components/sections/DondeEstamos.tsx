@@ -1,6 +1,7 @@
 import { TractorPass } from "@/components/motion/TractorPass";
 import { ArrowRight, Check, Tractor } from "@phosphor-icons/react/dist/ssr";
 import { FurrowPath } from "@/components/motion/FurrowPath";
+import { NodePop } from "@/components/motion/NodePop";
 import { estadoLabel, haciaDonde, hoy, type HitoEstado } from "@/content/site";
 
 const goalTitle = Object.fromEntries(haciaDonde.goals.map((g) => [g.id, g.title]));
@@ -64,7 +65,9 @@ export function DondeEstamos() {
                       }`}
                     />
                   )}
-                  <Node estado={h.estado} />
+                  <NodePop active={h.estado !== "pendiente"} delay={current > 0 ? Math.min(i, current) / current : 0}>
+                    <Node estado={h.estado} />
+                  </NodePop>
 
                   <div className={`pt-2 lg:pt-0 ${h.estado === "pendiente" ? "text-muted" : ""}`}>
                     <p className="flex flex-wrap items-center gap-2 text-sm font-semibold lg:justify-center">

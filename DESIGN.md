@@ -51,7 +51,11 @@ Es un sitio de una sola página que presenta la identidad de un proyecto de muje
   - ease-out `cubic-bezier(.23,1,.32,1)`
 - **Momentos de relato:**
   1. La entrada del hero, hecha en CSS para que funcione sin JS: el tractor entra 24px desde la izquierda y el texto aparece en cascada de 40ms.
-  2. **El tractor que ara entre secciones** (`components/motion/TractorPass.tsx`): cuando entra una sección, el tractor del logo (`logo-tractor-solo.webp`) la cruza de derecha a izquierda en 1.3s mientras dibuja el surco que la separa de la anterior. El contenido de la sección aparece detrás (fundido y 16px), con un 45% de retraso. Se dispara una sola vez, solo con transform y opacity.
+  2. **El tractor que ara entre secciones** (`components/motion/TractorPass.tsx`): guiado por el scroll (avanza si bajás, retrocede si subís). Cruza cada sección de derecha a izquierda, con humo, sobre un surco ondulado que se va dibujando, y detrás crecen brotes. Con reduced motion no aparece: el surco y los brotes quedan completos.
+  - **Parallax del hero** (`ParallaxLayer`): el tractor sigue hacia la izquierda y el texto se queda atrás.
+  - **Surco de progreso** (`PageFurrow`): fijo al costado, solo desde 1360px de ancho y después del hero.
+  - **Detalles:** números que cuentan (`CountUp`), hitos que se encienden (`NodePop`), sección activa en el menú (`layoutId`), productos que viajan a su lugar al reordenar y hovers en el bento y en las tarjetas de nivel.
+  - **Peso:** `domMax` (layout) se carga aparte, en `lib/motion-features.ts`.
   3. El surco de "Dónde estamos hoy", que se dibuja hasta el hito actual (Motion `pathLength`, `whileInView`, `once`).
 - **Respuesta a acciones:** el press en botones (`scale .98`) y el menú móvil con `AnimatePresence`, donde la salida dura el 70% de la entrada.
 - **Reglas:**

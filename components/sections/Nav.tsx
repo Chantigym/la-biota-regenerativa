@@ -9,6 +9,28 @@ import { dur, easeOut, exitDur } from "@/lib/motion";
 
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState<string | null>(null);
+
+  // Sección activa: la que cruza la franja central de la ventana. Un solo observer, sin escuchar el scroll.
+  useEffect(() => {
+    const sections = nav
+      .map((item) => document.querySelector<HTMLElement>(item.href))
+      .filter((el): el is HTMLElement => el !== null);
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) if (e.isIntersecting) setActive(`#${e.target.id}`);
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    sections.forEach((el) => io.observe(el));
+    const hero = document.getElementById("inicio");
+    const heroIo = new IntersectionObserver(([e]) => e.isIntersecting && setActive(null), { rootMargin: "-45% 0px -50% 0px" });
+    if (hero) heroIo.observe(hero);
+    return () => {
+      io.disconnect();
+      heroIo.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -27,10 +49,22 @@ export function Nav() {
         <nav aria-label="Principal" className="hidden xl:block">
           <ul className="flex items-center gap-6 text-[15px] font-medium">
             {nav.map((item) => (
-              <li key={item.href}>
-                <a href={item.href} className="rounded-sm py-2 hover:underline hover:decoration-2 hover:underline-offset-[6px]">
+              <li key={item.href} className="relative">
+                <a
+                  href={item.href}
+                  aria-current={active === item.href ? "location" : undefined}
+                  className={`block rounded-sm py-2 transition-colors duration-200 ${active === item.href ? "" : "hover:text-muted"}`}
+                >
                   {item.label}
                 </a>
+                {active === item.href && (
+                  <m.span
+                    layoutId="nav-activo"
+                    aria-hidden
+                    className="absolute inset-x-0 -bottom-[3px] block h-[3px] rounded-full bg-yema shadow-[0_0_0_1px_var(--ink)]"
+                    transition={{ type: "spring", stiffness: 500, damping: 40 }}
+                  />
+                )}
               </li>
             ))}
           </ul>

@@ -21,7 +21,10 @@ export function Autocertificacion() {
         {/* Los tres niveles */}
         <ul className="mt-12 grid gap-3 md:grid-cols-3">
           {autocert.levels.map((l) => (
-            <li key={l.id} className="overflow-hidden rounded-[var(--radius-block)] shadow-[inset_0_0_0_1.5px_var(--ink)]">
+            <li
+              key={l.id}
+              className="overflow-hidden rounded-[var(--radius-block)] shadow-[inset_0_0_0_1.5px_var(--ink)] transition-transform duration-200 ease-[var(--ease-out)] hover:-translate-y-1"
+            >
               <span aria-hidden className={`block h-3 ${bar[l.id]}`} />
               <div className="p-6">
                 <p className="font-display text-3xl font-extrabold tracking-tight">{l.name}</p>

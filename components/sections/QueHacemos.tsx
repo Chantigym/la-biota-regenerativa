@@ -29,13 +29,15 @@ export function QueHacemos() {
             return (
               <li
                 key={item.id}
-                className={`flex flex-col gap-6 rounded-[var(--radius-block)] p-6 sm:p-8 ${c.box} ${
+                className={`group flex flex-col gap-6 rounded-[var(--radius-block)] p-6 sm:p-8 ${c.box} ${
                   c.feature ? "lg:flex-row lg:items-center lg:gap-10" : ""
                 }`}
               >
                 <Illustration
                   src={item.illustration}
-                  className={c.feature ? "w-48 sm:w-60 lg:order-2 lg:w-[46%] lg:shrink-0" : "w-40 sm:w-44"}
+                  className={`transition-transform duration-300 ease-[var(--ease-out)] group-hover:-translate-y-1 group-hover:-rotate-2 ${
+                    c.feature ? "w-48 sm:w-60 lg:order-2 lg:w-[46%] lg:shrink-0" : "w-40 sm:w-44"
+                  }`}
                 />
                 <div className={c.feature ? "lg:order-1" : ""}>
                   <h3 className={`font-extrabold ${c.feature ? "text-4xl sm:text-5xl" : "text-3xl"}`}>{item.title}</h3>

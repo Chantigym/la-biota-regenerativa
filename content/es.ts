@@ -262,12 +262,14 @@ export const calendario = {
 // Ciclo de nutrientes entre subproyectos
 export const ciclo = {
   title: "Cómo se conectan",
+  center: "Ciclo de nutrientes",
+  autoHint: "Se recorre solo; tocá una etapa para detenerlo.",
   lead: "Los subproyectos forman un ciclo: los residuos de cada etapa se reincorporan como insumo de la siguiente y la materia orgánica vuelve al suelo.",
   nodes: [
-    { id: "suelo", title: "Suelo vivo", text: "Nutrientes y agua para los cultivos", flow: "El suelo, con su biota activa, pone a disposición de la huerta nutrientes y agua. " },
-    { id: "huerta", title: "Huerta", text: "Verdura, excedentes y residuos", flow: "La huerta produce verdura para la venta; los residuos y excedentes complementan la alimentación de las aves. " },
-    { id: "aves", title: "Gallinas y pollos", text: "Huevos, carne, guano y cama", flow: "Las aves producen huevos y carne; su guano y la cama de los gallineros se destinan al compost. " },
-    { id: "compost", title: "Compost", text: "Materia orgánica estabilizada", flow: "El compost estabiliza la materia orgánica y la devuelve al suelo, cerrando el ciclo. " },
+    { id: "suelo", img: "/illustrations/suelo-vivo.webp", title: "Suelo vivo", text: "Nutrientes y agua para los cultivos", flow: "El suelo, con su biota activa, pone a disposición de la huerta nutrientes y agua. " },
+    { id: "huerta", img: "/illustrations/huertas.webp", title: "Huerta", text: "Verdura, excedentes y residuos", flow: "La huerta produce verdura para la venta; los residuos y excedentes complementan la alimentación de las aves. " },
+    { id: "aves", img: "/illustrations/huevos.webp", title: "Gallinas y pollos", text: "Huevos, carne, guano y cama", flow: "Las aves producen huevos y carne; su guano y la cama de los gallineros se destinan al compost. " },
+    { id: "compost", img: "/illustrations/compost.webp", title: "Compost", text: "Materia orgánica estabilizada", flow: "El compost estabiliza la materia orgánica y la devuelve al suelo, cerrando el ciclo. " },
   ],
   outputs: [
     { title: "Conservas", text: "Los excedentes de la huerta se procesan y no se pierden." },
@@ -285,22 +287,6 @@ export const suelo = {
     { title: "Fauna del suelo", text: "Lombrices, escarabajos y otros invertebrados fragmentan la materia orgánica y abren galerías que mejoran la infiltración y la aireación." },
     { title: "Hongos", text: "Las redes de micelio, entre ellas las micorrizas, extienden el alcance de las raíces y facilitan la absorción de agua y nutrientes." },
     { title: "Microorganismos", text: "Bacterias y otros microorganismos descomponen la materia orgánica y vuelven disponibles los nutrientes. Son la biota que da nombre al proyecto." },
-  ],
-};
-
-// Recetas de estación: se muestran según el mes elegido en el calendario. TODO: recetas reales.
-export const recetas = {
-  title: "Recetas de estación",
-  lead: "Preparaciones simples con la verdura disponible en el mes elegido.",
-  note: "Recetas de muestra.",
-  items: [
-    { name: "Tarta de acelga", crops: ["Acelga"], time: "XX min", text: L.mid },
-    { name: "Ensalada tibia de remolacha", crops: ["Remolacha", "Lechuga"], time: "XX min", text: L.mid },
-    { name: "Kale salteado con ajo", crops: ["Kale"], time: "XX min", text: L.mid },
-    { name: "Coliflor al horno", crops: ["Coliflor"], time: "XX min", text: L.mid },
-    { name: "Salsa de tomate casera", crops: ["Tomate"], time: "XX min", text: L.mid },
-    { name: "Locro de zapallo", crops: ["Zapallo"], time: "XX min", text: L.mid },
-    { name: "Zanahorias glaseadas", crops: ["Zanahoria"], time: "XX min", text: L.mid },
   ],
 };
 
@@ -330,75 +316,31 @@ export const apoyar = {
   ways: [
     { title: "Comprar local", text: "Elegir verdura y productos de la zona sostiene el proyecto y acorta la cadena. " + L.short },
     { title: "Aportes", text: "Aportes económicos para herramientas, semillas o infraestructura. " + L.short },
-    { title: "Herramientas y materiales", text: "Donación de herramientas, mallas o materiales en desuso. " + L.short },
     { title: "Difusión", text: "Compartir el proyecto en redes y recomendarlo a quienes buscan alimentos locales. " + L.short },
   ],
-  cta: "Consultar por Instagram",
 };
 
-// Quiz de consumo local. Respuestas correctas basadas en información general.
-export const quiz = {
-  title: "¿Qué tan local comés?",
-  lead: "Cinco preguntas rápidas sobre alimentación y consumo local.",
-  questions: [
-    { q: "¿Cuántas veces por semana comprás verdura de productores de tu zona?", options: ["Nunca", "Una vez", "Dos o más"], points: [0, 1, 2] },
-    { q: "¿Sabés de qué estación es la verdura que comprás?", options: ["No", "A veces", "Casi siempre"], points: [0, 1, 2] },
-    { q: "¿Cocinás con verdura de estación?", options: ["Rara vez", "A veces", "Siempre que puedo"], points: [0, 1, 2] },
-    { q: "¿Conocés a alguna persona que produzca lo que comés?", options: ["A nadie", "A una", "A varias"], points: [0, 1, 2] },
-    { q: "¿Aprovechás los excedentes (conservas, congelado)?", options: ["No", "A veces", "Sí"], points: [0, 1, 2] },
-  ],
-  results: [
-    { min: 0, title: "Recién empezando", text: "Hay mucho por explorar: empezar por la verdura de estación es un buen primer paso." },
-    { min: 4, title: "En camino", text: "Ya tenés hábitos de consumo local; sumar productores de la zona los fortalece." },
-    { min: 8, title: "Consumo local", text: "Tus hábitos acortan la distancia entre el campo y la mesa." },
-  ],
-};
-
-// Armá tu bolsón: verduras del mes (sale del calendario) y un bolsón que se llena.
-export const bolson = {
-  title: "Armá tu bolsón",
-  lead: "Elegí verduras disponibles en el mes y mirá cómo se llena el bolsón.",
-  note: "Herramienta de muestra: no es un pedido.",
-  max: 6,
-};
-
-// Sembrá en el surco (minijuego)
-export const sembrar = {
-  title: "Sembrá en el surco",
-  lead: "Arrastrá las semillas hasta el surco (o tocá un hueco del surco) y mirá cómo brotan.",
-  done: "¡Surco sembrado!",
-  holes: 5,
-};
-
-// Suelo degradado vs. suelo vivo
-export const comparador = {
-  title: "Suelo degradado y suelo vivo",
-  lead: "Deslizá para comparar un suelo compactado y sin cobertura con un suelo bajo manejo regenerativo.",
-  left: "Suelo degradado",
-  right: "Suelo vivo",
-  leftText: "Superficie desnuda, raíces cortas, capa compactada y poca vida biológica.",
-  rightText: "Cobertura permanente, raíces profundas, fauna y hongos activos.",
-};
-
-// Mapa de Traslasierra. x/y en % sobre la ilustración (aproximado). TODO: confirmar ubicación de El Mantillo.
+// Mapa de Traslasierra. x/y en % sobre la ilustración (aproximado). El Mantillo: ruta 14, La Travesía, entre La Población y Luyaba.
 export const region = {
   title: "En el valle de Traslasierra",
-  lead: "El Mantillo está en el centro del valle de Traslasierra, al oeste de las Sierras Grandes de Córdoba.",
+  lead: "El Mantillo está sobre la ruta 14, en La Travesía, entre La Población y Luyaba, al pie de las Sierras de Comechingones.",
   note: "Mapa ilustrativo y aproximado.",
   places: [
-    { name: "Mina Clavero", x: 47, y: 30 },
-    { name: "Nono", x: 50, y: 44 },
-    { name: "Las Rabonas", x: 52, y: 56 },
-    { name: "Villa Dolores", x: 40, y: 80 },
-    { name: "Sierras Grandes", x: 82, y: 22, kind: "zona" },
+    { name: "Villa Dolores", x: 46, y: 31 },
+    { name: "San Javier", x: 55, y: 56 },
+    { name: "Ruta 14", x: 60, y: 44, kind: "ruta" },
+    { name: "La Población", x: 50, y: 70 },
+    { name: "Luyaba", x: 74, y: 80 },
+    { name: "La Paz", x: 64, y: 93 },
+    { name: "Sierras de Comechingones", x: 84, y: 20, kind: "zona" },
   ],
-  farm: { name: "El Mantillo", x: 47, y: 62 },
+  farm: { name: "El Mantillo", x: 62, y: 73 },
 };
 
-// Clima en el campo (Open-Meteo, sin clave). Coordenadas aproximadas del centro del valle. TODO: confirmar.
+// Clima en el campo (Open-Meteo, sin clave). Coordenadas aproximadas de La Travesía (ruta 14, entre La Población y Luyaba).
 export const clima = {
   title: "Hoy en el campo",
-  lat: -31.83,
+  lat: -32.1,
   lon: -65.03,
 };
 
@@ -498,7 +440,6 @@ export const ui = {
   toNight: "Cambiar a modo noche",
   toDay: "Cambiar a modo día",
   lang: { short: "EN", aria: "Ver el sitio en inglés", lang: "en" },
-  backToTop: "Volver arriba",
   sideIndex: "Índice de secciones",
   sections: [
     { id: "quienes-somos", label: "Comunidad" },
@@ -509,7 +450,6 @@ export const ui = {
     { id: "biota", label: "La biota del suelo" },
     { id: "hacia-donde", label: "Objetivos" },
     { id: "hoy", label: "El presente" },
-    { id: "jugar", label: "Aprender jugando" },
     { id: "preguntas", label: "Preguntas" },
     { id: "apoyar", label: "Apoyar" },
     { id: "seguinos", label: "Instagram" },
@@ -550,12 +490,10 @@ export const ui = {
     available: "Disponible",
     unavailable: "No disponible",
     inMonth: (m: string) => `En ${m}:`,
-    now: (m: string) => `Ahora: ${m}.`,
     see: (m: string, current: boolean) => `Ver qué hay en ${m}${current ? " (mes actual)" : ""}`,
     none: "sin verduras en este calendario de muestra",
     caption: (t: string, m: string | null) => `${t}: meses en los que hay cada verdura${m ? `. Mes actual: ${m}` : ""}`,
     cell: (c: string, m: string, on: boolean) => `${c}, ${m}: ${on ? "disponible" : "no disponible"}`,
-    noRecipes: "No hay recetas de muestra para este mes.",
     monthsFull: MESES,
   },
   products: {
@@ -584,31 +522,12 @@ export const ui = {
     extra: [
       { href: "#el-mantillo", label: "El Mantillo" },
       { href: "#biota", label: "La biota del suelo" },
-      { href: "#jugar", label: "Aprender jugando" },
       { href: "#apoyar", label: "Apoyar el proyecto" },
     ],
     qr: "QR para imprimir",
     place: "Traslasierra, Córdoba, Argentina.",
   },
-  games: {
-    title: "Aprender jugando",
-    lead: "Tres actividades breves sobre siembra, estacionalidad y consumo local.",
-    available: "Disponibles este mes",
-    bagAria: "Contenido del bolsón",
-    count: (n: number, max: number, full: boolean) => `${n} de ${max}${full ? " · bolsón lleno" : ""}`,
-    holesLeft: (n: number) => `Quedan ${n} huecos por sembrar.`,
-    plantIn: (i: number) => `Sembrar en el hueco ${i}`,
-    planted: (i: number) => `Hueco ${i}: sembrado`,
-    again: "Volver a sembrar",
-    question: (i: number, n: number) => `Pregunta ${i} de ${n}`,
-    result: (s: number, t: number) => `Resultado: ${s} de ${t} puntos`,
-    restart: "Volver a empezar",
-  },
   hen: "Dato de la gallina guía",
-  lemaAria: "Lema del proyecto",
-  lema: "Suelos sanos, plantas sanas, animales sanos, personas sanas",
-  sealRing: "AUTOCERTIFICACIÓN · LA BIOTA ·",
-  compareAria: (l: string, r: string) => `Comparar: ${l} a la izquierda, ${r} a la derecha`,
-  compareValue: (p: number, l: string) => `${p}% ${l.toLowerCase()}`,
+  sealRing: "AUTOCERTIFICACIÓN ★ LA BIOTA",
   qr: { title: "Escaneá para conocer el proyecto", print: "Imprimir", meta: "QR para imprimir" },
 };

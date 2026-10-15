@@ -15,7 +15,7 @@ export function Autocertificacion() {
     <section id="autocertificacion" aria-labelledby="autocert-title" className="px-4 pb-24 sm:px-6 lg:pb-36">
       <SectionFurrow className="mx-auto max-w-[1240px]">
         <div className="relative">
-        <Sello className="float-right ml-4 w-24 sm:w-32 lg:absolute lg:-top-6 lg:right-4 lg:float-none lg:w-44" />
+        <Sello className="float-right ml-4 w-24 sm:w-32 lg:absolute lg:-top-6 lg:right-4 lg:float-none lg:w-56" />
         <h2 id="autocert-title" className="text-4xl font-extrabold sm:text-5xl">
           {autocert.title}
         </h2>

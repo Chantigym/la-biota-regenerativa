@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, m, useInView, useReducedMotion } from "motion/react";
-import { Clock } from "@phosphor-icons/react";
-import { calendario, recetas, ui } from "@/content/site";
+import { m, useInView, useReducedMotion } from "motion/react";
+import { calendario, ui } from "@/content/site";
 import { haptic } from "@/lib/haptic";
 
 const MESES = ui.calendar.monthsFull;
@@ -24,7 +23,6 @@ export function Calendario() {
     setSel(now);
   }, []);
   const disponibles = sel === null ? [] : calendario.crops.filter((c) => c.months.includes(sel)).map((c) => c.name);
-  const recetasDelMes = recetas.items.filter((r) => r.crops.some((c) => disponibles.includes(c))).slice(0, 3);
 
   useEffect(() => {
     if (!inView || month === null || !wrap.current) return;
@@ -125,36 +123,6 @@ export function Calendario() {
         <span>{calendario.note}</span>
       </p>
 
-      {/* Recetas de estación: según el mes elegido en el calendario */}
-      <div className="mt-16">
-        <h3 className="text-3xl font-extrabold sm:text-4xl">{recetas.title}</h3>
-        <p className="mt-3 max-w-[60ch] text-lg text-muted">
-          {recetas.lead} {sel !== null && <span className="font-semibold text-ink">{ui.calendar.now(MESES[sel])}</span>}
-        </p>
-        <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          <AnimatePresence mode="popLayout" initial={false}>
-            {recetasDelMes.map((r) => (
-              <m.li
-                key={r.name}
-                layout
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.25 }}
-                className="rounded-[var(--radius-block)] bg-barro p-6"
-              >
-                <p className="font-display text-xl font-bold tracking-tight">{r.name}</p>
-                <p className="mt-1 flex items-center gap-1.5 text-sm font-semibold">
-                  <Clock size={16} weight="bold" aria-hidden /> {r.time} · {r.crops.join(", ")}
-                </p>
-                <p className="mt-3 text-[15px] text-muted">{r.text}</p>
-              </m.li>
-            ))}
-          </AnimatePresence>
-        </ul>
-        {recetasDelMes.length === 0 && <p className="mt-4 text-muted">{ui.calendar.noRecipes}</p>}
-        <p className="mt-3 text-sm text-muted">{recetas.note}</p>
-      </div>
     </div>
   );
 }

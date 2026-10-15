@@ -1,8 +1,8 @@
-import { HandHeart, Megaphone, Basket, Wrench } from "@phosphor-icons/react/dist/ssr";
+import { Basket, HandHeart, Megaphone } from "@phosphor-icons/react/dist/ssr";
 import { SectionFurrow } from "@/components/brand/SectionFurrow";
-import { apoyar, seguinos } from "@/content/site";
+import { apoyar } from "@/content/site";
 
-const icons = [Basket, HandHeart, Wrench, Megaphone];
+const icons = [Basket, HandHeart, Megaphone];
 
 export function Apoyar() {
   return (
@@ -12,7 +12,7 @@ export function Apoyar() {
           {apoyar.title}
         </h2>
         <p className="mt-4 max-w-[60ch] text-lg text-muted">{apoyar.lead}</p>
-        <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-10 grid gap-3 sm:grid-cols-3">
           {apoyar.ways.map((w, i) => {
             const Icon = icons[i % icons.length];
             return (
@@ -24,14 +24,6 @@ export function Apoyar() {
             );
           })}
         </ul>
-        <a
-          href={seguinos.instagram.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn btn-solid sprout-hover mt-8"
-        >
-          {apoyar.cta}
-        </a>
       </SectionFurrow>
     </section>
   );

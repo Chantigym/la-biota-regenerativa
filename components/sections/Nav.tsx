@@ -10,7 +10,7 @@ import { dur, easeOut, exitDur } from "@/lib/motion";
 import { useActiveSection } from "@/lib/useActiveSection";
 import { siteRoot } from "@/lib/asset";
 
-const ALL_SECTIONS = ["quienes-somos", "el-mantillo", "que-hacemos", "autocertificacion", "metodologia", "biota", "hacia-donde", "hoy", "jugar", "preguntas", "apoyar", "seguinos"];
+const ALL_SECTIONS = ["quienes-somos", "el-mantillo", "que-hacemos", "autocertificacion", "metodologia", "biota", "hacia-donde", "hoy", "preguntas", "apoyar", "seguinos"];
 
 export function Nav() {
   const [open, setOpen] = useState(false);

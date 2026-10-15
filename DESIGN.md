@@ -67,9 +67,8 @@ Es un sitio de una sola página que presenta la identidad de un proyecto de muje
 - **Hero:** el tractor se dibuja con marcador y después se entinta (CSS, sin JS); el título aparece palabra por palabra; una nota a mano.
 - **Entre secciones:** el surco ondulado se traza al entrar (`FurrowLine`); los bloques de color (Objetivos, La biota del suelo, footer) suben y se apoyan (`RiseBlock`).
 - **La biota del suelo:** recorrido fijo por capas guiado por el scroll (solo desktop; lista en mobile y con reduced motion).
-- **Elementos:** árboles del monte con parallax (`ParallaxTree`), números que cuentan, barras de indicadores que crecen, ciclo de nutrientes que se traza y semilla que lo recorre.
-- **Interacción:** zoom al punto en el mapa, calendario que viaja al mes actual, brote al pasar por botones y links (`.sprout-hover`), preguntas que se abren con altura animada, productos que se reordenan, buscador y volver arriba.
-- **Tipografía a mano:** Permanent Marker (`font-marker`) solo para notas y frases del proyecto: hero, consumo local y lema.
+- **Elementos:** árboles del monte con parallax, números que cuentan, barras de indicadores que crecen, ciclo de nutrientes ilustrado que se recorre solo, sello de autocertificación que se estampa, gallina guía e ilustraciones vivas (gallina, frascos, lombriz, mapa).
+- **Interacción:** zoom al punto en el mapa, calendario que viaja al mes actual, brote al pasar por botones y links (`.sprout-hover`), preguntas que se abren con altura animada, productos que se reordenan y buscador.
 
 ## Idiomas y publicación
 - El contenido vive en `content/es.ts` y `content/en.ts`, con la misma estructura (incluye `ui`: botones, etiquetas y textos de accesibilidad). `content/site.ts` elige uno según `NEXT_PUBLIC_LOCALE`.
@@ -81,7 +80,7 @@ Es un sitio de una sola página que presenta la identidad de un proyecto de muje
 - Un aviso arriba de todo (`SampleBanner`) lo explica. Se apaga con `sample.enabled = false` en `content/site.ts`.
 
 ## Secciones
-Comunidad · El proyecto · Autocertificación (lista de productos ordenable por certificación o por categoría) · Metodología · Objetivos · El presente · Preguntas frecuentes · Instagram.
+Comunidad · El Mantillo (región, clima, predio, video) · El proyecto (bento, ciclo de nutrientes, calendario, detalle) · Autocertificación (sello, niveles, lista de productos con buscador y ficha) · Metodología · La biota del suelo · Objetivos · El presente · Preguntas frecuentes · Apoyar el proyecto · Instagram.
 
 ## Texto
 - Registro académico e informativo, con vocabulario técnico de agricultura regenerativa y sin metáforas. Castellano rioplatense.

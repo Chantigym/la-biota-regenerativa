@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, m, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { RiseBlock } from "@/components/motion/RiseBlock";
 import { Glossed } from "@/components/motion/Glossed";
-import { Comparador } from "@/components/sections/Comparador";
 import { GallinaTip } from "@/components/motion/GallinaTip";
 import { suelo, ui } from "@/content/site";
 import { asset } from "@/lib/asset";
@@ -145,7 +144,6 @@ export function Suelo() {
           </div>
         </div>
         <div className="hidden h-16 lg:block" />
-        <Comparador />
       </RiseBlock>
     </section>
   );

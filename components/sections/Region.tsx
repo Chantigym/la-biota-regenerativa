@@ -83,7 +83,11 @@ export function Region() {
               <span
                 key={p.name}
                 className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-full px-2 py-0.5 text-[12px] font-semibold whitespace-nowrap sm:text-sm ${
-                  p.kind === "zona" ? "bg-ink text-paper" : "bg-paper shadow-[0_0_0_1.5px_var(--ink)]"
+                  p.kind === "zona"
+                    ? "bg-ink text-paper"
+                    : p.kind === "ruta"
+                      ? "rounded-md bg-yema text-on-yema shadow-[0_0_0_1.5px_var(--ink)]"
+                      : "bg-paper shadow-[0_0_0_1.5px_var(--ink)]"
                 }`}
                 style={{ left: `${p.x}%`, top: `${p.y}%` }}
               >

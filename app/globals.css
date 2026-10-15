@@ -453,25 +453,6 @@ p {
   }
 }
 
-/* Franja del lema */
-.marquee-track {
-  display: flex;
-  width: max-content;
-}
-@keyframes marquee {
-  to {
-    transform: translateX(-50%);
-  }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .marquee-track {
-    animation: marquee 38s linear infinite;
-  }
-  .marquee:hover .marquee-track {
-    animation-play-state: paused;
-  }
-}
-
 /* Ficha de producto (dialog nativo) */
 .ficha {
   margin: auto;
@@ -545,32 +526,6 @@ html.carga-lenta #cargando {
 @keyframes traqueteo {
   50% {
     transform: translateY(-1px);
-  }
-}
-
-/* Ciclo de nutrientes: una semilla que recorre el círculo */
-.ciclo-seed {
-  display: none;
-  position: absolute;
-  inset: 0 auto auto 0;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--yema);
-  box-shadow: 0 0 0 2px var(--ink);
-  offset-path: circle(37.5% at 50% 50%);
-  offset-anchor: 50% 50%;
-  offset-rotate: 0deg;
-}
-@keyframes orbit {
-  to {
-    offset-distance: 100%;
-  }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .ciclo-seed {
-    display: block;
-    animation: orbit 12s linear infinite;
   }
 }
 

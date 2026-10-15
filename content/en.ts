@@ -226,12 +226,14 @@ export const calendario = {
 
 export const ciclo = {
   title: "How it all connects",
+  center: "Nutrient cycle",
+  autoHint: "It plays on its own; tap a stage to stop it.",
   lead: "The sub-projects form a cycle: the residues of each stage become inputs for the next, and organic matter returns to the soil.",
   nodes: [
-    { id: "suelo", title: "Living soil", text: "Nutrients and water for crops", flow: "The soil and its active biota supply the vegetable garden with nutrients and water." },
-    { id: "huerta", title: "Garden", text: "Vegetables, surplus and scraps", flow: "The garden produces vegetables for sale; scraps and surplus supplement the birds' diet." },
-    { id: "aves", title: "Hens and chickens", text: "Eggs, meat, manure and bedding", flow: "The birds produce eggs and meat; their manure and coop bedding go to the compost." },
-    { id: "compost", title: "Compost", text: "Stabilised organic matter", flow: "Compost stabilises organic matter and returns it to the soil, closing the cycle." },
+    { id: "suelo", img: "/illustrations/suelo-vivo.webp", title: "Living soil", text: "Nutrients and water for crops", flow: "The soil and its active biota supply the vegetable garden with nutrients and water." },
+    { id: "huerta", img: "/illustrations/huertas.webp", title: "Garden", text: "Vegetables, surplus and scraps", flow: "The garden produces vegetables for sale; scraps and surplus supplement the birds' diet." },
+    { id: "aves", img: "/illustrations/huevos.webp", title: "Hens and chickens", text: "Eggs, meat, manure and bedding", flow: "The birds produce eggs and meat; their manure and coop bedding go to the compost." },
+    { id: "compost", img: "/illustrations/compost.webp", title: "Compost", text: "Stabilised organic matter", flow: "Compost stabilises organic matter and returns it to the soil, closing the cycle." },
   ],
   outputs: [
     { title: "Preserves", text: "Garden surplus is processed instead of wasted." },
@@ -248,21 +250,6 @@ export const suelo = {
     { title: "Soil fauna", text: "Earthworms, beetles and other invertebrates break down organic matter and dig channels that improve infiltration and aeration." },
     { title: "Fungi", text: "Mycelium networks, including mycorrhizae, extend the reach of roots and help them take up water and nutrients." },
     { title: "Microorganisms", text: "Bacteria and other microorganisms decompose organic matter and make nutrients available. They are the biota the project is named after." },
-  ],
-};
-
-export const recetas = {
-  title: "Seasonal recipes",
-  lead: "Simple dishes with the vegetables available in the selected month.",
-  note: "Sample recipes.",
-  items: [
-    { name: "Chard pie", crops: ["Chard"], time: "XX min", text: L.mid },
-    { name: "Warm beetroot salad", crops: ["Beetroot", "Lettuce"], time: "XX min", text: L.mid },
-    { name: "Garlic sautéed kale", crops: ["Kale"], time: "XX min", text: L.mid },
-    { name: "Roasted cauliflower", crops: ["Cauliflower"], time: "XX min", text: L.mid },
-    { name: "Homemade tomato sauce", crops: ["Tomato"], time: "XX min", text: L.mid },
-    { name: "Squash stew", crops: ["Squash"], time: "XX min", text: L.mid },
-    { name: "Glazed carrots", crops: ["Carrot"], time: "XX min", text: L.mid },
   ],
 };
 
@@ -289,69 +276,29 @@ export const apoyar = {
   ways: [
     { title: "Buy local", text: "Choosing local vegetables and products sustains the project and shortens the chain. " + L.short },
     { title: "Contributions", text: "Financial contributions for tools, seeds or infrastructure. " + L.short },
-    { title: "Tools and materials", text: "Donating unused tools, netting or materials. " + L.short },
     { title: "Spread the word", text: "Sharing the project online and recommending it to people looking for local food. " + L.short },
   ],
-  cta: "Ask on Instagram",
-};
-
-export const quiz = {
-  title: "How local is your food?",
-  lead: "Five quick questions about food and buying local.",
-  questions: [
-    { q: "How often a week do you buy vegetables from local growers?", options: ["Never", "Once", "Twice or more"], points: [0, 1, 2] },
-    { q: "Do you know which season your vegetables come from?", options: ["No", "Sometimes", "Almost always"], points: [0, 1, 2] },
-    { q: "Do you cook with seasonal vegetables?", options: ["Rarely", "Sometimes", "Whenever I can"], points: [0, 1, 2] },
-    { q: "Do you know anyone who grows what you eat?", options: ["No one", "One person", "Several"], points: [0, 1, 2] },
-    { q: "Do you make use of surplus (preserves, freezing)?", options: ["No", "Sometimes", "Yes"], points: [0, 1, 2] },
-  ],
-  results: [
-    { min: 0, title: "Just starting", text: "Plenty to explore: seasonal vegetables are a good first step." },
-    { min: 4, title: "On your way", text: "You already have local habits; adding local growers strengthens them." },
-    { min: 8, title: "Eating local", text: "Your habits shorten the distance between farm and table." },
-  ],
-};
-
-export const bolson = {
-  title: "Build your veg box",
-  lead: "Pick vegetables available this month and watch the box fill up.",
-  note: "Sample tool: this is not an order.",
-  max: 6,
-};
-
-export const sembrar = {
-  title: "Sow the furrow",
-  lead: "Drag the seeds to the furrow (or tap a hole) and watch them sprout.",
-  done: "Furrow sown!",
-  holes: 5,
-};
-
-export const comparador = {
-  title: "Degraded soil and living soil",
-  lead: "Slide to compare compacted, bare soil with soil under regenerative management.",
-  left: "Degraded soil",
-  right: "Living soil",
-  leftText: "Bare surface, short roots, a compacted layer and little biological life.",
-  rightText: "Permanent cover, deep roots, active fauna and fungi.",
 };
 
 export const region = {
   title: "In the Traslasierra valley",
-  lead: "El Mantillo lies in the centre of the Traslasierra valley, west of the Sierras Grandes of Córdoba.",
+  lead: "El Mantillo sits on Route 14 at La Travesía, between La Población and Luyaba, at the foot of the Sierras de Comechingones.",
   note: "Illustrative, approximate map.",
   places: [
-    { name: "Mina Clavero", x: 47, y: 30 },
-    { name: "Nono", x: 50, y: 44 },
-    { name: "Las Rabonas", x: 52, y: 56 },
-    { name: "Villa Dolores", x: 40, y: 80 },
-    { name: "Sierras Grandes", x: 82, y: 22, kind: "zona" },
+    { name: "Villa Dolores", x: 46, y: 31 },
+    { name: "San Javier", x: 55, y: 56 },
+    { name: "Route 14", x: 60, y: 44, kind: "ruta" },
+    { name: "La Población", x: 50, y: 70 },
+    { name: "Luyaba", x: 74, y: 80 },
+    { name: "La Paz", x: 64, y: 93 },
+    { name: "Sierras de Comechingones", x: 84, y: 20, kind: "zona" },
   ],
-  farm: { name: "El Mantillo", x: 47, y: 62 },
+  farm: { name: "El Mantillo", x: 62, y: 73 },
 };
 
 export const clima = {
   title: "On the farm today",
-  lat: -31.83,
+  lat: -32.1,
   lon: -65.03,
 };
 
@@ -424,7 +371,6 @@ export const ui = {
   toNight: "Switch to night mode",
   toDay: "Switch to day mode",
   lang: { short: "ES", aria: "Ver el sitio en español", lang: "es" },
-  backToTop: "Back to top",
   sideIndex: "Section index",
   sections: [
     { id: "quienes-somos", label: "Community" },
@@ -435,7 +381,6 @@ export const ui = {
     { id: "biota", label: "Soil biota" },
     { id: "hacia-donde", label: "Goals" },
     { id: "hoy", label: "Today" },
-    { id: "jugar", label: "Learn by playing" },
     { id: "preguntas", label: "FAQ" },
     { id: "apoyar", label: "Support" },
     { id: "seguinos", label: "Instagram" },
@@ -476,12 +421,10 @@ export const ui = {
     available: "Available",
     unavailable: "Not available",
     inMonth: (m: string) => `In ${m}:`,
-    now: (m: string) => `Now: ${m}.`,
     see: (m: string, current: boolean) => `See what's available in ${m}${current ? " (this month)" : ""}`,
     none: "no vegetables in this sample calendar",
     caption: (t: string, m: string | null) => `${t}: months when each vegetable is available${m ? `. This month: ${m}` : ""}`,
     cell: (c: string, m: string, on: boolean) => `${c}, ${m}: ${on ? "available" : "not available"}`,
-    noRecipes: "No sample recipes for this month.",
     monthsFull: MONTHS,
   },
   products: {
@@ -510,31 +453,12 @@ export const ui = {
     extra: [
       { href: "#el-mantillo", label: "El Mantillo" },
       { href: "#biota", label: "Soil biota" },
-      { href: "#jugar", label: "Learn by playing" },
       { href: "#apoyar", label: "Support the project" },
     ],
     qr: "Printable QR code",
     place: "Traslasierra, Córdoba, Argentina.",
   },
-  games: {
-    title: "Learn by playing",
-    lead: "Three short activities about sowing, seasonality and buying local.",
-    available: "Available this month",
-    bagAria: "Veg box contents",
-    count: (n: number, max: number, full: boolean) => `${n} of ${max}${full ? " · box full" : ""}`,
-    holesLeft: (n: number) => `${n} holes left to sow.`,
-    plantIn: (i: number) => `Sow in hole ${i}`,
-    planted: (i: number) => `Hole ${i}: sown`,
-    again: "Sow again",
-    question: (i: number, n: number) => `Question ${i} of ${n}`,
-    result: (s: number, t: number) => `Result: ${s} of ${t} points`,
-    restart: "Start again",
-  },
   hen: "Tip from the guide hen",
-  lemaAria: "Project motto",
-  lema: "Healthy soils, healthy plants, healthy animals, healthy people",
-  sealRing: "SELF-CERTIFICATION · LA BIOTA ·",
-  compareAria: (l: string, r: string) => `Compare: ${l} on the left, ${r} on the right`,
-  compareValue: (p: number, l: string) => `${p}% ${l.toLowerCase()}`,
+  sealRing: "SELF-CERTIFICATION ★ LA BIOTA",
   qr: { title: "Scan to discover the project", print: "Print", meta: "Printable QR code" },
 };

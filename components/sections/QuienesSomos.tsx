@@ -1,12 +1,12 @@
 import { PhotoSlot } from "@/components/brand/PhotoSlot";
 import { CountUp } from "@/components/motion/CountUp";
-import { TractorPass } from "@/components/motion/TractorPass";
+import { SectionFurrow } from "@/components/brand/SectionFurrow";
 import { quienes } from "@/content/site";
 
 export function QuienesSomos() {
   return (
-    <section id="quienes-somos" aria-labelledby="quienes-title" className="px-4 pt-14 pb-24 sm:px-6 lg:pt-20 lg:pb-36">
-      <TractorPass className="mx-auto max-w-[1240px]">
+    <section id="quienes-somos" aria-labelledby="quienes-title" className="px-4 pt-20 pb-24 sm:px-6 lg:pt-28 lg:pb-36">
+      <SectionFurrow className="mx-auto max-w-[1240px]">
         <h2 id="quienes-title" className="text-xl font-bold text-muted">
           {quienes.title}
         </h2>
@@ -77,7 +77,7 @@ export function QuienesSomos() {
             ))}
           </ul>
         </div>
-      </TractorPass>
+      </SectionFurrow>
     </section>
   );
 }

@@ -1,4 +1,4 @@
-import { TractorPass } from "@/components/motion/TractorPass";
+import { SectionFurrow } from "@/components/brand/SectionFurrow";
 import { ProductList } from "@/components/sections/ProductList";
 import { autocert } from "@/content/site";
 
@@ -11,7 +11,7 @@ const bar = {
 export function Autocertificacion() {
   return (
     <section id="autocertificacion" aria-labelledby="autocert-title" className="px-4 pb-24 sm:px-6 lg:pb-36">
-      <TractorPass className="mx-auto max-w-[1240px]">
+      <SectionFurrow className="mx-auto max-w-[1240px]">
         <h2 id="autocert-title" className="text-4xl font-extrabold sm:text-5xl">
           {autocert.title}
         </h2>
@@ -38,7 +38,7 @@ export function Autocertificacion() {
         <h3 className="mt-20 text-3xl font-extrabold sm:text-4xl">{autocert.listTitle}</h3>
         <p className="mt-2 mb-8 text-sm text-muted">{autocert.listNote}</p>
         <ProductList />
-      </TractorPass>
+      </SectionFurrow>
     </section>
   );
 }

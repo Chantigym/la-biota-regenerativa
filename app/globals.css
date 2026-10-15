@@ -157,47 +157,10 @@ p {
     transform: translateY(12px);
   }
 }
-@keyframes drive-in {
-  from {
-    opacity: 0;
-    transform: translateX(-24px);
-  }
-}
 @media (prefers-reduced-motion: no-preference) {
   .hero-rise {
     animation: rise var(--dur-slow) var(--ease-out) both;
     animation-delay: calc(var(--i, 0) * 40ms + 80ms);
-  }
-  .hero-drive {
-    animation: drive-in 700ms var(--ease-out) both 60ms;
-  }
-}
-
-/* Humo del tractor que cruza las secciones: bocanadas que suben del caño de escape */
-.smoke {
-  position: absolute;
-  left: 23%;
-  top: 22%;
-  width: 11%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: currentColor;
-  opacity: 0;
-  pointer-events: none;
-}
-@keyframes puff {
-  0% {
-    opacity: 0.5;
-    transform: translate(0, 0) scale(0.35);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(70%, -170%) scale(1.25);
-  }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .smoke {
-    animation: puff 1.65s ease-out var(--d, 0s) infinite;
   }
 }
 

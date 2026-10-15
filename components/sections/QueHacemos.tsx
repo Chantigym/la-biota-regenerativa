@@ -1,4 +1,4 @@
-import { TractorPass } from "@/components/motion/TractorPass";
+import { SectionFurrow } from "@/components/brand/SectionFurrow";
 import { Illustration } from "@/components/brand/Illustration";
 import { queHacemos } from "@/content/site";
 
@@ -17,7 +17,7 @@ const cell: Record<string, { box: string; feature?: boolean }> = {
 export function QueHacemos() {
   return (
     <section id="que-hacemos" aria-labelledby="que-title" className="px-4 pb-24 sm:px-6 lg:pb-36">
-      <TractorPass className="mx-auto max-w-[1240px]">
+      <SectionFurrow className="mx-auto max-w-[1240px]">
         <h2 id="que-title" className="text-4xl font-extrabold sm:text-5xl">
           {queHacemos.title}
         </h2>
@@ -89,7 +89,7 @@ export function QueHacemos() {
             </article>
           ))}
         </div>
-      </TractorPass>
+      </SectionFurrow>
     </section>
   );
 }

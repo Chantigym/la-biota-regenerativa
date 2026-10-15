@@ -1,13 +1,11 @@
 import { Logo } from "@/components/brand/Logo";
-import { ParallaxLayer } from "@/components/motion/ParallaxLayer";
 import { hero } from "@/content/site";
 
 export function Hero() {
   return (
     <section id="inicio" aria-labelledby="hero-title" className="px-3 pt-3 sm:px-4 sm:pt-4">
       <div className="mx-auto grid min-h-[calc(100dvh-64px-12px)] max-w-[1400px] items-center gap-8 overflow-hidden rounded-[var(--radius-block)] bg-hero-bg px-5 py-12 text-hero-ink sm:min-h-[calc(100dvh-64px-16px)] sm:px-10 lg:grid-cols-12 lg:gap-4 lg:px-14 lg:py-16">
-        {/* al bajar, el texto se queda un poco atrás y el tractor sigue su camino hacia la izquierda */}
-        <ParallaxLayer className="lg:col-span-6" y={[0, 110]}>
+        <div className="lg:col-span-6">
           <h1
             id="hero-title"
             className="hero-rise max-w-[18ch] text-[2.6rem] font-extrabold sm:text-6xl lg:text-[3.5rem] xl:text-[3.8rem]"
@@ -26,15 +24,15 @@ export function Hero() {
               {hero.primary.label}
             </a>
           </div>
-        </ParallaxLayer>
+        </div>
 
-        <ParallaxLayer className="lg:col-span-6" x={[0, -260]}>
+        <div className="lg:col-span-6">
           <Logo
             variant="tractor"
-            className="hero-drive mx-auto w-full max-w-[760px] text-hero-fg lg:ml-auto lg:mr-0"
+            className="mx-auto w-full max-w-[760px] text-hero-fg lg:ml-auto lg:mr-0"
             label="Ilustración: una mujer maneja un tractor sobre una loma"
           />
-        </ParallaxLayer>
+        </div>
       </div>
     </section>
   );

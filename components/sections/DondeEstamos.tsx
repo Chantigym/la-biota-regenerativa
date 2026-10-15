@@ -1,4 +1,4 @@
-import { TractorPass } from "@/components/motion/TractorPass";
+import { SectionFurrow } from "@/components/brand/SectionFurrow";
 import { ArrowRight, Check, Tractor } from "@phosphor-icons/react/dist/ssr";
 import { FurrowPath } from "@/components/motion/FurrowPath";
 import { NodePop } from "@/components/motion/NodePop";
@@ -33,7 +33,7 @@ export function DondeEstamos() {
 
   return (
     <section id="hoy" aria-labelledby="hoy-title" className="px-4 pt-20 pb-24 sm:px-6 lg:pt-28 lg:pb-36">
-      <TractorPass className="mx-auto max-w-[1240px]">
+      <SectionFurrow className="mx-auto max-w-[1240px]">
         <h2 id="hoy-title" className="text-4xl font-extrabold sm:text-5xl">
           {hoy.title}
         </h2>
@@ -115,7 +115,7 @@ export function DondeEstamos() {
             </ul>
           </div>
         </div>
-      </TractorPass>
+      </SectionFurrow>
     </section>
   );
 }

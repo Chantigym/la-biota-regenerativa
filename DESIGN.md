@@ -51,8 +51,8 @@ Es un sitio de una sola página que presenta la identidad de un proyecto de muje
   - ease-out `cubic-bezier(.23,1,.32,1)`
 - **Momentos de relato:**
   1. La entrada del hero, hecha en CSS para que funcione sin JS: el tractor entra 24px desde la izquierda y el texto aparece en cascada de 40ms.
-  2. **El tractor que ara entre secciones** (`components/motion/TractorPass.tsx`): guiado por el scroll (avanza si bajás, retrocede si subís). Cruza cada sección de derecha a izquierda, con humo, sobre un surco ondulado que se va dibujando, y detrás crecen brotes. Con reduced motion no aparece: el surco y los brotes quedan completos.
-  - **Parallax del hero** (`ParallaxLayer`): el tractor sigue hacia la izquierda y el texto se queda atrás.
+  2. **Separador de secciones:** un surco ondulado estático (`components/brand/SectionFurrow.tsx`). La animación del tractor y la del hero se sacaron a pedido; quedan en el historial de git (commit 7c82d04).
+
   - **Surco de progreso** (`PageFurrow`): fijo al costado, solo desde 1360px de ancho y después del hero.
   - **Detalles:** números que cuentan (`CountUp`), hitos que se encienden (`NodePop`), sección activa en el menú (`layoutId`), productos que viajan a su lugar al reordenar y hovers en el bento y en las tarjetas de nivel.
   - **Peso:** `domMax` (layout) se carga aparte, en `lib/motion-features.ts`.

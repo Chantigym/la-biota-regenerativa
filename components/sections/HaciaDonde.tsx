@@ -1,11 +1,11 @@
-import { TractorPass } from "@/components/motion/TractorPass";
+import { SectionFurrow } from "@/components/brand/SectionFurrow";
 import { haciaDonde } from "@/content/site";
 
 export function HaciaDonde() {
   return (
     <section id="hacia-donde" aria-labelledby="hacia-title" className="px-3 sm:px-4">
       <div className="mx-auto max-w-[1400px] rounded-[var(--radius-block)] bg-monte px-5 pt-10 pb-20 text-on-monte [--focus:var(--on-monte)] sm:px-10 lg:px-14 lg:pt-14 lg:pb-32">
-        <TractorPass className="mx-auto max-w-[1240px]">
+        <SectionFurrow className="mx-auto max-w-[1240px]">
           <h2 id="hacia-title" className="text-center text-xl font-bold opacity-80">
             {haciaDonde.title}
           </h2>
@@ -49,7 +49,7 @@ export function HaciaDonde() {
               </ul>
             </div>
           </div>
-        </TractorPass>
+        </SectionFurrow>
       </div>
     </section>
   );

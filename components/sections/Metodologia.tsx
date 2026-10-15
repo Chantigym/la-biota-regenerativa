@@ -1,11 +1,11 @@
 import { CountUp } from "@/components/motion/CountUp";
-import { TractorPass } from "@/components/motion/TractorPass";
+import { SectionFurrow } from "@/components/brand/SectionFurrow";
 import { metodologia } from "@/content/site";
 
 export function Metodologia() {
   return (
     <section id="metodologia" aria-labelledby="metodologia-title" className="px-4 pb-24 sm:px-6 lg:pb-36">
-      <TractorPass className="mx-auto max-w-[1240px]">
+      <SectionFurrow className="mx-auto max-w-[1240px]">
         <h2 id="metodologia-title" className="text-4xl font-extrabold sm:text-5xl">
           {metodologia.title}
         </h2>
@@ -46,7 +46,7 @@ export function Metodologia() {
           </dl>
           <p className="mt-6 text-sm text-muted">{metodologia.indicatorsNote}</p>
         </div>
-      </TractorPass>
+      </SectionFurrow>
     </section>
   );
 }

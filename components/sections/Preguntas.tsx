@@ -1,12 +1,12 @@
 import { Plus } from "@phosphor-icons/react/dist/ssr";
-import { TractorPass } from "@/components/motion/TractorPass";
+import { SectionFurrow } from "@/components/brand/SectionFurrow";
 import { preguntas } from "@/content/site";
 
 // Acordeón nativo (details/summary): funciona sin JS y con teclado.
 export function Preguntas() {
   return (
     <section id="preguntas" aria-labelledby="preguntas-title" className="px-4 pb-24 sm:px-6 lg:pb-32">
-      <TractorPass className="mx-auto grid max-w-[1240px]">
+      <SectionFurrow className="mx-auto grid max-w-[1240px]">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-6">
           <h2 id="preguntas-title" className="text-4xl font-extrabold sm:text-5xl lg:col-span-4">
             {preguntas.title}
@@ -32,7 +32,7 @@ export function Preguntas() {
             ))}
           </div>
         </div>
-      </TractorPass>
+      </SectionFurrow>
     </section>
   );
 }

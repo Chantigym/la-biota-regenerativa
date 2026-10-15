@@ -61,5 +61,5 @@ Es un sitio de una sola página que presenta la identidad de un proyecto de muje
 ## Texto
 - Castellano rioplatense y voz activa, en primera persona del plural.
 - Cero em-dashes, sin "Paso 1" y sin números inventados.
-- Una sola etiqueta por intención: el CTA de contacto siempre dice **"Escribinos"**.
+- El único CTA es **"Conocé el proyecto"**, en el hero. No hay CTA de contacto ni se ofrecen visitas al campo: el cierre de la página invita a conocer más del proyecto en Instagram.
 - Todos los textos viven en `content/site.ts` y son BORRADOR hasta que el cliente los apruebe.

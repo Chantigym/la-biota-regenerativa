@@ -1,5 +1,5 @@
 import { Logo } from "@/components/brand/Logo";
-import { nav, site } from "@/content/site";
+import { nav, seguinos, site } from "@/content/site";
 
 export function Footer() {
   return (
@@ -16,6 +16,11 @@ export function Footer() {
                   </a>
                 </li>
               ))}
+              <li>
+                <a href={seguinos.instagram.href} target="_blank" rel="noopener noreferrer" className="hover:underline hover:decoration-2 hover:underline-offset-4">
+                  {seguinos.instagram.label}
+                </a>
+              </li>
             </ul>
           </nav>
           <p className="max-w-[48ch] text-[15px] md:text-right">

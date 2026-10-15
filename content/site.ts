@@ -15,8 +15,6 @@ export const nav = [
   { href: "#hoy", label: "Dónde estamos" },
 ];
 
-export const contactCta = { label: "Escribinos", href: "#contacto" };
-
 export const hero = {
   title: "Cultivamos alimentos conscientes en comunidad",
   lead: "Un proyecto de mujeres en un campo de Traslasierra, Córdoba. Producimos regenerando el suelo y contamos cómo lo hacemos.",
@@ -102,7 +100,7 @@ export const haciaDonde = {
     { id: "diversidad", title: "Diversificar la producción", text: "Sumar frutales, aromáticas y semillas propias." },
     { id: "mesas", title: "Llegar a más mesas", text: "Abastecer de forma regular a familias y comercios de la zona." },
     { id: "ciclos", title: "Cerrar ciclos", text: "Que lo que sobra en un subproyecto alimente al otro." },
-    { id: "compartir", title: "Abrir el campo", text: "Recibir visitas, talleres y voluntariado." },
+    { id: "compartir", title: "Compartir lo que aprendemos", text: "Contar el proceso y compartir saberes con otros proyectos." },
     { id: "sostener", title: "Sostener a quienes trabajan", text: "Que el proyecto dé un ingreso digno a cada integrante." },
   ],
 };
@@ -120,7 +118,7 @@ export const hoy = {
     { title: "Gallinas ponedoras", text: "Sumamos el gallinero y los primeros huevos a la venta.", estado: "logrado", goal: "mesas" },
     { title: "Pollos y conservas", text: "Probamos los gallineros móviles y la sala de elaboración.", estado: "en-marcha", goal: "ciclos" },
     { title: "Almacén orgánico", text: "Abrir un punto de venta propio junto a productores vecinos.", estado: "pendiente", goal: "mesas" },
-    { title: "Campo abierto", text: "Recibir visitas, talleres y voluntariado de forma regular.", estado: "pendiente", goal: "compartir" },
+    { title: "Compartir el proceso", text: "Contar de forma regular cómo avanzamos y qué aprendemos en el camino.", estado: "pendiente", goal: "compartir" },
   ] as { title: string; text: string; estado: HitoEstado; goal: string }[],
 };
 
@@ -130,15 +128,10 @@ export const estadoLabel: Record<HitoEstado, string> = {
   pendiente: "Por venir",
 };
 
-// TODO: completar datos reales de contacto.
-export const contacto = {
-  title: "Vení a conocernos",
-  text: "Estamos en Traslasierra, Córdoba. Si querés comprar, visitar el campo o sumarte, escribinos.",
-  whatsapp: "https://wa.me/5490000000000", // TODO
-  channels: [
-    { kind: "whatsapp", label: "WhatsApp", value: "+54 9 000 000-0000", href: "https://wa.me/5490000000000" }, // TODO
-    { kind: "instagram", label: "Instagram", value: "@labiota.regenerativa", href: "https://instagram.com/labiota.regenerativa" }, // TODO
-    { kind: "email", label: "Email", value: "hola@labiota.com.ar", href: "mailto:hola@labiota.com.ar" }, // TODO
-  ],
+// TODO: confirmar el usuario real de Instagram.
+export const seguinos = {
+  title: "Conocé más del proyecto",
+  text: "Contamos el día a día del campo, los avances y lo que vamos aprendiendo en Instagram.",
+  instagram: { label: "Instagram", handle: "@labiota.regenerativa", href: "https://instagram.com/labiota.regenerativa" },
   place: "Traslasierra, Córdoba, Argentina",
 };

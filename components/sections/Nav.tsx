@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, m } from "motion/react";
 import { List, X } from "@phosphor-icons/react";
 import { Logo } from "@/components/brand/Logo";
-import { contactCta, nav } from "@/content/site";
+import { nav } from "@/content/site";
 import { dur, easeOut, exitDur } from "@/lib/motion";
 
 export function Nav() {
@@ -36,21 +36,16 @@ export function Nav() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2">
-          <a href={contactCta.href} className="btn btn-solid hidden !min-h-11 sm:inline-flex">
-            {contactCta.label}
-          </a>
-          <button
-            type="button"
-            className="inline-flex size-11 items-center justify-center rounded-full lg:hidden"
-            aria-expanded={open}
-            aria-controls="menu-movil"
-            aria-label={open ? "Cerrar menú" : "Abrir menú"}
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? <X size={24} weight="bold" aria-hidden /> : <List size={24} weight="bold" aria-hidden />}
-          </button>
-        </div>
+        <button
+          type="button"
+          className="inline-flex size-11 items-center justify-center rounded-full lg:hidden"
+          aria-expanded={open}
+          aria-controls="menu-movil"
+          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          onClick={() => setOpen((v) => !v)}
+        >
+          {open ? <X size={24} weight="bold" aria-hidden /> : <List size={24} weight="bold" aria-hidden />}
+        </button>
       </div>
 
       <AnimatePresence>
@@ -76,11 +71,6 @@ export function Nav() {
                   </a>
                 </li>
               ))}
-              <li className="pt-3 pb-2 sm:hidden">
-                <a href={contactCta.href} onClick={() => setOpen(false)} className="btn btn-solid w-full">
-                  {contactCta.label}
-                </a>
-              </li>
             </ul>
           </m.nav>
         )}

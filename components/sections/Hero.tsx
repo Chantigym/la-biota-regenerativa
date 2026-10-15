@@ -1,5 +1,5 @@
 import { Logo } from "@/components/brand/Logo";
-import { contactCta, hero } from "@/content/site";
+import { hero } from "@/content/site";
 
 export function Hero() {
   return (
@@ -22,9 +22,6 @@ export function Hero() {
           <div className="hero-rise mt-9 flex flex-wrap gap-3" style={{ ["--i" as string]: 2 }}>
             <a href={hero.primary.href} className="btn btn-solid">
               {hero.primary.label}
-            </a>
-            <a href={contactCta.href} className="btn btn-line">
-              {contactCta.label}
             </a>
           </div>
         </div>

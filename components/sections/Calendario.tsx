@@ -3,6 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import { m, useInView, useReducedMotion } from "motion/react";
 import { calendario } from "@/content/site";
+import { haptic } from "@/lib/haptic";
+
+const MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
 
 // Calendario de estación: verduras por mes. Al entrar en pantalla se desplaza solo hasta el mes actual
 // (en pantallas angostas, donde la tabla scrollea de costado) y lo marca con un pulso.
@@ -11,9 +14,15 @@ export function Calendario() {
   const inView = useInView(wrap, { once: true, amount: 0.4 });
   const reduce = useReducedMotion();
   const [month, setMonth] = useState<number | null>(null);
+  const [sel, setSel] = useState<number | null>(null);
 
-  // El mes actual se calcula en el navegador (el sitio es estático)
-  useEffect(() => setMonth(new Date().getMonth()), []);
+  // El mes actual se calcula en el navegador (el sitio es estático); arranca seleccionado
+  useEffect(() => {
+    const now = new Date().getMonth();
+    setMonth(now);
+    setSel(now);
+  }, []);
+  const disponibles = sel === null ? [] : calendario.crops.filter((c) => c.months.includes(sel)).map((c) => c.name);
 
   useEffect(() => {
     if (!inView || month === null || !wrap.current) return;
@@ -28,6 +37,13 @@ export function Calendario() {
     <div className="mt-20 lg:mt-28">
       <h3 className="text-3xl font-extrabold sm:text-4xl">{calendario.title}</h3>
       <p className="mt-3 max-w-[60ch] text-lg text-muted">{calendario.lead}</p>
+      <p className="mt-4 min-h-7 font-semibold" aria-live="polite">
+        {sel !== null && (
+          <>
+            En {MESES[sel]}: <span className="font-normal text-muted">{disponibles.length ? disponibles.join(", ") : "sin verduras en este calendario de muestra"}.</span>
+          </>
+        )}
+      </p>
 
       <div ref={wrap} className="mt-8 overflow-x-auto rounded-[var(--radius-block)] bg-salvia p-4 sm:p-6">
         <table className="w-full min-w-[720px] table-fixed border-separate border-spacing-x-1 border-spacing-y-1.5 text-left">
@@ -48,18 +64,26 @@ export function Calendario() {
                   aria-current={i === month ? "date" : undefined}
                   className="relative pb-2 text-center text-sm font-semibold"
                 >
-                  {i === month && inView ? (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      haptic();
+                      setSel(i);
+                    }}
+                    aria-pressed={sel === i}
+                    aria-label={`Ver qué hay en ${MESES[i]}${i === month ? " (mes actual)" : ""}`}
+                    className="min-h-9 w-full rounded-full"
+                  >
                     <m.span
-                      className="inline-block rounded-full bg-ink px-2 py-0.5 text-paper"
-                      initial={{ scale: 1 }}
-                      animate={reduce ? undefined : { scale: [1, 1.25, 1, 1.15, 1] }}
+                      className={`inline-block rounded-full px-2 py-0.5 transition-colors duration-200 ${
+                        sel === i ? "bg-ink text-paper" : i === month ? "shadow-[0_0_0_1.5px_var(--ink)]" : "hover:bg-paper"
+                      }`}
+                      animate={i === month && inView && !reduce ? { scale: [1, 1.25, 1, 1.15, 1] } : undefined}
                       transition={{ duration: 1.1, delay: 0.5, ease: "easeInOut" }}
                     >
                       {mName}
                     </m.span>
-                  ) : (
-                    <span className={i === month ? "inline-block rounded-full bg-ink px-2 py-0.5 text-paper" : ""}>{mName}</span>
-                  )}
+                  </button>
                 </th>
               ))}
             </tr>
@@ -76,7 +100,7 @@ export function Calendario() {
                     <td key={mName} className="p-0">
                       <span
                         className={`block h-7 rounded-md ${on ? "bg-monte" : "bg-paper/70"} ${
-                          i === month ? "outline-2 outline-offset-1 outline-ink" : ""
+                          i === sel ? "outline-2 outline-offset-1 outline-ink" : ""
                         }`}
                         title={`${c.name}, ${mName}: ${on ? "disponible" : "no disponible"}`}
                       >

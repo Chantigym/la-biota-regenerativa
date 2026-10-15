@@ -1,8 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { LayoutGroup, m } from "motion/react";
-import { MagnifyingGlass, X } from "@phosphor-icons/react";
+import { CaretRight, MagnifyingGlass, X } from "@phosphor-icons/react";
+import { haptic } from "@/lib/haptic";
 import { autocert, type Categoria, type Nivel } from "@/content/site";
 import { dur, easeOut } from "@/lib/motion";
 
@@ -32,7 +33,71 @@ export function LevelBadge({ level }: { level: Nivel }) {
   );
 }
 
+type Producto = (typeof autocert.products)[number];
+
+// Ficha de producto: dialog nativo (foco atrapado, Esc y clic afuera cierran). Datos de detalle de muestra.
+function Ficha({ p, onClose }: { p: Producto | null; onClose: () => void }) {
+  const ref = useRef<HTMLDialogElement>(null);
+  useEffect(() => {
+    const d = ref.current;
+    if (!d) return;
+    if (p && !d.open) d.showModal();
+    if (!p && d.open) d.close();
+  }, [p]);
+  const level = p ? autocert.levels.find((l) => l.id === p.level) : null;
+  return (
+    <dialog
+      ref={ref}
+      className="ficha"
+      aria-labelledby="ficha-titulo"
+      onClose={onClose}
+      onClick={(e) => e.target === e.currentTarget && onClose()}
+    >
+      {p && level && (
+        <div className="p-6 sm:p-8">
+          <div className="flex items-start justify-between gap-4">
+            <LevelBadge level={p.level} />
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Cerrar ficha"
+              className="-mt-2 -mr-2 flex size-11 items-center justify-center rounded-full hover:bg-salvia"
+            >
+              <X size={22} weight="bold" aria-hidden />
+            </button>
+          </div>
+          <h4 id="ficha-titulo" className="font-display mt-4 text-3xl font-extrabold tracking-tight">
+            {p.name}
+          </h4>
+          <p className="mt-1 font-semibold">
+            {autocert.categories[p.category]} · {p.origin}
+          </p>
+          <p className="mt-4 text-muted">{p.note}</p>
+          <dl className="mt-6 grid gap-4 border-t-[1.5px] border-ink/15 pt-5">
+            <div>
+              <dt className="text-sm font-semibold">Nivel de certificación</dt>
+              <dd className="mt-1 text-muted">
+                {level.name}: {level.summary}. {level.text}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-sm font-semibold">Cómo se produce</dt>
+              <dd className="mt-1 text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus.</dd>
+            </div>
+            <div>
+              <dt className="text-sm font-semibold">Presentación y disponibilidad</dt>
+              <dd className="mt-1 text-muted">Lorem ipsum (XX g) · disponible lorem ipsum.</dd>
+            </div>
+          </dl>
+          <p className="mt-6 text-sm text-muted">Ficha de muestra.</p>
+        </div>
+      )}
+    </dialog>
+  );
+}
+
 export function ProductList() {
+  const [ficha, setFicha] = useState<Producto | null>(null);
   const [vista, setVista] = useState<Vista>("nivel");
   const [q, setQ] = useState("");
 
@@ -154,8 +219,17 @@ export function ProductList() {
                       key={p.name}
                       layoutId={`producto-${p.name}`}
                       transition={move}
-                      className="grid gap-2 border-t-[1.5px] border-ink/15 bg-paper py-4 sm:grid-cols-[8.5rem_1fr_auto] sm:items-center sm:gap-6"
+                      className="border-t-[1.5px] border-ink/15 bg-paper"
                     >
+                      <button
+                        type="button"
+                        onClick={() => {
+                          haptic();
+                          setFicha(p);
+                        }}
+                        aria-haspopup="dialog"
+                        className="group grid w-full gap-2 rounded-xl py-4 text-left transition-colors duration-200 hover:bg-salvia/60 sm:grid-cols-[8.5rem_1fr_auto_1.5rem] sm:items-center sm:gap-6 sm:px-2"
+                      >
                       <span>
                         <LevelBadge level={p.level} />
                       </span>
@@ -167,6 +241,8 @@ export function ProductList() {
                         <span className="block font-semibold text-ink">{autocert.categories[p.category]}</span>
                         {p.origin}
                       </span>
+                      <CaretRight size={20} weight="bold" aria-hidden className="hidden transition-transform duration-200 group-hover:translate-x-1 sm:block" />
+                      </button>
                     </m.li>
                   ))}
                 </ul>
@@ -174,6 +250,7 @@ export function ProductList() {
             ))}
         </div>
       </LayoutGroup>
+      <Ficha p={ficha} onClose={() => setFicha(null)} />
     </div>
   );
 }

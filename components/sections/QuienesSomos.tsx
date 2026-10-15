@@ -2,7 +2,7 @@ import { PhotoSlot } from "@/components/brand/PhotoSlot";
 import { CountUp } from "@/components/motion/CountUp";
 import { ParallaxTree } from "@/components/motion/ParallaxTree";
 import { SectionFurrow } from "@/components/brand/SectionFurrow";
-import { handNotes, quienes } from "@/content/site";
+import { quienes } from "@/content/site";
 
 export function QuienesSomos() {
   return (
@@ -57,10 +57,6 @@ export function QuienesSomos() {
             ))}
           </dl>
         </div>
-
-        <p className="font-marker mx-auto mt-20 max-w-[22ch] -rotate-2 text-center text-3xl leading-snug sm:text-4xl lg:mt-28 lg:text-5xl">
-          {handNotes.consumo}
-        </p>
 
         {/* Integrantes */}
         <div className="mt-20 lg:mt-28">

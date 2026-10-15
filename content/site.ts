@@ -180,7 +180,6 @@ export const haciaDonde = {
   purposeLabel: "Nuestro propósito",
   purpose:
     "Restaurar la funcionalidad ecológica del suelo y demostrar que es posible producir alimentos de calidad con ese enfoque.",
-  motto: "Suelos sanos, plantas sanas, animales sanos, personas sanas.",
   horizonLabel: "Nuestro horizonte",
   horizon:
     "Un agroecosistema con mayor contenido de materia orgánica, actividad biológica en el suelo y recuperación de la vegetación nativa, que abastezca a la comunidad de Traslasierra mediante circuitos cortos de comercialización.",
@@ -224,12 +223,6 @@ export const estadoLabel: Record<HitoEstado, string> = {
   pendiente: "Pendiente",
 };
 
-// Notas escritas a mano (tipografía de marcador, como el logo). Frases del Instagram de La Biota.
-export const handNotes = {
-  hero: "¡Alimento sano, de verdad, sin veneno!",
-  consumo: "Consumir local es alimentarse con posición política",
-};
-
 // Mapa ilustrado del predio. x/y en % sobre la ilustración.
 // TODO: confirmar sectores y ubicación real con La Biota (el mapa es ilustrativo).
 export const mapa = {
@@ -271,10 +264,10 @@ export const ciclo = {
   title: "Cómo se conectan",
   lead: "Los subproyectos forman un ciclo: los residuos de cada etapa se reincorporan como insumo de la siguiente y la materia orgánica vuelve al suelo.",
   nodes: [
-    { id: "suelo", title: "Suelo vivo", text: "Nutrientes y agua para los cultivos" },
-    { id: "huerta", title: "Huerta", text: "Verdura, excedentes y residuos" },
-    { id: "aves", title: "Gallinas y pollos", text: "Huevos, carne, guano y cama" },
-    { id: "compost", title: "Compost", text: "Materia orgánica estabilizada" },
+    { id: "suelo", title: "Suelo vivo", text: "Nutrientes y agua para los cultivos", flow: "El suelo, con su biota activa, pone a disposición de la huerta nutrientes y agua. " },
+    { id: "huerta", title: "Huerta", text: "Verdura, excedentes y residuos", flow: "La huerta produce verdura para la venta; los residuos y excedentes complementan la alimentación de las aves. " },
+    { id: "aves", title: "Gallinas y pollos", text: "Huevos, carne, guano y cama", flow: "Las aves producen huevos y carne; su guano y la cama de los gallineros se destinan al compost. " },
+    { id: "compost", title: "Compost", text: "Materia orgánica estabilizada", flow: "El compost estabiliza la materia orgánica y la devuelve al suelo, cerrando el ciclo. " },
   ],
   outputs: [
     { title: "Conservas", text: "Los excedentes de la huerta se procesan y no se pierden." },

@@ -17,9 +17,6 @@ export function HaciaDonde() {
               {haciaDonde.purpose}
             </blockquote>
           </figure>
-          <p className="font-marker mx-auto mt-10 max-w-[30ch] -rotate-1 text-center text-2xl leading-snug text-yema sm:text-3xl">
-            “{haciaDonde.motto}”
-          </p>
 
           <div className="mt-20 grid gap-14 lg:mt-28 lg:grid-cols-12 lg:gap-6">
             <div className="lg:col-span-4">

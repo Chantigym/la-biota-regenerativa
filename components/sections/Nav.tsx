@@ -4,33 +4,15 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, m } from "motion/react";
 import { List, X } from "@phosphor-icons/react";
 import { Logo } from "@/components/brand/Logo";
+import { ThemeToggle } from "@/components/motion/ThemeToggle";
 import { nav } from "@/content/site";
 import { dur, easeOut, exitDur } from "@/lib/motion";
+import { useActiveSection } from "@/lib/useActiveSection";
 
 export function Nav() {
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState<string | null>(null);
-
-  // Sección activa: la que cruza la franja central de la ventana. Un solo observer, sin escuchar el scroll.
-  useEffect(() => {
-    const sections = nav
-      .map((item) => document.querySelector<HTMLElement>(item.href))
-      .filter((el): el is HTMLElement => el !== null);
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) if (e.isIntersecting) setActive(`#${e.target.id}`);
-      },
-      { rootMargin: "-45% 0px -50% 0px" }
-    );
-    sections.forEach((el) => io.observe(el));
-    const hero = document.getElementById("inicio");
-    const heroIo = new IntersectionObserver(([e]) => e.isIntersecting && setActive(null), { rootMargin: "-45% 0px -50% 0px" });
-    if (hero) heroIo.observe(hero);
-    return () => {
-      io.disconnect();
-      heroIo.disconnect();
-    };
-  }, []);
+  const activeId = useActiveSection(nav.map((item) => item.href.slice(1)));
+  const active = activeId ? `#${activeId}` : null;
 
   useEffect(() => {
     if (!open) return;
@@ -70,6 +52,8 @@ export function Nav() {
           </ul>
         </nav>
 
+        <div className="flex items-center gap-1">
+        <ThemeToggle />
         <button
           type="button"
           className="inline-flex size-11 items-center justify-center rounded-full xl:hidden"
@@ -80,6 +64,7 @@ export function Nav() {
         >
           {open ? <X size={24} weight="bold" aria-hidden /> : <List size={24} weight="bold" aria-hidden />}
         </button>
+        </div>
       </div>
 
       <AnimatePresence>

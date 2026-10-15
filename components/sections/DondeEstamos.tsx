@@ -1,8 +1,17 @@
+"use client";
+
+import { useState } from "react";
+import { AnimatePresence, m } from "motion/react";
+import { ArrowRight, Check, Tractor } from "@phosphor-icons/react";
 import { SectionFurrow } from "@/components/brand/SectionFurrow";
-import { ArrowRight, Check, Tractor } from "@phosphor-icons/react/dist/ssr";
 import { FurrowPath } from "@/components/motion/FurrowPath";
 import { NodePop } from "@/components/motion/NodePop";
 import { estadoLabel, haciaDonde, hoy, type HitoEstado } from "@/content/site";
+import { haptic } from "@/lib/haptic";
+import { dur, easeOut, exitDur } from "@/lib/motion";
+
+// Texto de muestra para el detalle de las etapas que no son la actual
+const DETALLE_MUESTRA = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus, posuere velit aliquet.";
 
 const goalTitle = Object.fromEntries(haciaDonde.goals.map((g) => [g.id, g.title]));
 
@@ -30,6 +39,10 @@ export function DondeEstamos() {
   const n = hoy.hitos.length;
   const current = hoy.hitos.findIndex((h) => h.estado === "en-marcha");
   const progress = current > 0 ? current / (n - 1) : 0;
+  // Timeline navegable: arranca mostrando la etapa actual; tocar otra etapa muestra su detalle
+  const [sel, setSel] = useState(Math.max(0, current));
+  const hito = hoy.hitos[sel];
+  const detalle = sel === current ? hoy.current : [hito.text, DETALLE_MUESTRA];
 
   return (
     <section id="hoy" aria-labelledby="hoy-title" className="px-4 pt-20 pb-24 sm:px-6 lg:pt-28 lg:pb-36">
@@ -78,7 +91,22 @@ export function DondeEstamos() {
                       )}
                       <span className="font-medium text-muted">{h.date}</span>
                     </p>
-                    <h3 className={`mt-2 text-2xl font-bold ${isCurrent ? "" : "lg:text-xl"}`}>{h.title}</h3>
+                    <h3 className={`mt-2 text-2xl font-bold ${isCurrent ? "" : "lg:text-xl"}`}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          haptic();
+                          setSel(i);
+                        }}
+                        aria-pressed={sel === i}
+                        aria-controls="detalle-etapa"
+                        className={`rounded-md text-balance decoration-[3px] underline-offset-[6px] transition-colors duration-200 hover:underline ${
+                          sel === i ? "underline decoration-yema" : ""
+                        }`}
+                      >
+                        {h.title}
+                      </button>
+                    </h3>
                     <p className="mt-2 max-w-[36ch] text-[16px] text-muted lg:mx-auto">{h.text}</p>
                     <a
                       href={`#objetivo-${h.goal}`}
@@ -94,14 +122,26 @@ export function DondeEstamos() {
         </div>
 
         <div className="mt-16 grid gap-6 lg:mt-24 lg:grid-cols-12">
-          <div className="rounded-[var(--radius-block)] bg-yema p-6 text-on-yema sm:p-10 lg:col-span-7">
-            <h3 className="text-3xl font-extrabold">{hoy.currentTitle}</h3>
-            <p className="mt-2 font-semibold">{current >= 0 ? hoy.hitos[current].title : ""}</p>
-            <div className="mt-5 grid max-w-[60ch] gap-4 leading-relaxed">
-              {hoy.current.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
+          <div id="detalle-etapa" aria-live="polite" className="rounded-[var(--radius-block)] bg-yema p-6 text-on-yema sm:p-10 lg:col-span-7">
+            <h3 className="text-3xl font-extrabold">{sel === current ? hoy.currentTitle : "Detalle de la etapa"}</h3>
+            <AnimatePresence mode="wait" initial={false}>
+              <m.div
+                key={sel}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0, transition: { duration: dur.base, ease: easeOut } }}
+                exit={{ opacity: 0, transition: { duration: exitDur(dur.base) } }}
+              >
+                <p className="mt-2 font-semibold">
+                  {hito.title} · {estadoLabel[hito.estado]} · {hito.date}
+                </p>
+                <div className="mt-5 grid max-w-[60ch] gap-4 leading-relaxed">
+                  {detalle.map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
+                </div>
+              </m.div>
+            </AnimatePresence>
+            <p className="mt-6 text-sm font-medium opacity-80">Tocá el nombre de cada etapa para ver su detalle.</p>
           </div>
           <div className="rounded-[var(--radius-block)] p-6 shadow-[inset_0_0_0_1.5px_var(--ink)] sm:p-10 lg:col-span-5">
             <h3 className="text-3xl font-extrabold">{hoy.nextTitle}</h3>

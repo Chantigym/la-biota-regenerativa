@@ -2,6 +2,8 @@ import { Autocertificacion } from "@/components/sections/Autocertificacion";
 import { BackToTop } from "@/components/motion/BackToTop";
 import { PageFurrow } from "@/components/motion/PageFurrow";
 import { Mapa } from "@/components/sections/Mapa";
+import { LemaMarquee } from "@/components/sections/LemaMarquee";
+import { SideIndex } from "@/components/motion/SideIndex";
 import { Suelo } from "@/components/sections/Suelo";
 import { DondeEstamos } from "@/components/sections/DondeEstamos";
 import { Footer } from "@/components/sections/Footer";
@@ -21,6 +23,7 @@ export default function Home() {
       <SampleBanner />
       <Nav />
       <PageFurrow />
+      <SideIndex />
       <main id="contenido">
         <Hero />
         <QuienesSomos />
@@ -30,6 +33,7 @@ export default function Home() {
         <Metodologia />
         <Suelo />
         <HaciaDonde />
+        <LemaMarquee />
         <DondeEstamos />
         <Preguntas />
         <Seguinos />

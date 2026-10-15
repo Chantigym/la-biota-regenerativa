@@ -1,5 +1,6 @@
 import { SectionFurrow } from "@/components/brand/SectionFurrow";
 import { Illustration } from "@/components/brand/Illustration";
+import { JarFill } from "@/components/motion/JarFill";
 import { Calendario } from "@/components/sections/Calendario";
 import { Ciclo } from "@/components/sections/Ciclo";
 import { queHacemos } from "@/content/site";
@@ -35,12 +36,23 @@ export function QueHacemos() {
                   c.feature ? "lg:flex-row lg:items-center lg:gap-10" : ""
                 }`}
               >
-                <Illustration
-                  src={item.illustration}
-                  className={`transition-transform duration-300 ease-[var(--ease-out)] group-hover:-translate-y-1 group-hover:-rotate-2 ${
-                    c.feature ? "w-48 sm:w-60 lg:order-2 lg:w-[46%] lg:shrink-0" : "w-40 sm:w-44"
-                  }`}
-                />
+                {(() => {
+                  const size = c.feature ? "w-48 sm:w-60 lg:order-2 lg:w-[46%] lg:shrink-0" : "w-40 sm:w-44";
+                  const hover = "transition-transform duration-300 ease-[var(--ease-out)] group-hover:-translate-y-1 group-hover:-rotate-2";
+                  if (item.id === "conservas")
+                    return (
+                      <JarFill className={`${size} ${hover}`}>
+                        <Illustration src={item.illustration} className="w-full" />
+                      </JarFill>
+                    );
+                  if (item.id === "huevos")
+                    return (
+                      <div className={`${size} ${hover}`}>
+                        <Illustration src={item.illustration} className="picotea w-full" />
+                      </div>
+                    );
+                  return <Illustration src={item.illustration} className={`${hover} ${size}`} />;
+                })()}
                 <div className={c.feature ? "lg:order-1" : ""}>
                   <h3 className={`font-extrabold ${c.feature ? "text-4xl sm:text-5xl" : "text-3xl"}`}>{item.title}</h3>
                   <p className={`mt-3 max-w-[38ch] ${c.feature ? "text-lg" : ""} opacity-90`}>{item.text}</p>

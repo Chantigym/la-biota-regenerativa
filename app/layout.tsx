@@ -1,13 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Figtree, Permanent_Marker } from "next/font/google";
+import { Bricolage_Grotesque, Figtree } from "next/font/google";
 import { MotionProvider } from "@/components/motion/MotionProvider";
 import { site } from "@/content/site";
 import { asset } from "@/lib/asset";
 import "./globals.css";
 
 const bricolage = Bricolage_Grotesque({ subsets: ["latin"], weight: ["700", "800"], variable: "--font-bricolage", display: "swap" });
-// Letra de marcador, como la del logo: solo para notas escritas a mano (no se precarga).
-const marker = Permanent_Marker({ subsets: ["latin"], weight: "400", variable: "--font-pm", display: "swap", preload: false });
 const figtree = Figtree({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-figtree", display: "swap" });
 
 export const metadata: Metadata = {
@@ -30,10 +28,26 @@ export const viewport: Viewport = {
   ],
 };
 
+// Antes de pintar: aplica el tema elegido (modo noche) y, si la carga tarda más de 700 ms,
+// muestra la pantalla del tractor hasta que termine.
+const bootScript = `(function(){var d=document.documentElement;try{var t=localStorage.getItem("biota-tema");if(t)d.dataset.theme=t;}catch(e){}var to=setTimeout(function(){d.classList.add("carga-lenta")},700);window.addEventListener("load",function(){clearTimeout(to);d.classList.remove("carga-lenta");});})();`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es-AR" className={`${bricolage.variable} ${figtree.variable} ${marker.variable}`}>
+    <html lang="es-AR" suppressHydrationWarning className={`${bricolage.variable} ${figtree.variable}`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: bootScript }} />
+      </head>
       <body>
+        <div id="cargando" role="status" aria-live="polite">
+          <span className="cargando-tractor">
+            <span className="ink-mask absolute inset-0" style={{ ["--src" as string]: `url(${asset("/brand/logo-tractor-solo.webp")})` }} />
+            <svg className="cargando-rueda" viewBox="0 0 40 40" aria-hidden>
+              <circle cx="20" cy="20" r="16" fill="none" stroke="var(--paper)" strokeWidth="3.5" strokeDasharray="5 6" />
+            </svg>
+          </span>
+          <span className="text-sm font-semibold">Cargando…</span>
+        </div>
         <a
           href="#contenido"
           className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-ink focus:px-5 focus:py-3 focus:text-paper"

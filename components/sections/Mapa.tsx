@@ -6,6 +6,7 @@ import { ArrowsOut } from "@phosphor-icons/react";
 import { SectionFurrow } from "@/components/brand/SectionFurrow";
 import { mapa } from "@/content/site";
 import { asset } from "@/lib/asset";
+import { haptic } from "@/lib/haptic";
 import { dur, easeOut, exitDur } from "@/lib/motion";
 
 const ZOOM = 1.7;
@@ -41,11 +42,27 @@ export function Mapa() {
               transition={zoomMove}
             >
               <span className="ink-mask absolute inset-0" style={{ ["--src" as string]: `url(${asset("/illustrations/mapa.webp")})` }} />
+              {/* mapa vivo: humo de la chimenea y gallinas cerca del gallinero */}
+              <span aria-hidden className="pointer-events-none absolute inset-0 text-ink">
+                {[0, 1, 2].map((k) => (
+                  <span key={k} className="vapor" style={{ left: "28.8%", top: "53.5%", ["--k" as string]: k }} />
+                ))}
+                {[
+                  [27.5, 35.2],
+                  [30.5, 36.4],
+                  [33.4, 35.6],
+                ].map(([x, y], k) => (
+                  <span key={k} className="gallinita" style={{ left: `${x}%`, top: `${y}%`, ["--k" as string]: k }} />
+                ))}
+              </span>
               {mapa.points.map((p, i) => (
                 <button
                   key={p.id}
                   type="button"
-                  onClick={() => setSel(sel === p.id ? null : p.id)}
+                  onClick={() => {
+                    haptic();
+                    setSel(sel === p.id ? null : p.id);
+                  }}
                   aria-pressed={sel === p.id}
                   aria-label={p.title}
                   className="group absolute flex size-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center"
@@ -99,7 +116,10 @@ export function Mapa() {
                 <li key={p.id}>
                   <button
                     type="button"
-                    onClick={() => setSel(sel === p.id ? null : p.id)}
+                    onClick={() => {
+                    haptic();
+                    setSel(sel === p.id ? null : p.id);
+                  }}
                     aria-pressed={sel === p.id}
                     className={`flex min-h-11 w-full items-center gap-3 rounded-xl px-3 text-left font-medium transition-colors duration-200 ${
                       sel === p.id ? "bg-ink text-paper" : "hover:bg-salvia"

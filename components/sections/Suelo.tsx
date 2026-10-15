@@ -63,6 +63,8 @@ export function Suelo() {
     return () => window.removeEventListener("resize", measure);
   }, []);
   const y = useTransform(scrollYProgress, (v) => -v * shift.current);
+  // una lombriz cruza el corte mientras bajás por la capa de fauna
+  const wormX = useTransform(scrollYProgress, [0.35, 0.65], ["-15%", "110%"]);
 
   return (
     <section id="biota" aria-labelledby="biota-title" className="px-3 pb-24 sm:px-4 lg:pb-36">
@@ -90,6 +92,24 @@ export function Suelo() {
                   className="ink-mask absolute inset-x-6 top-6 text-[#efe9df]"
                   style={{ ["--src" as string]: `url(${asset("/illustrations/suelo.webp")})`, aspectRatio: "900 / 1709", y }}
                 />
+                {/* lombriz */}
+                <m.div aria-hidden className="pointer-events-none absolute inset-x-0 top-[46%]" style={{ x: wormX }}>
+                  <svg viewBox="0 0 90 24" className="lombriz block w-24 text-[#e7a98f]" fill="none">
+                    <path d="M4 14 C 14 4, 24 4, 34 14 S 54 24, 64 14 S 80 6, 86 10" stroke="currentColor" strokeWidth="7" strokeLinecap="round" />
+                    <circle cx="84" cy="10" r="1.6" fill="#2b241d" />
+                  </svg>
+                </m.div>
+                {/* microorganismos: aparecen en la capa más profunda */}
+                <div
+                  aria-hidden
+                  className={`pointer-events-none absolute inset-x-6 bottom-6 h-1/3 text-[#efe9df] transition-opacity duration-700 ${active === N - 1 ? "opacity-100" : "opacity-0"}`}
+                >
+                  {[
+                    [8, 20, 10], [22, 60, 7], [35, 30, 12], [48, 70, 8], [60, 15, 9], [72, 50, 11], [85, 25, 7], [15, 80, 9], [55, 85, 6], [90, 70, 10],
+                  ].map(([x, yy, sz], k) => (
+                    <span key={k} className="microbio" style={{ left: `${x}%`, top: `${yy}%`, width: sz, height: sz * 0.7, ["--k" as string]: k }} />
+                  ))}
+                </div>
               </div>
             </div>
           </div>

@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+/* Tokens: ver DESIGN.md */
+:root {
+  --paper: #fafaf6;
+  --ink: #1d201b;
+  --muted: #4d5348;
+  --yema: #f2b42c;
+  --on-yema: #1d201b;
+  --monte: #2d4a33;
+  --on-monte: #fafaf6;
+  --salvia: #dfe5d5;
+  --barro: #eadfd2;
+  --hero-bg: var(--yema);
+  --hero-fg: var(--ink);
+  --hero-ink: #1d201b;
+
+  --dur-fast: 150ms;
+  --dur-base: 220ms;
+  --dur-slow: 320ms;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #161914;
+    --ink: #ececE4;
+    --muted: #b4b8ac;
+    --monte: #24382a;
+    --on-monte: #ececE4;
+    --salvia: #222a21;
+    --barro: #2a241f;
+    --hero-bg: #1e221b;
+    --hero-fg: var(--yema);
+    --hero-ink: #ececE4;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-yema: var(--yema);
+  --color-on-yema: var(--on-yema);
+  --color-monte: var(--monte);
+  --color-on-monte: var(--on-monte);
+  --color-salvia: var(--salvia);
+  --color-barro: var(--barro);
+  --color-hero-bg: var(--hero-bg);
+  --color-hero-fg: var(--hero-fg);
+  --color-hero-ink: var(--hero-ink);
+
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-block: 20px;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus, var(--ink));
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Dibujos en tinta: el archivo es una máscara, el color lo da currentColor */
+.ink-mask {
+  display: block;
+  background-color: currentColor;
+  -webkit-mask: var(--src) center / contain no-repeat;
+  mask: var(--src) center / contain no-repeat;
+}
+
+/* Botones: respuesta al press */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  white-space: nowrap;
+  touch-action: manipulation;
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    background-color var(--dur-base) var(--ease-out),
+    color var(--dur-base) var(--ease-out);
+}
+.btn:active {
+  transform: scale(0.98);
+}
+.btn-solid {
+  background: var(--ink);
+  color: var(--paper);
+}
+.btn-solid:hover {
+  background: color-mix(in oklab, var(--ink) 86%, var(--paper));
+}
+.btn-line {
+  box-shadow: inset 0 0 0 1.5px currentColor;
+}
+.btn-line:hover {
+  background: color-mix(in oklab, currentColor 8%, transparent);
+}
+
+/* Entrada del hero: CSS puro, funciona sin JS y no suma peso */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+@keyframes drive-in {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-rise {
+    animation: rise var(--dur-slow) var(--ease-out) both;
+    animation-delay: calc(var(--i, 0) * 40ms + 80ms);
+  }
+  .hero-drive {
+    animation: drive-in 700ms var(--ease-out) both 60ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

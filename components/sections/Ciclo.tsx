@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, m } from "motion/react";
 import { Glossed } from "@/components/motion/Glossed";
-import { ciclo } from "@/content/site";
+import { ciclo, ui } from "@/content/site";
 import { haptic } from "@/lib/haptic";
 import { dur, easeOut, exitDur } from "@/lib/motion";
 
@@ -106,7 +106,7 @@ export function Ciclo() {
               </m.div>
             </AnimatePresence>
           </div>
-          <p className="mt-3 text-sm text-muted">Tocá cada etapa del ciclo para ver qué aporta a la siguiente.</p>
+          <p className="mt-3 text-sm text-muted">{ui.cycleHint}</p>
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
             {ciclo.outputs.map((o) => (
               <div key={o.title} className="rounded-[var(--radius-block)] bg-barro p-5">

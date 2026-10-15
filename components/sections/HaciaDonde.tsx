@@ -1,7 +1,7 @@
 import { SectionFurrow } from "@/components/brand/SectionFurrow";
 import { RiseBlock } from "@/components/motion/RiseBlock";
 import { Glossed } from "@/components/motion/Glossed";
-import { haciaDonde } from "@/content/site";
+import { haciaDonde, ui } from "@/content/site";
 
 export function HaciaDonde() {
   return (
@@ -37,11 +37,11 @@ export function HaciaDonde() {
                     <p className="mt-1 opacity-85">{g.text}</p>
                     <dl className="mt-3 grid gap-1 text-[15px]">
                       <div className="flex flex-wrap gap-x-1.5">
-                        <dt className="font-semibold">Indicador:</dt>
+                        <dt className="font-semibold">{ui.indicator}</dt>
                         <dd className="opacity-85">{g.indicator}</dd>
                       </div>
                       <div className="flex flex-wrap gap-x-1.5">
-                        <dt className="font-semibold">Meta:</dt>
+                        <dt className="font-semibold">{ui.target}</dt>
                         <dd className="opacity-85">{g.target}</dd>
                       </div>
                     </dl>

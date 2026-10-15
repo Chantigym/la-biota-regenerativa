@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { HeroSky } from "@/components/hero/HeroSky";
 import { HeroTractor } from "@/components/hero/HeroTractor";
-import { hero } from "@/content/site";
+import { hero, ui } from "@/content/site";
 
 // El tractor se inserta como SVG (se lee en el build) para poder dibujar su contorno con CSS
 // y después entintarlo. Ver .draw-ink en globals.css.
@@ -43,7 +43,7 @@ export function Hero() {
           <HeroTractor>
           <svg
             role="img"
-            aria-label="Ilustración: una mujer maneja un tractor sobre una loma"
+            aria-label={ui.heroAria}
             viewBox={tractor.viewBox}
             fillRule="evenodd"
             className="draw-ink mx-auto block w-full max-w-[760px] text-hero-fg lg:ml-auto lg:mr-0"

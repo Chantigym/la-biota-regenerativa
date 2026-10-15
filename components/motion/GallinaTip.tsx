@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, m } from "motion/react";
-import { gallina } from "@/content/site";
+import { gallina, ui } from "@/content/site";
 import { asset } from "@/lib/asset";
 import { dur, easeOut, exitDur } from "@/lib/motion";
 
@@ -18,7 +18,7 @@ export function GallinaTip({ section, className = "" }: { section: string; class
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        aria-label="Dato de la gallina guía"
+        aria-label={ui.hen}
         className="block size-16 sm:size-20"
         initial={{ y: 30, opacity: 0 }}
         whileInView={{ y: [30, -10, 0], opacity: 1 }}

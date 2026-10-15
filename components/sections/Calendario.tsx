@@ -3,10 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, m, useInView, useReducedMotion } from "motion/react";
 import { Clock } from "@phosphor-icons/react";
-import { calendario, recetas } from "@/content/site";
+import { calendario, recetas, ui } from "@/content/site";
 import { haptic } from "@/lib/haptic";
 
-const MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+const MESES = ui.calendar.monthsFull;
 
 // Calendario de estación: verduras por mes. Al entrar en pantalla se desplaza solo hasta el mes actual
 // (en pantallas angostas, donde la tabla scrollea de costado) y lo marca con un pulso.
@@ -42,7 +42,7 @@ export function Calendario() {
       <p className="mt-4 min-h-7 font-semibold" aria-live="polite">
         {sel !== null && (
           <>
-            En {MESES[sel]}: <span className="font-normal text-muted">{disponibles.length ? disponibles.join(", ") : "sin verduras en este calendario de muestra"}.</span>
+            {ui.calendar.inMonth(MESES[sel])} <span className="font-normal text-muted">{disponibles.length ? disponibles.join(", ") : ui.calendar.none}.</span>
           </>
         )}
       </p>
@@ -50,13 +50,12 @@ export function Calendario() {
       <div ref={wrap} className="mt-8 overflow-x-auto rounded-[var(--radius-block)] bg-salvia p-4 sm:p-6">
         <table className="w-full min-w-[720px] table-fixed border-separate border-spacing-x-1 border-spacing-y-1.5 text-left">
           <caption className="sr-only">
-            {calendario.title}: meses en los que hay cada verdura
-            {month !== null ? `. Mes actual: ${calendario.months[month]}` : ""}
+            {ui.calendar.caption(calendario.title, month !== null ? MESES[month] : null)}
           </caption>
           <thead>
             <tr>
               <th scope="col" className="w-32 pb-2 text-sm font-semibold">
-                Verdura
+                {ui.calendar.crop}
               </th>
               {calendario.months.map((mName, i) => (
                 <th
@@ -73,7 +72,7 @@ export function Calendario() {
                       setSel(i);
                     }}
                     aria-pressed={sel === i}
-                    aria-label={`Ver qué hay en ${MESES[i]}${i === month ? " (mes actual)" : ""}`}
+                    aria-label={ui.calendar.see(MESES[i], i === month)}
                     className="min-h-9 w-full rounded-full"
                   >
                     <m.span
@@ -104,9 +103,9 @@ export function Calendario() {
                         className={`block h-7 rounded-md ${on ? "bg-monte" : "bg-paper/70"} ${
                           i === sel ? "outline-2 outline-offset-1 outline-ink" : ""
                         }`}
-                        title={`${c.name}, ${mName}: ${on ? "disponible" : "no disponible"}`}
+                        title={ui.calendar.cell(c.name, mName, on)}
                       >
-                        <span className="sr-only">{on ? "disponible" : "no disponible"}</span>
+                        <span className="sr-only">{on ? ui.calendar.available : ui.calendar.unavailable}</span>
                       </span>
                     </td>
                   );
@@ -118,10 +117,10 @@ export function Calendario() {
       </div>
       <p className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1 text-sm text-muted">
         <span className="inline-flex items-center gap-2">
-          <span aria-hidden className="inline-block size-3.5 rounded bg-monte" /> Disponible
+          <span aria-hidden className="inline-block size-3.5 rounded bg-monte" /> {ui.calendar.available}
         </span>
         <span className="inline-flex items-center gap-2">
-          <span aria-hidden className="inline-block size-3.5 rounded bg-paper shadow-[inset_0_0_0_1px_var(--muted)]" /> No disponible
+          <span aria-hidden className="inline-block size-3.5 rounded bg-paper shadow-[inset_0_0_0_1px_var(--muted)]" /> {ui.calendar.unavailable}
         </span>
         <span>{calendario.note}</span>
       </p>
@@ -130,7 +129,7 @@ export function Calendario() {
       <div className="mt-16">
         <h3 className="text-3xl font-extrabold sm:text-4xl">{recetas.title}</h3>
         <p className="mt-3 max-w-[60ch] text-lg text-muted">
-          {recetas.lead} {sel !== null && <span className="font-semibold text-ink">Ahora: {MESES[sel]}.</span>}
+          {recetas.lead} {sel !== null && <span className="font-semibold text-ink">{ui.calendar.now(MESES[sel])}</span>}
         </p>
         <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout" initial={false}>
@@ -153,7 +152,7 @@ export function Calendario() {
             ))}
           </AnimatePresence>
         </ul>
-        {recetasDelMes.length === 0 && <p className="mt-4 text-muted">No hay recetas de muestra para este mes.</p>}
+        {recetasDelMes.length === 0 && <p className="mt-4 text-muted">{ui.calendar.noRecipes}</p>}
         <p className="mt-3 text-sm text-muted">{recetas.note}</p>
       </div>
     </div>

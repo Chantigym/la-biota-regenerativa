@@ -1,6 +1,7 @@
 "use client";
 
 import { m } from "motion/react";
+import { ui } from "@/content/site";
 
 // Serie corta de barras (una sola serie: sin leyenda, el título del indicador la nombra).
 // Barras finas, remate redondeado de 4px apoyado en la base, 2px de separación; crecen al entrar en pantalla.
@@ -12,7 +13,7 @@ export function SparkBars({ series, labels, name }: { series: number[]; labels: 
         {series.map((v, i) => (
           <m.span
             key={i}
-            title={`${labels[i]}: valor de muestra`}
+            title={`${labels[i]}: ${ui.sampleValue}`}
             className={`block flex-1 origin-bottom rounded-t-[4px] ${i === series.length - 1 ? "bg-ink" : "bg-ink/35"}`}
             style={{ height: `${v * 100}%` }}
             initial={{ scaleY: 0 }}
@@ -27,12 +28,14 @@ export function SparkBars({ series, labels, name }: { series: number[]; labels: 
         <span>{labels[labels.length - 1]}</span>
       </figcaption>
       <table className="sr-only">
-        <caption>{name}, serie de muestra</caption>
+        <caption>
+          {name}, {ui.sampleSeries}
+        </caption>
         <tbody>
           {series.map((v, i) => (
             <tr key={i}>
               <th scope="row">{labels[i]}</th>
-              <td>valor de muestra</td>
+              <td>{ui.sampleValue}</td>
             </tr>
           ))}
         </tbody>

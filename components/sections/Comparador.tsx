@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ArrowsLeftRight } from "@phosphor-icons/react";
-import { comparador } from "@/content/site";
+import { comparador, ui } from "@/content/site";
 import { asset } from "@/lib/asset";
 
 // Antes y después: suelo degradado (izquierda) y suelo vivo (derecha) superpuestos;
@@ -41,8 +41,8 @@ export function Comparador() {
               max={100}
               value={pos}
               onChange={(e) => setPos(Number(e.target.value))}
-              aria-label={`Comparar: ${comparador.left} a la izquierda, ${comparador.right} a la derecha`}
-              aria-valuetext={`${pos}% ${comparador.left.toLowerCase()}`}
+              aria-label={ui.compareAria(comparador.left, comparador.right)}
+              aria-valuetext={ui.compareValue(pos, comparador.left)}
               className="absolute inset-0 h-full w-full cursor-ew-resize opacity-0"
             />
           </div>

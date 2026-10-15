@@ -6,7 +6,7 @@ import { RiseBlock } from "@/components/motion/RiseBlock";
 import { Glossed } from "@/components/motion/Glossed";
 import { Comparador } from "@/components/sections/Comparador";
 import { GallinaTip } from "@/components/motion/GallinaTip";
-import { suelo } from "@/content/site";
+import { suelo, ui } from "@/content/site";
 import { asset } from "@/lib/asset";
 import { dur, easeOut, exitDur } from "@/lib/motion";
 
@@ -20,7 +20,7 @@ function Layers({ active }: { active: number }) {
   return (
     <div>
       <p className="text-sm font-semibold opacity-75">
-        Capa {active + 1} de {N}
+        {ui.layerOf(active + 1, N)}
       </p>
       <AnimatePresence mode="wait" initial={false}>
         <m.div
@@ -134,7 +134,7 @@ export function Suelo() {
             <ol className="grid content-start gap-7">
               {suelo.layers.map((l, i) => (
                 <li key={l.title} className="border-l-[3px] border-yema pl-4">
-                  <p className="text-sm font-semibold opacity-75">Capa {i + 1}</p>
+                  <p className="text-sm font-semibold opacity-75">{ui.layer(i + 1)}</p>
                   <h3 className="text-2xl font-extrabold">{l.title}</h3>
                   <p className="mt-2 opacity-90">
                     <Glossed text={l.text} />

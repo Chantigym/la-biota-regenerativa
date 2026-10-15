@@ -3,19 +3,19 @@
 import { useEffect, useState } from "react";
 import { Cloud, CloudRain, CloudSun, Drop, Snowflake, Sun, Wind } from "@phosphor-icons/react";
 import { MapPin } from "@phosphor-icons/react";
-import { clima, region } from "@/content/site";
+import { clima, region, ui } from "@/content/site";
 import { asset } from "@/lib/asset";
 
 // Mapa ilustrado del valle con El Mantillo marcado, y el clima de hoy en la zona (Open-Meteo, sin clave).
 type Tiempo = { temp: number; code: number; precip: number; wind: number };
 
 function describir(code: number) {
-  if (code === 0) return { text: "Despejado", Icon: Sun };
-  if (code <= 2) return { text: "Parcialmente nublado", Icon: CloudSun };
-  if (code === 3 || code === 45 || code === 48) return { text: "Nublado", Icon: Cloud };
-  if (code >= 71 && code <= 77) return { text: "Nieve", Icon: Snowflake };
-  if (code >= 51) return { text: "Lluvia", Icon: CloudRain };
-  return { text: "Variable", Icon: CloudSun };
+  if (code === 0) return { text: ui.weather.clear, Icon: Sun };
+  if (code <= 2) return { text: ui.weather.partly, Icon: CloudSun };
+  if (code === 3 || code === 45 || code === 48) return { text: ui.weather.cloudy, Icon: Cloud };
+  if (code >= 71 && code <= 77) return { text: ui.weather.snow, Icon: Snowflake };
+  if (code >= 51) return { text: ui.weather.rain, Icon: CloudRain };
+  return { text: ui.weather.variable, Icon: CloudSun };
 }
 
 function Clima() {
@@ -38,9 +38,9 @@ function Clima() {
     <div className="rounded-[var(--radius-block)] bg-yema p-6 text-on-yema" aria-live="polite">
       <h3 className="text-sm font-semibold">{clima.title}</h3>
       {error ? (
-        <p className="mt-3">No pudimos cargar el clima en este momento. Volvé a intentar más tarde.</p>
+        <p className="mt-3">{ui.weather.error}</p>
       ) : !data ? (
-        <div className="mt-3 grid gap-2" aria-label="Cargando el clima">
+        <div className="mt-3 grid gap-2" aria-label={ui.weather.loading}>
           <span className="block h-10 w-28 animate-pulse rounded-lg bg-on-yema/15" />
           <span className="block h-4 w-40 animate-pulse rounded bg-on-yema/15" />
         </div>

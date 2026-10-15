@@ -5,6 +5,7 @@ import { AnimatePresence, m, useReducedMotion } from "motion/react";
 import { ArrowUp } from "@phosphor-icons/react";
 import { asset } from "@/lib/asset";
 import { dur, easeOut, exitDur } from "@/lib/motion";
+import { ui } from "@/content/site";
 
 // Botón flotante para volver al inicio: aparece cuando el hero sale de pantalla.
 export function BackToTop() {
@@ -24,7 +25,7 @@ export function BackToTop() {
       {show && (
         <m.button
           type="button"
-          aria-label="Volver arriba"
+          aria-label={ui.backToTop}
           onClick={() => window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" })}
           className="group fixed right-4 bottom-4 z-30 flex size-16 items-center justify-center rounded-full bg-yema text-on-yema shadow-[0_0_0_2px_var(--ink)] sm:right-6 sm:bottom-6"
           initial={{ opacity: 0, y: 16, scale: 0.9 }}

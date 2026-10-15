@@ -6,7 +6,7 @@ import { ArrowsOut } from "@phosphor-icons/react";
 import { SectionFurrow } from "@/components/brand/SectionFurrow";
 import { VideoSlot } from "@/components/brand/VideoSlot";
 import { Region } from "@/components/sections/Region";
-import { mapa } from "@/content/site";
+import { mapa, ui } from "@/content/site";
 import { asset } from "@/lib/asset";
 import { haptic } from "@/lib/haptic";
 import { dur, easeOut, exitDur } from "@/lib/motion";
@@ -36,7 +36,7 @@ export function Mapa() {
           <Region />
         </div>
 
-        <h3 className="mt-20 text-2xl font-extrabold sm:text-3xl lg:mt-24">El predio</h3>
+        <h3 className="mt-20 text-2xl font-extrabold sm:text-3xl lg:mt-24">{ui.map.predio}</h3>
         <p className="mt-2 max-w-[60ch] text-muted">{mapa.lead}</p>
 
         <div className="mt-6 grid gap-6 lg:grid-cols-12">
@@ -92,7 +92,7 @@ export function Mapa() {
                 className="btn btn-solid absolute right-3 bottom-3 !min-h-10 !px-4 text-sm"
               >
                 <ArrowsOut size={18} weight="bold" aria-hidden />
-                Ver todo
+                {ui.map.all}
               </button>
             )}
           </div>
@@ -113,7 +113,7 @@ export function Mapa() {
                       <p className="mt-2">{point.text}</p>
                     </>
                   ) : (
-                    <p className="font-medium">Elegí un punto del mapa o de la lista para ver qué se hace en cada sector.</p>
+                    <p className="font-medium">{ui.map.hint}</p>
                   )}
                 </m.div>
               </AnimatePresence>

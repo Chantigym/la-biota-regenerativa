@@ -2,7 +2,7 @@ import { CountUp } from "@/components/motion/CountUp";
 import { ParallaxTree } from "@/components/motion/ParallaxTree";
 import { SparkBars } from "@/components/motion/SparkBars";
 import { SectionFurrow } from "@/components/brand/SectionFurrow";
-import { metodologia } from "@/content/site";
+import { metodologia, ui } from "@/content/site";
 
 export function Metodologia() {
   return (
@@ -48,7 +48,7 @@ export function Metodologia() {
                   <SparkBars series={ind.series} labels={metodologia.seriesLabels} name={ind.name} />
                 </dd>
                 <dd className="mt-3 text-[15px] text-muted">{ind.method}</dd>
-                <dd className="mt-auto pt-4 text-sm font-semibold">Frecuencia: {ind.frequency}</dd>
+                <dd className="mt-auto pt-4 text-sm font-semibold">{ui.frequency} {ind.frequency}</dd>
               </div>
             ))}
           </dl>

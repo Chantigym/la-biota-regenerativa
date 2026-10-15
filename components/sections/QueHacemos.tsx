@@ -4,7 +4,7 @@ import { JarFill } from "@/components/motion/JarFill";
 import { GallinaTip } from "@/components/motion/GallinaTip";
 import { Calendario } from "@/components/sections/Calendario";
 import { Ciclo } from "@/components/sections/Ciclo";
-import { queHacemos } from "@/content/site";
+import { queHacemos, ui } from "@/content/site";
 
 // Cada celda tiene su propio tamaño y tinta: el bento tiene exactamente 5 celdas, una por subproyecto.
 const cell: Record<string, { box: string; feature?: boolean }> = {
@@ -64,7 +64,8 @@ export function QueHacemos() {
                     href={`#detalle-${item.id}`}
                     className="sprout-hover mt-4 inline-block font-semibold underline decoration-[1.5px] underline-offset-4 hover:decoration-[3px]"
                   >
-                    Ver detalle<span className="sr-only"> de {item.title}</span>
+                    {ui.seeDetail}
+                    <span className="sr-only">{ui.seeDetailOf(item.title)}</span>
                   </a>
                 </div>
               </li>

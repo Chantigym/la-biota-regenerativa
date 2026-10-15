@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, LayoutGroup, m } from "motion/react";
 import { ArrowCounterClockwise, Check } from "@phosphor-icons/react";
 import { SectionFurrow } from "@/components/brand/SectionFurrow";
-import { bolson, calendario, quiz, sembrar } from "@/content/site";
+import { bolson, calendario, quiz, sembrar, ui } from "@/content/site";
 import { haptic } from "@/lib/haptic";
 import { dur, easeOut, exitDur } from "@/lib/motion";
 
@@ -96,7 +96,7 @@ function Sembrar() {
                 type="button"
                 onClick={() => plant(i)}
                 disabled={p}
-                aria-label={p ? `Hueco ${i + 1}: sembrado` : `Sembrar en el hueco ${i + 1}`}
+                aria-label={p ? ui.games.planted(i + 1) : ui.games.plantIn(i + 1)}
                 className="relative z-10 size-11 rounded-full disabled:cursor-default"
               >
                 <span aria-hidden className={`mx-auto block h-4 w-8 rounded-b-full ${p ? "bg-[#8a6a3c]" : "bg-paper shadow-[inset_0_0_0_2px_var(--ink)]"}`} />
@@ -106,11 +106,11 @@ function Sembrar() {
         </ol>
       </div>
       <p className="mt-4 text-sm font-semibold" aria-live="polite">
-        {left === 0 ? sembrar.done : `Quedan ${left} huecos por sembrar.`}
+        {left === 0 ? sembrar.done : ui.games.holesLeft(left)}
       </p>
       {left === 0 && (
         <button type="button" onClick={() => setPlanted(Array(sembrar.holes).fill(false))} className="btn btn-line mt-4 !min-h-11">
-          <ArrowCounterClockwise size={18} weight="bold" aria-hidden /> Volver a sembrar
+          <ArrowCounterClockwise size={18} weight="bold" aria-hidden /> {ui.games.again}
         </button>
       )}
     </div>
@@ -137,7 +137,7 @@ function Bolson() {
       <LayoutGroup>
         <div className="mt-6 grid gap-6 sm:grid-cols-2">
           <div>
-            <p className="text-sm font-semibold">Disponibles este mes</p>
+            <p className="text-sm font-semibold">{ui.games.available}</p>
             <ul className="mt-3 flex flex-wrap gap-2">
               {disponibles.map((n) => {
                 const on = items.includes(n);
@@ -166,7 +166,7 @@ function Bolson() {
               <path d="M62 52 C62 22 138 22 138 52" stroke="currentColor" strokeWidth="5" strokeLinecap="round" />
               <path d="M24 56 L176 56 L162 206 Q160 214 152 214 L48 214 Q40 214 38 206 Z" fill="var(--paper)" stroke="currentColor" strokeWidth="5" strokeLinejoin="round" />
             </svg>
-            <ul className="absolute inset-x-[16%] top-[32%] bottom-[8%] flex flex-col-reverse flex-wrap content-center items-center justify-start gap-1" aria-label="Contenido del bolsón">
+            <ul className="absolute inset-x-[16%] top-[32%] bottom-[8%] flex flex-col-reverse flex-wrap content-center items-center justify-start gap-1" aria-label={ui.games.bagAria}>
               <AnimatePresence>
                 {items.map((n) => (
                   <m.li
@@ -184,7 +184,7 @@ function Bolson() {
               </AnimatePresence>
             </ul>
             <p className="mt-2 text-center text-sm font-semibold" aria-live="polite">
-              {items.length} de {bolson.max} {lleno ? "· bolsón lleno" : ""}
+              {ui.games.count(items.length, bolson.max, lleno)}
             </p>
           </div>
         </div>
@@ -228,7 +228,7 @@ function Quiz() {
               exit={{ opacity: 0, x: -16, transition: { duration: exitDur(dur.base) } }}
             >
               <p className="text-sm font-semibold text-muted">
-                Pregunta {step + 1} de {total}
+                {ui.games.question(step + 1, total)}
               </p>
               <p className="font-display mt-1 text-2xl font-bold tracking-tight">{quiz.questions[step].q}</p>
               <div className="mt-5 flex flex-wrap gap-2">
@@ -247,7 +247,7 @@ function Quiz() {
               className="rounded-[var(--radius-block)] bg-yema p-6 text-on-yema"
             >
               <p className="text-sm font-semibold">
-                Resultado: {score} de {total * 2} puntos
+                {ui.games.result(score, total * 2)}
               </p>
               <p className="font-display mt-1 text-3xl font-extrabold">{result.title}</p>
               <p className="mt-2">{result.text}</p>
@@ -259,7 +259,7 @@ function Quiz() {
                 }}
                 className="btn btn-solid mt-5 !min-h-11"
               >
-                <ArrowCounterClockwise size={18} weight="bold" aria-hidden /> Volver a empezar
+                <ArrowCounterClockwise size={18} weight="bold" aria-hidden /> {ui.games.restart}
               </button>
             </m.div>
           )}
@@ -274,9 +274,9 @@ export function Jugar() {
     <section id="jugar" aria-labelledby="jugar-title" className="px-4 pb-24 sm:px-6 lg:pb-36">
       <SectionFurrow className="mx-auto max-w-[1240px]">
         <h2 id="jugar-title" className="text-4xl font-extrabold sm:text-5xl">
-          Aprender jugando
+          {ui.games.title}
         </h2>
-        <p className="mt-4 max-w-[60ch] text-lg text-muted">Tres actividades breves sobre siembra, estacionalidad y consumo local.</p>
+        <p className="mt-4 max-w-[60ch] text-lg text-muted">{ui.games.lead}</p>
         <div className="mt-10 grid gap-4 lg:grid-cols-2">
           <Sembrar />
           <Bolson />

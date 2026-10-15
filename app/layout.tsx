@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Figtree } from "next/font/google";
 import { MotionProvider } from "@/components/motion/MotionProvider";
-import { site } from "@/content/site";
+import { site, ui } from "@/content/site";
 import { asset } from "@/lib/asset";
 import "./globals.css";
 
@@ -10,12 +10,12 @@ const figtree = Figtree({ subsets: ["latin"], weight: ["400", "500", "600"], var
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: `${site.name} | Agricultura regenerativa en Traslasierra`,
+  title: ui.metaTitle,
   description: site.description,
   openGraph: {
     title: site.name,
     description: site.description,
-    locale: "es_AR",
+    locale: ui.htmlLang === "en" ? "en_US" : "es_AR",
     type: "website",
   },
   icons: { icon: asset("/brand/logo-tractor.svg") },
@@ -34,7 +34,7 @@ const bootScript = `(function(){var d=document.documentElement;try{var t=localSt
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es-AR" suppressHydrationWarning className={`${bricolage.variable} ${figtree.variable}`}>
+    <html lang={ui.htmlLang} suppressHydrationWarning className={`${bricolage.variable} ${figtree.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: bootScript }} />
       </head>
@@ -46,13 +46,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <circle cx="20" cy="20" r="16" fill="none" stroke="var(--paper)" strokeWidth="3.5" strokeDasharray="5 6" />
             </svg>
           </span>
-          <span className="text-sm font-semibold">Cargando…</span>
+          <span className="text-sm font-semibold">{ui.loading}</span>
         </div>
         <a
           href="#contenido"
           className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-ink focus:px-5 focus:py-3 focus:text-paper"
         >
-          Saltar al contenido
+          {ui.skip}
         </a>
         <MotionProvider>{children}</MotionProvider>
       </body>

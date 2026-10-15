@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import QRCode from "qrcode";
 import { Logo } from "@/components/brand/Logo";
 import { PrintButton } from "@/app/qr/PrintButton";
-import { site } from "@/content/site";
+import { site, ui } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: `QR para imprimir | ${site.name}`,
+  title: `${ui.qr.meta} | ${site.name}`,
   robots: { index: false },
 };
 
@@ -23,7 +23,7 @@ export default async function QrPage() {
         </span>
       </div>
       <div>
-        <p className="font-display text-3xl font-extrabold tracking-tight">Escaneá para conocer el proyecto</p>
+        <p className="font-display text-3xl font-extrabold tracking-tight">{ui.qr.title}</p>
         <p className="mt-2 text-muted">{site.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}</p>
       </div>
       <PrintButton />

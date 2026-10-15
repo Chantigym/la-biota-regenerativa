@@ -2,23 +2,11 @@
 
 import { m, useScroll, useTransform } from "motion/react";
 import { useActiveSection } from "@/lib/useActiveSection";
+import { ui } from "@/content/site";
 
 // Índice lateral: un punto por sección, a la derecha (solo pantallas anchas, después del hero).
 // El punto de la sección actual se agranda y se pinta; al pasar el mouse o con foco se ve el nombre.
-const SECTIONS = [
-  { id: "quienes-somos", label: "Comunidad" },
-  { id: "el-mantillo", label: "El Mantillo" },
-  { id: "que-hacemos", label: "El proyecto" },
-  { id: "autocertificacion", label: "Autocertificación" },
-  { id: "metodologia", label: "Metodología" },
-  { id: "biota", label: "La biota del suelo" },
-  { id: "hacia-donde", label: "Objetivos" },
-  { id: "hoy", label: "El presente" },
-  { id: "jugar", label: "Aprender jugando" },
-  { id: "preguntas", label: "Preguntas" },
-  { id: "apoyar", label: "Apoyar" },
-  { id: "seguinos", label: "Instagram" },
-];
+const SECTIONS = ui.sections;
 
 export function SideIndex() {
   const active = useActiveSection(SECTIONS.map((s) => s.id));
@@ -27,7 +15,7 @@ export function SideIndex() {
 
   return (
     <m.nav
-      aria-label="Índice de secciones"
+      aria-label={ui.sideIndex}
       style={{ opacity }}
       className="fixed top-1/2 right-5 z-30 hidden -translate-y-1/2 min-[1360px]:block"
     >

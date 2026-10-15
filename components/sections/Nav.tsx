@@ -5,9 +5,10 @@ import { AnimatePresence, m } from "motion/react";
 import { List, X } from "@phosphor-icons/react";
 import { Logo } from "@/components/brand/Logo";
 import { ThemeToggle } from "@/components/motion/ThemeToggle";
-import { nav } from "@/content/site";
+import { locale, nav, ui } from "@/content/site";
 import { dur, easeOut, exitDur } from "@/lib/motion";
 import { useActiveSection } from "@/lib/useActiveSection";
+import { siteRoot } from "@/lib/asset";
 
 const ALL_SECTIONS = ["quienes-somos", "el-mantillo", "que-hacemos", "autocertificacion", "metodologia", "biota", "hacia-donde", "hoy", "jugar", "preguntas", "apoyar", "seguinos"];
 
@@ -27,11 +28,11 @@ export function Nav() {
   return (
     <header className="sticky top-0 z-40 border-b-[1.5px] border-ink/15 bg-paper/95 backdrop-blur-sm">
       <div className="mx-auto flex h-16 max-w-[1240px] items-center justify-between gap-6 px-4 sm:px-6">
-        <a href="#inicio" className="shrink-0" aria-label="La Biota Regenerativa, ir al inicio">
+        <a href="#inicio" className="shrink-0" aria-label={ui.homeAria}>
           <Logo variant="wordmark" className="h-9 text-ink" />
         </a>
 
-        <nav aria-label="Principal" className="hidden xl:block">
+        <nav aria-label={ui.navMain} className="hidden xl:block">
           <ul className="flex items-center gap-6 text-[15px] font-medium">
             {nav.map((item) => (
               <li key={item.href} className="relative">
@@ -56,13 +57,22 @@ export function Nav() {
         </nav>
 
         <div className="flex items-center gap-1">
+        <a
+          href={locale === "es" ? `${siteRoot}/en/` : `${siteRoot}/`}
+          hrefLang={ui.lang.lang}
+          lang={ui.lang.lang}
+          aria-label={ui.lang.aria}
+          className="inline-flex size-11 items-center justify-center rounded-full text-[15px] font-bold transition-colors duration-200 hover:bg-salvia"
+        >
+          {ui.lang.short}
+        </a>
         <ThemeToggle />
         <button
           type="button"
           className="inline-flex size-11 items-center justify-center rounded-full xl:hidden"
           aria-expanded={open}
           aria-controls="menu-movil"
-          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          aria-label={open ? ui.closeMenu : ui.openMenu}
           onClick={() => setOpen((v) => !v)}
         >
           {open ? <X size={24} weight="bold" aria-hidden /> : <List size={24} weight="bold" aria-hidden />}
@@ -74,7 +84,7 @@ export function Nav() {
         {open && (
           <m.nav
             id="menu-movil"
-            aria-label="Menú"
+            aria-label={ui.navMobile}
             key="menu"
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0, transition: { duration: dur.base, ease: easeOut } }}

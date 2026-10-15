@@ -1,11 +1,12 @@
+import { ui } from "@/content/site";
 // Franja con el lema del proyecto, desplazándose de costado (una sola en la página).
 // Se pausa al pasar el mouse y queda quieta con reduced motion. El texto se lee una vez para lectores de pantalla.
-const LEMA = "Suelos sanos, plantas sanas, animales sanos, personas sanas";
+const LEMA = ui.lema;
 
 export function LemaMarquee() {
   const items = Array.from({ length: 4 }, (_, i) => i);
   return (
-    <section aria-label="Lema del proyecto" className="marquee overflow-hidden py-10 lg:py-14">
+    <section aria-label={ui.lemaAria} className="marquee overflow-hidden py-10 lg:py-14">
       <p className="sr-only">{LEMA}</p>
       <div aria-hidden className="marquee-track">
         {[0, 1].map((copy) => (

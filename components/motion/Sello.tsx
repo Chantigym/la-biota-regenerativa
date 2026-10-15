@@ -1,6 +1,7 @@
 "use client";
 
 import { m } from "motion/react";
+import { ui } from "@/content/site";
 
 // Sello de autocertificación: entra girando y se "estampa" (rebote corto) al aparecer.
 // Anillo con los tres niveles y texto en círculo. Decorativo (la sección ya explica el sistema).
@@ -36,7 +37,7 @@ export function Sello({ className = "" }: { className?: string }) {
           />
         ))}
         <text fontSize="8.6" fontWeight="700" letterSpacing="1.2" fill="var(--ink)" fontFamily="var(--font-sans)">
-          <textPath href="#sello-texto">AUTOCERTIFICACIÓN · LA BIOTA ·</textPath>
+          <textPath href="#sello-texto">{ui.sealRing}</textPath>
         </text>
         <text x="70" y="66" textAnchor="middle" fontSize="15" fontWeight="800" fill="var(--ink)" fontFamily="var(--font-display)">
           La Biota

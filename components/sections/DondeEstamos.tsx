@@ -7,12 +7,12 @@ import { SectionFurrow } from "@/components/brand/SectionFurrow";
 import { FurrowPath } from "@/components/motion/FurrowPath";
 import { NodePop } from "@/components/motion/NodePop";
 import { GallinaTip } from "@/components/motion/GallinaTip";
-import { estadoLabel, haciaDonde, hoy, type HitoEstado } from "@/content/site";
+import { estadoLabel, haciaDonde, hoy, type HitoEstado, ui } from "@/content/site";
 import { haptic } from "@/lib/haptic";
 import { dur, easeOut, exitDur } from "@/lib/motion";
 
 // Texto de muestra para el detalle de las etapas que no son la actual
-const DETALLE_MUESTRA = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus, posuere velit aliquet.";
+const DETALLE_MUESTRA = ui.stageSample;
 
 const goalTitle = Object.fromEntries(haciaDonde.goals.map((g) => [g.id, g.title]));
 
@@ -116,7 +116,7 @@ export function DondeEstamos() {
                       href={`#objetivo-${h.goal}`}
                       className="sprout-hover mt-3 inline-block text-[15px] font-semibold underline decoration-[1.5px] underline-offset-4 hover:decoration-[3px]"
                     >
-                      Objetivo: {goalTitle[h.goal]}
+                      {ui.goal} {goalTitle[h.goal]}
                     </a>
                   </div>
                 </li>
@@ -127,7 +127,7 @@ export function DondeEstamos() {
 
         <div className="mt-16 grid gap-6 lg:mt-24 lg:grid-cols-12">
           <div id="detalle-etapa" aria-live="polite" className="rounded-[var(--radius-block)] bg-yema p-6 text-on-yema sm:p-10 lg:col-span-7">
-            <h3 className="text-3xl font-extrabold">{sel === current ? hoy.currentTitle : "Detalle de la etapa"}</h3>
+            <h3 className="text-3xl font-extrabold">{sel === current ? hoy.currentTitle : ui.stageDetail}</h3>
             <AnimatePresence mode="wait" initial={false}>
               <m.div
                 key={sel}
@@ -145,7 +145,7 @@ export function DondeEstamos() {
                 </div>
               </m.div>
             </AnimatePresence>
-            <p className="mt-6 text-sm font-medium opacity-80">Tocá el nombre de cada etapa para ver su detalle.</p>
+            <p className="mt-6 text-sm font-medium opacity-80">{ui.timelineHint}</p>
           </div>
           <div className="rounded-[var(--radius-block)] p-6 shadow-[inset_0_0_0_1.5px_var(--ink)] sm:p-10 lg:col-span-5">
             <h3 className="text-3xl font-extrabold">{hoy.nextTitle}</h3>

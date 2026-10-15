@@ -1,16 +1,10 @@
 import { InstagramLogo, MapPin, QrCode } from "@phosphor-icons/react/dist/ssr";
 import { Logo } from "@/components/brand/Logo";
 import { RiseBlock } from "@/components/motion/RiseBlock";
-import { nav, seguinos, site } from "@/content/site";
+import { nav, seguinos, site, ui } from "@/content/site";
 import { asset } from "@/lib/asset";
 
 // Footer completo: mapa del sitio, secciones extra, ubicación, Instagram y QR para imprimir.
-const extra = [
-  { href: "#el-mantillo", label: "El Mantillo" },
-  { href: "#biota", label: "La biota del suelo" },
-  { href: "#jugar", label: "Aprender jugando" },
-  { href: "#apoyar", label: "Apoyar el proyecto" },
-];
 
 export function Footer() {
   return (
@@ -21,9 +15,9 @@ export function Footer() {
             <Logo variant="full" className="w-44 text-hero-fg sm:w-52" label={site.name} />
             <p className="mt-6 max-w-[36ch] text-[15px]">{site.description}</p>
           </div>
-          <nav aria-label="Mapa del sitio" className="grid grid-cols-2 gap-8 md:col-span-5">
+          <nav aria-label={ui.footer.sitemap} className="grid grid-cols-2 gap-8 md:col-span-5">
             <div>
-              <p className="text-sm font-bold">Secciones</p>
+              <p className="text-sm font-bold">{ui.footer.sections}</p>
               <ul className="mt-3 grid gap-2 text-[15px]">
                 {nav.map((item) => (
                   <li key={item.href}>
@@ -35,9 +29,9 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <p className="text-sm font-bold">Más</p>
+              <p className="text-sm font-bold">{ui.footer.more}</p>
               <ul className="mt-3 grid gap-2 text-[15px]">
-                {extra.map((item) => (
+                {ui.footer.extra.map((item) => (
                   <li key={item.href}>
                     <a href={item.href} className="hover:underline hover:decoration-2 hover:underline-offset-4">
                       {item.label}
@@ -62,12 +56,12 @@ export function Footer() {
             </a>
             <a href={asset("/qr/")} className="flex items-center gap-2 font-semibold hover:underline">
               <QrCode size={20} weight="bold" aria-hidden />
-              QR para imprimir
+              {ui.footer.qr}
             </a>
           </div>
         </div>
         <p className="mt-12 border-t-[1.5px] border-current/20 pt-6 text-sm">
-          © {new Date().getFullYear()} {site.name}. Traslasierra, Córdoba, Argentina.
+          © {new Date().getFullYear()} {site.name}. {ui.footer.place}
         </p>
       </RiseBlock>
     </footer>

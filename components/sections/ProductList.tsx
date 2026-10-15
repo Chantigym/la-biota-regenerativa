@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { LayoutGroup, m } from "motion/react";
 import { CaretRight, MagnifyingGlass, X } from "@phosphor-icons/react";
 import { haptic } from "@/lib/haptic";
-import { autocert, type Categoria, type Nivel } from "@/content/site";
+import { autocert, type Categoria, type Nivel, ui } from "@/content/site";
 import { dur, easeOut } from "@/lib/motion";
 
 const move = { type: "spring", stiffness: 380, damping: 38 } as const;
@@ -60,7 +60,7 @@ function Ficha({ p, onClose }: { p: Producto | null; onClose: () => void }) {
             <button
               type="button"
               onClick={onClose}
-              aria-label="Cerrar ficha"
+              aria-label={ui.products.close}
               className="-mt-2 -mr-2 flex size-11 items-center justify-center rounded-full hover:bg-salvia"
             >
               <X size={22} weight="bold" aria-hidden />
@@ -75,21 +75,21 @@ function Ficha({ p, onClose }: { p: Producto | null; onClose: () => void }) {
           <p className="mt-4 text-muted">{p.note}</p>
           <dl className="mt-6 grid gap-4 border-t-[1.5px] border-ink/15 pt-5">
             <div>
-              <dt className="text-sm font-semibold">Nivel de certificación</dt>
+              <dt className="text-sm font-semibold">{ui.products.levelTitle}</dt>
               <dd className="mt-1 text-muted">
                 {level.name}: {level.summary}. {level.text}
               </dd>
             </div>
             <div>
-              <dt className="text-sm font-semibold">Cómo se produce</dt>
-              <dd className="mt-1 text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus.</dd>
+              <dt className="text-sm font-semibold">{ui.products.howTitle}</dt>
+              <dd className="mt-1 text-muted">{ui.products.howText}</dd>
             </div>
             <div>
-              <dt className="text-sm font-semibold">Presentación y disponibilidad</dt>
-              <dd className="mt-1 text-muted">Lorem ipsum (XX g) · disponible lorem ipsum.</dd>
+              <dt className="text-sm font-semibold">{ui.products.presTitle}</dt>
+              <dd className="mt-1 text-muted">{ui.products.presText}</dd>
             </div>
           </dl>
-          <p className="mt-6 text-sm text-muted">Ficha de muestra.</p>
+          <p className="mt-6 text-sm text-muted">{ui.products.sample}</p>
         </div>
       )}
     </dialog>
@@ -132,7 +132,7 @@ export function ProductList() {
       <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
       <div className="w-full sm:max-w-sm">
         <label htmlFor="buscar-producto" className="text-sm font-semibold">
-          Buscar producto
+          {ui.products.search}
         </label>
         <div className="relative mt-2">
           <MagnifyingGlass size={20} weight="bold" aria-hidden className="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 text-muted" />
@@ -141,7 +141,7 @@ export function ProductList() {
             type="search"
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="Ej.: huevos, conservas, miel"
+            placeholder={ui.products.placeholder}
             autoComplete="off"
             className="min-h-12 w-full rounded-full bg-paper pr-11 pl-11 text-[16px] shadow-[inset_0_0_0_1.5px_var(--ink)] placeholder:text-muted"
           />
@@ -149,7 +149,7 @@ export function ProductList() {
             <button
               type="button"
               onClick={() => setQ("")}
-              aria-label="Borrar búsqueda"
+              aria-label={ui.products.clear}
               className="absolute top-1/2 right-1.5 flex size-9 -translate-y-1/2 items-center justify-center rounded-full hover:bg-salvia"
             >
               <X size={18} weight="bold" aria-hidden />
@@ -159,13 +159,13 @@ export function ProductList() {
       </div>
       <div>
         <p id="orden-label" className="text-sm font-semibold">
-          Ordenar por
+          {ui.products.sortBy}
         </p>
         <div role="group" aria-labelledby="orden-label" className="mt-2 inline-flex rounded-full bg-salvia p-1">
           {(
             [
-              ["nivel", "Certificación"],
-              ["categoria", "Categoría"],
+              ["nivel", ui.products.byLevel],
+              ["categoria", ui.products.byCategory],
             ] as [Vista, string][]
           ).map(([v, label]) => (
             <button
@@ -185,14 +185,14 @@ export function ProductList() {
       </div>
 
       <p className="sr-only" aria-live="polite">
-        {q ? `${total} productos encontrados` : ""}
+        {q ? ui.products.found(total) : ""}
       </p>
       {total === 0 && (
         <div className="mt-10 rounded-[var(--radius-block)] bg-salvia p-6">
-          <p className="font-semibold">No hay productos que coincidan con «{q}».</p>
-          <p className="mt-1 text-muted">Probá con otra palabra, una categoría (Huerta, Granja, Conservas, Almacén) o un nivel (Verde, Amarillo, Naranja).</p>
+          <p className="font-semibold">{ui.products.noneTitle(q)}</p>
+          <p className="mt-1 text-muted">{ui.products.noneHint}</p>
           <button type="button" onClick={() => setQ("")} className="btn btn-solid mt-4 !min-h-11">
-            Ver todos los productos
+            {ui.products.seeAll}
           </button>
         </div>
       )}

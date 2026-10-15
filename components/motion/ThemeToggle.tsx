@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Moon, Sun } from "@phosphor-icons/react";
+import { ui } from "@/content/site";
 
 // Modo "campo de noche": botón para elegir claro u oscuro. La preferencia se recuerda en este navegador
 // (si no hay, sigue al sistema). El script de layout.tsx la aplica antes de pintar, sin parpadeo.
@@ -29,7 +30,7 @@ export function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-pressed={dark ?? undefined}
-      aria-label={dark ? "Cambiar a modo día" : "Cambiar a modo noche"}
+      aria-label={dark ? ui.toDay : ui.toNight}
       className="inline-flex size-11 items-center justify-center rounded-full transition-colors duration-200 hover:bg-salvia"
     >
       {dark ? <Sun size={22} weight="bold" aria-hidden /> : <Moon size={22} weight="bold" aria-hidden />}

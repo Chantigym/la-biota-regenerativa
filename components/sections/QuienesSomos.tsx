@@ -3,7 +3,7 @@ import { CountUp } from "@/components/motion/CountUp";
 import { Glossed } from "@/components/motion/Glossed";
 import { ParallaxTree } from "@/components/motion/ParallaxTree";
 import { SectionFurrow } from "@/components/brand/SectionFurrow";
-import { quienes } from "@/content/site";
+import { quienes, ui } from "@/content/site";
 
 export function QuienesSomos() {
   return (
@@ -68,7 +68,7 @@ export function QuienesSomos() {
           <ul className="mt-10 grid max-w-[880px] gap-x-6 gap-y-10 sm:grid-cols-2">
             {quienes.team.map((m, i) => (
               <li key={i}>
-                <PhotoSlot label="Foto de muestra" ratio="4 / 3" />
+                <PhotoSlot label={ui.photoSample} ratio="4 / 3" />
                 <p className="font-display mt-4 text-xl font-bold tracking-tight">{m.name}</p>
                 <a
                   href={`https://www.instagram.com/${m.handle}/`}

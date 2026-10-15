@@ -71,6 +71,11 @@ Es un sitio de una sola página que presenta la identidad de un proyecto de muje
 - **Interacción:** zoom al punto en el mapa, calendario que viaja al mes actual, brote al pasar por botones y links (`.sprout-hover`), preguntas que se abren con altura animada, productos que se reordenan, buscador y volver arriba.
 - **Tipografía a mano:** Permanent Marker (`font-marker`) solo para notas y frases del proyecto: hero, consumo local y lema.
 
+## Idiomas y publicación
+- El contenido vive en `content/es.ts` y `content/en.ts`, con la misma estructura (incluye `ui`: botones, etiquetas y textos de accesibilidad). `content/site.ts` elige uno según `NEXT_PUBLIC_LOCALE`.
+- `npm run build:pages` compila el castellano en `/la-biota-regenerativa/` y el inglés en `/la-biota-regenerativa/en/` (todo queda en `out/`, listo para la rama `gh-pages`).
+- Ningún componente lleva texto escrito a mano: todo sale del contenido.
+
 ## Contenido de muestra
 - Mientras el contenido real no esté, los párrafos van en lorem ipsum, los datos en "XX" y las fotos en `PhotoSlot` (marco punteado con aspect-ratio final).
 - Un aviso arriba de todo (`SampleBanner`) lo explica. Se apaga con `sample.enabled = false` en `content/site.ts`.

@@ -38,23 +38,23 @@ export const nav = [
 
 export const hero = {
   title: "Producción de alimentos basada en la regeneración del suelo",
-  lead: "Proyecto productivo de mujeres en Traslasierra, Córdoba, que aplica principios de agricultura regenerativa y documenta sus resultados.",
+  lead: "Productoras de verdura orgánica en El Mantillo, un predio rural del centro de Traslasierra, Córdoba.",
   primary: { label: "Conocé el proyecto", href: "#quienes-somos" },
 };
 
 export const quienes = {
   title: "Comunidad",
   statement:
-    "La Biota es un proyecto productivo integrado por mujeres que trabajan de forma colectiva en un establecimiento rural de Traslasierra, Córdoba.",
-  body: "El proyecto parte de una premisa: la salud del suelo condiciona la calidad de los alimentos y la estabilidad del agroecosistema. Sobre esa base producimos y comercializamos alimentos con trazabilidad completa, desde el manejo del suelo hasta el producto final.",
+    "La Biota es un proyecto de producción de verdura orgánica llevado adelante por mujeres en El Mantillo, un predio rural ubicado en el centro de Traslasierra, Córdoba.",
+  body: "El proyecto se organiza en torno a dos ejes: conservar el monte nativo que aún persiste en el predio y producir alimentos agroecológicos respetando la biodiversidad del entorno. Parte de una premisa: la salud del suelo condiciona la de las plantas, los animales y las personas.",
   historyTitle: "Historia del proyecto",
   history: [L.p1, L.p2, L.p3],
   historyPhoto: "Foto de muestra: el campo o el equipo trabajando",
   facts: [
     { label: "Año de inicio", value: "20XX" },
     { label: "Superficie del predio", value: "XX ha" },
-    { label: "Integrantes", value: "XX" },
-    { label: "Ubicación", value: "Traslasierra, Córdoba" },
+    { label: "Integrantes", value: "2" },
+    { label: "Predio", value: "El Mantillo, Traslasierra" },
   ],
   principlesTitle: "Principios",
   principles: [
@@ -70,14 +70,17 @@ export const quienes = {
       title: "Transparencia",
       text: "Los métodos de manejo, los avances y las limitaciones del proyecto se registran y se comunican públicamente.",
     },
+    {
+      title: "Consumo local",
+      text: "Entendemos el consumo local como una posición política: acorta la distancia entre quien produce y quien consume, y fortalece la economía de la región.",
+    },
   ],
   teamTitle: "Integrantes",
   teamLead: L.short,
+  // TODO: nombre completo, rol y foto de cada integrante.
   team: [
-    { name: "Nombre Apellido", role: "Rol en el proyecto", bio: L.mid },
-    { name: "Nombre Apellido", role: "Rol en el proyecto", bio: L.mid },
-    { name: "Nombre Apellido", role: "Rol en el proyecto", bio: L.mid },
-    { name: "Nombre Apellido", role: "Rol en el proyecto", bio: L.mid },
+    { name: "Nombre Apellido", handle: "caroopaoloni", role: "Rol en el proyecto", bio: L.mid },
+    { name: "Nombre Apellido", handle: "merlina.maitena", role: "Rol en el proyecto", bio: L.mid },
   ],
 };
 
@@ -105,7 +108,7 @@ export const queHacemos = {
     {
       id: "huertas",
       title: "Huertas",
-      text: "Producción hortícola de estación sin agroquímicos de síntesis, con rotación de cultivos, cobertura permanente del suelo y compost elaborado en el predio.",
+      text: "Producción de verdura orgánica de estación, sin agroquímicos de síntesis, con rotación de cultivos, cobertura permanente del suelo y compost elaborado en el predio.",
       illustration: "/illustrations/huertas.webp",
       detail: [L.p1, L.p2],
       facts: subFacts("XX parcelas, XX m²"),
@@ -175,6 +178,7 @@ export const haciaDonde = {
   purposeLabel: "Nuestro propósito",
   purpose:
     "Restaurar la funcionalidad ecológica del suelo y demostrar que es posible producir alimentos de calidad con ese enfoque.",
+  motto: "Suelos sanos, plantas sanas, animales sanos, personas sanas.",
   horizonLabel: "Nuestro horizonte",
   horizon:
     "Un agroecosistema con mayor contenido de materia orgánica, actividad biológica en el suelo y recuperación de la vegetación nativa, que abastezca a la comunidad de Traslasierra mediante circuitos cortos de comercialización.",
@@ -182,6 +186,7 @@ export const haciaDonde = {
   goalsLabel: "Nuestros objetivos",
   goals: [
     { id: "suelo", title: "Regenerar el suelo", text: "Incrementar la materia orgánica y la cobertura vegetal de todas las parcelas, con monitoreo periódico.", indicator: "Materia orgánica del suelo", target: "XX % al 20XX" },
+    { id: "monte", title: "Conservar el monte nativo", text: "Proteger el monte nativo que persiste en el predio y la biodiversidad asociada, integrándolo al manejo productivo.", indicator: "Superficie de monte nativo conservada", target: "XX ha al 20XX" },
     { id: "diversidad", title: "Diversificar la producción", text: "Incorporar frutales, aromáticas y semillas propias para aumentar la biodiversidad funcional.", indicator: "Especies cultivadas", target: "XX especies al 20XX" },
     { id: "mesas", title: "Ampliar el abastecimiento local", text: "Abastecer de forma regular a familias y comercios de la zona mediante circuitos cortos.", indicator: "Familias abastecidas", target: "XX familias al 20XX" },
     { id: "ciclos", title: "Cerrar ciclos de nutrientes", text: "Integrar los subproyectos para que los residuos de uno se reincorporen como insumo de otro.", indicator: "Insumos externos", target: "Reducción del XX % al 20XX" },

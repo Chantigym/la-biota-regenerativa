@@ -55,11 +55,19 @@ export function QuienesSomos() {
         <div className="mt-20 lg:mt-28">
           <h3 className="text-3xl font-extrabold sm:text-4xl">{quienes.teamTitle}</h3>
           <p className="mt-3 max-w-[52ch] text-lg text-muted">{quienes.teamLead}</p>
-          <ul className="mt-10 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-10 grid max-w-[880px] gap-x-6 gap-y-10 sm:grid-cols-2">
             {quienes.team.map((m, i) => (
               <li key={i}>
-                <PhotoSlot label="Foto de muestra" ratio="1 / 1" />
+                <PhotoSlot label="Foto de muestra" ratio="4 / 3" />
                 <p className="font-display mt-4 text-xl font-bold tracking-tight">{m.name}</p>
+                <a
+                  href={`https://www.instagram.com/${m.handle}/`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[15px] font-semibold underline decoration-[1.5px] underline-offset-4 hover:decoration-[3px]"
+                >
+                  @{m.handle}
+                </a>
                 <p className="text-[15px] font-semibold">{m.role}</p>
                 <p className="mt-2 text-[16px] text-muted">{m.bio}</p>
               </li>

@@ -1,6 +1,6 @@
 "use client";
 
-import { m, type Variants } from "motion/react";
+import { m, useReducedMotion, type Variants } from "motion/react";
 import { asset } from "@/lib/asset";
 import { dur, easeOut } from "@/lib/motion";
 
@@ -20,12 +20,14 @@ const furrow: Variants = {
   hidden: { scaleX: 0 },
   shown: { scaleX: 1, transition: pass },
 };
-const content: Variants = {
+// Con reduced motion el tractor no cruza: el contenido no lo espera.
+const content = (reduce: boolean): Variants => ({
   hidden: { opacity: 0, y: 16 },
-  shown: { opacity: 1, y: 0, transition: { duration: 0.5, ease: easeOut, delay: dur.pass * 0.45 } },
-};
+  shown: { opacity: 1, y: 0, transition: { duration: reduce ? dur.base : 0.5, ease: easeOut, delay: reduce ? 0 : dur.pass * 0.45 } },
+});
 
 export function TractorPass({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const reduce = useReducedMotion() ?? false;
   return (
     <m.div
       className={className}
@@ -52,7 +54,7 @@ export function TractorPass({ children, className = "" }: { children: React.Reac
           />
         </m.div>
       </div>
-      <m.div variants={content} className="pt-10 lg:pt-14">
+      <m.div variants={content(reduce)} className="pt-10 lg:pt-14">
         {children}
       </m.div>
     </m.div>

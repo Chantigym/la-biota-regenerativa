@@ -1,5 +1,6 @@
 import { SectionFurrow } from "@/components/brand/SectionFurrow";
 import { RiseBlock } from "@/components/motion/RiseBlock";
+import { Glossed } from "@/components/motion/Glossed";
 import { haciaDonde } from "@/content/site";
 
 export function HaciaDonde() {
@@ -21,7 +22,9 @@ export function HaciaDonde() {
           <div className="mt-20 grid gap-14 lg:mt-28 lg:grid-cols-12 lg:gap-6">
             <div className="lg:col-span-4">
               <h3 className="text-2xl font-bold">{haciaDonde.horizonLabel}</h3>
-              <p className="mt-4 max-w-[44ch] text-lg leading-relaxed opacity-90">{haciaDonde.horizon}</p>
+              <p className="mt-4 max-w-[44ch] text-lg leading-relaxed opacity-90">
+                <Glossed text={haciaDonde.horizon} />
+              </p>
               <p className="mt-4 max-w-[44ch] leading-relaxed opacity-80">{haciaDonde.horizonMore}</p>
             </div>
 

@@ -6,6 +6,7 @@ import { ArrowRight, Check, Tractor } from "@phosphor-icons/react";
 import { SectionFurrow } from "@/components/brand/SectionFurrow";
 import { FurrowPath } from "@/components/motion/FurrowPath";
 import { NodePop } from "@/components/motion/NodePop";
+import { GallinaTip } from "@/components/motion/GallinaTip";
 import { estadoLabel, haciaDonde, hoy, type HitoEstado } from "@/content/site";
 import { haptic } from "@/lib/haptic";
 import { dur, easeOut, exitDur } from "@/lib/motion";
@@ -47,9 +48,12 @@ export function DondeEstamos() {
   return (
     <section id="hoy" aria-labelledby="hoy-title" className="px-4 pt-20 pb-24 sm:px-6 lg:pt-28 lg:pb-36">
       <SectionFurrow className="mx-auto max-w-[1240px]">
-        <h2 id="hoy-title" className="text-4xl font-extrabold sm:text-5xl">
-          {hoy.title}
-        </h2>
+        <div className="flex items-end justify-between gap-6">
+          <h2 id="hoy-title" className="text-4xl font-extrabold sm:text-5xl">
+            {hoy.title}
+          </h2>
+          <GallinaTip section="hoy" />
+        </div>
         <p className="mt-4 max-w-[52ch] text-lg text-muted">{hoy.lead}</p>
 
         <div className="relative mt-16">

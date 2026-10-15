@@ -9,10 +9,13 @@ import { nav } from "@/content/site";
 import { dur, easeOut, exitDur } from "@/lib/motion";
 import { useActiveSection } from "@/lib/useActiveSection";
 
+const ALL_SECTIONS = ["quienes-somos", "el-mantillo", "que-hacemos", "autocertificacion", "metodologia", "biota", "hacia-donde", "hoy", "jugar", "preguntas", "apoyar", "seguinos"];
+
 export function Nav() {
   const [open, setOpen] = useState(false);
-  const activeId = useActiveSection(nav.map((item) => item.href.slice(1)));
-  const active = activeId ? `#${activeId}` : null;
+  // se observan todas las secciones; solo se marca la activa si está en el menú
+  const activeId = useActiveSection(ALL_SECTIONS);
+  const active = activeId && nav.some((i) => i.href === `#${activeId}`) ? `#${activeId}` : null;
 
   useEffect(() => {
     if (!open) return;

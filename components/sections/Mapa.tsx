@@ -4,6 +4,8 @@ import { useState } from "react";
 import { AnimatePresence, m } from "motion/react";
 import { ArrowsOut } from "@phosphor-icons/react";
 import { SectionFurrow } from "@/components/brand/SectionFurrow";
+import { VideoSlot } from "@/components/brand/VideoSlot";
+import { Region } from "@/components/sections/Region";
 import { mapa } from "@/content/site";
 import { asset } from "@/lib/asset";
 import { haptic } from "@/lib/haptic";
@@ -30,9 +32,14 @@ export function Mapa() {
         <h2 id="mapa-title" className="text-4xl font-extrabold sm:text-5xl">
           {mapa.title}
         </h2>
-        <p className="mt-4 max-w-[60ch] text-lg text-muted">{mapa.lead}</p>
+        <div className="mt-10">
+          <Region />
+        </div>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-12">
+        <h3 className="mt-20 text-2xl font-extrabold sm:text-3xl lg:mt-24">El predio</h3>
+        <p className="mt-2 max-w-[60ch] text-muted">{mapa.lead}</p>
+
+        <div className="mt-6 grid gap-6 lg:grid-cols-12">
           {/* Mapa */}
           <div className="relative overflow-hidden rounded-[var(--radius-block)] bg-salvia lg:col-span-8">
             <m.div
@@ -134,6 +141,7 @@ export function Mapa() {
             <p className="mt-4 text-sm text-muted">{mapa.note}</p>
           </div>
         </div>
+        <VideoSlot />
       </SectionFurrow>
     </section>
   );

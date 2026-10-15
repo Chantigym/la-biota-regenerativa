@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, m } from "motion/react";
+import { Glossed } from "@/components/motion/Glossed";
 import { ciclo } from "@/content/site";
 import { haptic } from "@/lib/haptic";
 import { dur, easeOut, exitDur } from "@/lib/motion";
@@ -99,7 +100,9 @@ export function Ciclo() {
                   {node.title} → {next.title}
                 </p>
                 <p className="font-display mt-1 text-2xl font-bold tracking-tight">{node.title}</p>
-                <p className="mt-2 text-muted">{node.flow}</p>
+                <p className="mt-2 text-muted">
+                  <Glossed text={node.flow} />
+                </p>
               </m.div>
             </AnimatePresence>
           </div>

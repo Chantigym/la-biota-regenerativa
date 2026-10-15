@@ -1,6 +1,7 @@
 import { SectionFurrow } from "@/components/brand/SectionFurrow";
 import { Illustration } from "@/components/brand/Illustration";
 import { JarFill } from "@/components/motion/JarFill";
+import { GallinaTip } from "@/components/motion/GallinaTip";
 import { Calendario } from "@/components/sections/Calendario";
 import { Ciclo } from "@/components/sections/Ciclo";
 import { queHacemos } from "@/content/site";
@@ -21,9 +22,12 @@ export function QueHacemos() {
   return (
     <section id="que-hacemos" aria-labelledby="que-title" className="px-4 pb-24 sm:px-6 lg:pb-36">
       <SectionFurrow className="mx-auto max-w-[1240px]">
-        <h2 id="que-title" className="text-4xl font-extrabold sm:text-5xl">
-          {queHacemos.title}
-        </h2>
+        <div className="flex items-end justify-between gap-6">
+          <h2 id="que-title" className="text-4xl font-extrabold sm:text-5xl">
+            {queHacemos.title}
+          </h2>
+          <GallinaTip section="que-hacemos" />
+        </div>
         <p className="mt-4 max-w-[52ch] text-lg text-muted">{queHacemos.lead}</p>
 
         <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-6 lg:gap-4">

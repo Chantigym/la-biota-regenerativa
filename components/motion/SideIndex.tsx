@@ -14,7 +14,9 @@ const SECTIONS = [
   { id: "biota", label: "La biota del suelo" },
   { id: "hacia-donde", label: "Objetivos" },
   { id: "hoy", label: "El presente" },
+  { id: "jugar", label: "Aprender jugando" },
   { id: "preguntas", label: "Preguntas" },
+  { id: "apoyar", label: "Apoyar" },
   { id: "seguinos", label: "Instagram" },
 ];
 

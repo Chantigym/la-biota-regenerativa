@@ -1,5 +1,6 @@
 import { SectionFurrow } from "@/components/brand/SectionFurrow";
 import { Sello } from "@/components/motion/Sello";
+import { GallinaTip } from "@/components/motion/GallinaTip";
 import { ProductList } from "@/components/sections/ProductList";
 import { autocert } from "@/content/site";
 
@@ -39,7 +40,10 @@ export function Autocertificacion() {
           ))}
         </ul>
 
-        <h3 className="mt-20 text-3xl font-extrabold sm:text-4xl">{autocert.listTitle}</h3>
+        <div className="mt-20 flex items-end justify-between gap-6">
+          <h3 className="text-3xl font-extrabold sm:text-4xl">{autocert.listTitle}</h3>
+          <GallinaTip section="autocertificacion" />
+        </div>
         <p className="mt-2 mb-8 text-sm text-muted">{autocert.listNote}</p>
         <ProductList />
       </SectionFurrow>

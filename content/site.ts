@@ -288,6 +288,130 @@ export const suelo = {
   ],
 };
 
+// Recetas de estación: se muestran según el mes elegido en el calendario. TODO: recetas reales.
+export const recetas = {
+  title: "Recetas de estación",
+  lead: "Preparaciones simples con la verdura disponible en el mes elegido.",
+  note: "Recetas de muestra.",
+  items: [
+    { name: "Tarta de acelga", crops: ["Acelga"], time: "XX min", text: L.mid },
+    { name: "Ensalada tibia de remolacha", crops: ["Remolacha", "Lechuga"], time: "XX min", text: L.mid },
+    { name: "Kale salteado con ajo", crops: ["Kale"], time: "XX min", text: L.mid },
+    { name: "Coliflor al horno", crops: ["Coliflor"], time: "XX min", text: L.mid },
+    { name: "Salsa de tomate casera", crops: ["Tomate"], time: "XX min", text: L.mid },
+    { name: "Locro de zapallo", crops: ["Zapallo"], time: "XX min", text: L.mid },
+    { name: "Zanahorias glaseadas", crops: ["Zanahoria"], time: "XX min", text: L.mid },
+  ],
+};
+
+// Glosario: términos que aparecen subrayados en el texto y muestran su definición al tocarlos.
+export const glosario: Record<string, string> = {
+  biota: "Conjunto de organismos que viven en un ambiente; en el suelo incluye bacterias, hongos, lombrices e insectos.",
+  micorrizas: "Asociaciones entre hongos y raíces de plantas que mejoran la absorción de agua y nutrientes.",
+  compost: "Materia orgánica descompuesta y estabilizada que se incorpora al suelo como abono.",
+  rizósfera: "Zona del suelo que rodea a las raíces y está influida por sus exudados y microorganismos.",
+  agroecológico: "Producido con prácticas que integran principios ecológicos y sociales, sin agroquímicos de síntesis.",
+  "monte nativo": "Vegetación natural de la región; en Traslasierra incluye algarrobo, chañar, espinillo y molle.",
+  "circuitos cortos": "Formas de comercialización con pocos o ningún intermediario entre quien produce y quien consume.",
+};
+
+// Video del campo. TODO: subir el video real (archivo o link de YouTube/Vimeo).
+export const video = {
+  title: "Un día en el campo",
+  lead: "Recorrido por las tareas diarias en El Mantillo.",
+  placeholder: "Video de muestra: acá va el video del campo",
+  duration: "X:XX",
+};
+
+// Apoyar el proyecto (sin visitas al campo). TODO: confirmar formas de apoyo.
+export const apoyar = {
+  title: "Apoyar el proyecto",
+  lead: "Hay distintas formas de acompañar a La Biota sin necesidad de visitar el campo.",
+  ways: [
+    { title: "Comprar local", text: "Elegir verdura y productos de la zona sostiene el proyecto y acorta la cadena. " + L.short },
+    { title: "Aportes", text: "Aportes económicos para herramientas, semillas o infraestructura. " + L.short },
+    { title: "Herramientas y materiales", text: "Donación de herramientas, mallas o materiales en desuso. " + L.short },
+    { title: "Difusión", text: "Compartir el proyecto en redes y recomendarlo a quienes buscan alimentos locales. " + L.short },
+  ],
+  cta: "Consultar por Instagram",
+};
+
+// Quiz de consumo local. Respuestas correctas basadas en información general.
+export const quiz = {
+  title: "¿Qué tan local comés?",
+  lead: "Cinco preguntas rápidas sobre alimentación y consumo local.",
+  questions: [
+    { q: "¿Cuántas veces por semana comprás verdura de productores de tu zona?", options: ["Nunca", "Una vez", "Dos o más"], points: [0, 1, 2] },
+    { q: "¿Sabés de qué estación es la verdura que comprás?", options: ["No", "A veces", "Casi siempre"], points: [0, 1, 2] },
+    { q: "¿Cocinás con verdura de estación?", options: ["Rara vez", "A veces", "Siempre que puedo"], points: [0, 1, 2] },
+    { q: "¿Conocés a alguna persona que produzca lo que comés?", options: ["A nadie", "A una", "A varias"], points: [0, 1, 2] },
+    { q: "¿Aprovechás los excedentes (conservas, congelado)?", options: ["No", "A veces", "Sí"], points: [0, 1, 2] },
+  ],
+  results: [
+    { min: 0, title: "Recién empezando", text: "Hay mucho por explorar: empezar por la verdura de estación es un buen primer paso." },
+    { min: 4, title: "En camino", text: "Ya tenés hábitos de consumo local; sumar productores de la zona los fortalece." },
+    { min: 8, title: "Consumo local", text: "Tus hábitos acortan la distancia entre el campo y la mesa." },
+  ],
+};
+
+// Armá tu bolsón: verduras del mes (sale del calendario) y un bolsón que se llena.
+export const bolson = {
+  title: "Armá tu bolsón",
+  lead: "Elegí verduras disponibles en el mes y mirá cómo se llena el bolsón.",
+  note: "Herramienta de muestra: no es un pedido.",
+  max: 6,
+};
+
+// Sembrá en el surco (minijuego)
+export const sembrar = {
+  title: "Sembrá en el surco",
+  lead: "Arrastrá las semillas hasta el surco (o tocá un hueco del surco) y mirá cómo brotan.",
+  done: "¡Surco sembrado!",
+  holes: 5,
+};
+
+// Suelo degradado vs. suelo vivo
+export const comparador = {
+  title: "Suelo degradado y suelo vivo",
+  lead: "Deslizá para comparar un suelo compactado y sin cobertura con un suelo bajo manejo regenerativo.",
+  left: "Suelo degradado",
+  right: "Suelo vivo",
+  leftText: "Superficie desnuda, raíces cortas, capa compactada y poca vida biológica.",
+  rightText: "Cobertura permanente, raíces profundas, fauna y hongos activos.",
+};
+
+// Mapa de Traslasierra. x/y en % sobre la ilustración (aproximado). TODO: confirmar ubicación de El Mantillo.
+export const region = {
+  title: "En el valle de Traslasierra",
+  lead: "El Mantillo está en el centro del valle de Traslasierra, al oeste de las Sierras Grandes de Córdoba.",
+  note: "Mapa ilustrativo y aproximado.",
+  places: [
+    { name: "Mina Clavero", x: 47, y: 30 },
+    { name: "Nono", x: 50, y: 44 },
+    { name: "Las Rabonas", x: 52, y: 56 },
+    { name: "Villa Dolores", x: 40, y: 80 },
+    { name: "Sierras Grandes", x: 82, y: 22, kind: "zona" },
+  ],
+  farm: { name: "El Mantillo", x: 47, y: 62 },
+};
+
+// Clima en el campo (Open-Meteo, sin clave). Coordenadas aproximadas del centro del valle. TODO: confirmar.
+export const clima = {
+  title: "Hoy en el campo",
+  lat: -31.83,
+  lon: -65.03,
+};
+
+// Gallina guía: aparece en algunas secciones con un dato corto (tono informativo).
+export const gallina = {
+  tips: {
+    "que-hacemos": "Las gallinas también trabajan: comen restos de la huerta y su guano termina en el compost.",
+    autocertificacion: "Fijate el color de cada producto: indica cuánto podemos garantizar sobre su origen.",
+    biota: "En una cucharada de suelo sano hay más microorganismos que personas en el planeta.",
+    hoy: "Tocá el nombre de cada etapa para ver su detalle.",
+  } as Record<string, string>,
+};
+
 // Autocertificación: La Biota respalda con su propio conocimiento el origen de cada producto que ofrece.
 export type Nivel = "verde" | "amarillo" | "naranja";
 export type Categoria = "huerta" | "granja" | "conservas" | "almacen";

@@ -2,6 +2,8 @@ import { Autocertificacion } from "@/components/sections/Autocertificacion";
 import { BackToTop } from "@/components/motion/BackToTop";
 import { PageFurrow } from "@/components/motion/PageFurrow";
 import { Mapa } from "@/components/sections/Mapa";
+import { Apoyar } from "@/components/sections/Apoyar";
+import { Jugar } from "@/components/sections/Jugar";
 import { LemaMarquee } from "@/components/sections/LemaMarquee";
 import { SideIndex } from "@/components/motion/SideIndex";
 import { Suelo } from "@/components/sections/Suelo";
@@ -35,7 +37,9 @@ export default function Home() {
         <HaciaDonde />
         <LemaMarquee />
         <DondeEstamos />
+        <Jugar />
         <Preguntas />
+        <Apoyar />
         <Seguinos />
       </main>
       <Footer />

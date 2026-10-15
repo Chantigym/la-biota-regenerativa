@@ -3,6 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, m, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { RiseBlock } from "@/components/motion/RiseBlock";
+import { Glossed } from "@/components/motion/Glossed";
+import { Comparador } from "@/components/sections/Comparador";
+import { GallinaTip } from "@/components/motion/GallinaTip";
 import { suelo } from "@/content/site";
 import { asset } from "@/lib/asset";
 import { dur, easeOut, exitDur } from "@/lib/motion";
@@ -27,7 +30,9 @@ function Layers({ active }: { active: number }) {
           exit={{ opacity: 0, y: -10, transition: { duration: exitDur(dur.slow) } }}
         >
           <h3 className="mt-2 text-4xl font-extrabold sm:text-5xl">{layer.title}</h3>
-          <p className="mt-4 max-w-[42ch] text-lg leading-relaxed opacity-90">{layer.text}</p>
+          <p className="mt-4 max-w-[42ch] text-lg leading-relaxed opacity-90">
+            <Glossed text={layer.text} />
+          </p>
         </m.div>
       </AnimatePresence>
       <ol className="mt-8 flex gap-2" aria-hidden>
@@ -71,9 +76,12 @@ export function Suelo() {
       <RiseBlock className="mx-auto max-w-[1400px] rounded-[var(--radius-block)] bg-[#2b241d] text-[#efe9df] [--focus:#efe9df]">
         <div className="px-5 pt-16 sm:px-10 lg:px-14 lg:pt-24">
           <div className="mx-auto max-w-[1240px]">
-            <h2 id="biota-title" className="text-4xl font-extrabold sm:text-5xl">
-              {suelo.title}
-            </h2>
+            <div className="flex items-end justify-between gap-6">
+              <h2 id="biota-title" className="text-4xl font-extrabold sm:text-5xl">
+                {suelo.title}
+              </h2>
+              <GallinaTip section="biota" className="text-[#efe9df]" />
+            </div>
             <p className="mt-4 max-w-[60ch] text-lg opacity-85">{suelo.lead}</p>
           </div>
         </div>
@@ -128,13 +136,16 @@ export function Suelo() {
                 <li key={l.title} className="border-l-[3px] border-yema pl-4">
                   <p className="text-sm font-semibold opacity-75">Capa {i + 1}</p>
                   <h3 className="text-2xl font-extrabold">{l.title}</h3>
-                  <p className="mt-2 opacity-90">{l.text}</p>
+                  <p className="mt-2 opacity-90">
+                    <Glossed text={l.text} />
+                  </p>
                 </li>
               ))}
             </ol>
           </div>
         </div>
         <div className="hidden h-16 lg:block" />
+        <Comparador />
       </RiseBlock>
     </section>
   );

@@ -1,5 +1,6 @@
 import { PhotoSlot } from "@/components/brand/PhotoSlot";
 import { CountUp } from "@/components/motion/CountUp";
+import { Glossed } from "@/components/motion/Glossed";
 import { ParallaxTree } from "@/components/motion/ParallaxTree";
 import { SectionFurrow } from "@/components/brand/SectionFurrow";
 import { quienes } from "@/content/site";
@@ -19,7 +20,9 @@ export function QuienesSomos() {
         </div>
 
         <div className="mt-14 grid gap-10 lg:mt-20 lg:grid-cols-12 lg:gap-6">
-          <p className="max-w-[52ch] text-lg leading-relaxed text-muted lg:col-span-6">{quienes.body}</p>
+          <p className="max-w-[52ch] text-lg leading-relaxed text-muted lg:col-span-6">
+            <Glossed text={quienes.body} />
+          </p>
           <dl className="grid grid-cols-2 gap-3 lg:col-span-5 lg:col-start-8">
             {quienes.facts.map((f) => (
               <div key={f.label} className="rounded-[var(--radius-block)] bg-salvia p-5">

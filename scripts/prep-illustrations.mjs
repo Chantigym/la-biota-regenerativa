@@ -23,7 +23,7 @@ for (const f of readdirSync("assets/illustrations").filter((f) => f.endsWith(".p
 
 // Imágenes no cuadradas (mapa del predio, corte del suelo): mismo tratamiento, conservando la proporción.
 import { existsSync } from "node:fs";
-const wide = { mapa: 1400, suelo: 900 };
+const wide = { mapa: 1400, suelo: 900, "suelo-degradado": 900, traslasierra: 1400 };
 for (const [name, width] of Object.entries(wide)) {
   const src = `assets/wide/${name}.png`;
   if (!existsSync(src)) continue;

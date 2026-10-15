@@ -2,16 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, m, useInView, useReducedMotion } from "motion/react";
-import { ArrowsClockwise } from "@phosphor-icons/react";
 import { Glossed } from "@/components/motion/Glossed";
 import { ciclo, ui } from "@/content/site";
 import { asset } from "@/lib/asset";
 import { haptic } from "@/lib/haptic";
 import { dur, easeOut, exitDur } from "@/lib/motion";
 
-// Ciclo de nutrientes: cuatro etapas ilustradas en círculo, unidas por flechas gruesas.
+// Ciclo de nutrientes: cuatro etapas ilustradas alrededor de un trazo punteado.
 // Al entrar en pantalla se recorre solo (cada 3,5 s) hasta que la persona toca una etapa.
-// La etapa elegida se agranda y su flecha de salida se pinta de amarillo.
+// El trazo se dibuja una sola vez; el orden se entiende por la numeración.
 
 const N = ciclo.nodes.length;
 const C = 50; // centro del viewBox (100 × 100)
@@ -20,31 +19,13 @@ const NODE = 14.5; // radio de cada etapa (en unidades del viewBox)
 const ang = (i: number) => (-90 + (360 / N) * i) * (Math.PI / 180);
 const pt = (a: number, r = R) => ({ x: C + r * Math.cos(a), y: C + r * Math.sin(a) });
 
-// arco de la etapa i a la siguiente, dejando lugar a los círculos
-const GAP = Math.asin((NODE + 3.2) / R);
-function arc(i: number) {
-  const a0 = ang(i) + GAP;
-  const a1 = ang(i + 1) - GAP - 0.07;
-  const p0 = pt(a0);
-  const p1 = pt(a1);
-  return `M ${p0.x} ${p0.y} A ${R} ${R} 0 0 1 ${p1.x} ${p1.y}`;
-}
-// punta de flecha al final del arco, orientada según la tangente
-function head(i: number) {
-  const a = ang(i + 1) - GAP;
-  const tip = pt(a);
-  const t = a + Math.PI / 2; // dirección de avance (horario)
-  const back = { x: tip.x - 3.6 * Math.cos(t), y: tip.y - 3.6 * Math.sin(t) };
-  const n = { x: Math.cos(a) * 2.4, y: Math.sin(a) * 2.4 };
-  return `M ${tip.x} ${tip.y} L ${back.x + n.x} ${back.y + n.y} L ${back.x - n.x} ${back.y - n.y} Z`;
-}
-
 export function Ciclo() {
   const [sel, setSel] = useState(0);
   const [auto, setAuto] = useState(true);
   const reduce = useReducedMotion();
   const box = useRef<HTMLDivElement>(null);
   const inView = useInView(box, { amount: 0.5 });
+  const drawOnce = useInView(box, { amount: 0.5, once: true });
 
   useEffect(() => {
     if (!auto || !inView || reduce) return;
@@ -69,45 +50,47 @@ export function Ciclo() {
         {/* Diagrama */}
         <div ref={box} className="relative mx-auto aspect-square w-full max-w-[600px] lg:col-span-7">
           <svg viewBox="0 0 100 100" className="absolute inset-0 size-full" aria-hidden fill="none">
-            {/* disco de fondo y órbita */}
+            {/* disco de fondo */}
             <circle cx={C} cy={C} r={R + NODE + 1} className="fill-salvia" />
-            <circle cx={C} cy={C} r={R} stroke="var(--ink)" strokeOpacity={0.18} strokeWidth={0.5} strokeDasharray="0.6 2" />
-            {ciclo.nodes.map((_, i) => {
-              const on = i === sel;
-              return (
-                <m.g
-                  key={i}
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true, amount: 0.5 }}
-                  transition={{ duration: 0.4, delay: 0.3 + i * 0.25 }}
-                >
-                  {/* contorno en tinta y relleno (amarillo en la flecha activa) */}
-                  <path d={arc(i)} stroke="var(--ink)" strokeWidth={4.2} strokeLinecap="round" />
-                  <path
-                    d={arc(i)}
-                    stroke={on ? "var(--yema)" : "var(--paper)"}
-                    strokeWidth={2.4}
-                    strokeLinecap="round"
-                    style={{ transition: "stroke 300ms" }}
-                  />
-                  <path
-                    d={head(i)}
-                    fill={on ? "var(--yema)" : "var(--paper)"}
-                    stroke="var(--ink)"
-                    strokeWidth={0.9}
-                    strokeLinejoin="round"
-                    style={{ transition: "fill 300ms" }}
-                  />
-                </m.g>
-              );
-            })}
+            <defs>
+              <mask
+                id="nutrient-cycle-reveal"
+                maskUnits="userSpaceOnUse"
+                maskContentUnits="userSpaceOnUse"
+                x="0"
+                y="0"
+                width="100"
+                height="100"
+              >
+                <m.circle
+                  cx={C}
+                  cy={C}
+                  r={R}
+                  stroke="white"
+                  strokeWidth={2.4}
+                  strokeLinecap="round"
+                  initial={{ pathLength: reduce ? 1 : 0 }}
+                  animate={{ pathLength: reduce || drawOnce ? 1 : 0 }}
+                  transition={{ duration: reduce ? 0 : 1.8, ease: easeOut }}
+                />
+              </mask>
+            </defs>
+            <circle
+              cx={C}
+              cy={C}
+              r={R}
+              stroke="var(--ink)"
+              strokeOpacity={0.5}
+              strokeWidth={0.8}
+              strokeDasharray="0 1.8"
+              strokeLinecap="round"
+              mask="url(#nutrient-cycle-reveal)"
+            />
           </svg>
 
           {/* centro */}
-          <div className="absolute top-1/2 left-1/2 flex w-[30%] -translate-x-1/2 -translate-y-1/2 flex-col items-center text-center">
-            <ArrowsClockwise size={28} weight="bold" aria-hidden className={reduce || !auto ? "" : "animate-[spin_9s_linear_infinite]"} />
-            <p className="font-display mt-1 text-[clamp(0.85rem,2.2vw,1.25rem)] leading-tight font-extrabold tracking-tight">{ciclo.center}</p>
+          <div className="absolute top-1/2 left-1/2 flex w-[45%] -translate-x-1/2 -translate-y-1/2 items-center justify-center text-center">
+            <p className="font-display text-[clamp(0.85rem,2.2vw,1.25rem)] leading-tight font-extrabold tracking-tight">{ciclo.center}</p>
           </div>
 
           {/* etapas */}

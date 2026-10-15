@@ -480,6 +480,156 @@ p {
   }
 }
 
+/* ---------- Gallinita (cuadro a cuadro: cada pose se sostiene hasta la siguiente) ---------- */
+.gl {
+  color: var(--ink);
+  user-select: none;
+}
+.gl img {
+  -webkit-user-drag: none;
+}
+.gl-head {
+  transform-origin: 45% 39%;
+}
+.gl-leg {
+  transform-origin: 36% 76%;
+}
+.gl-body {
+  transform-origin: 50% 77%;
+}
+.gl-wing {
+  display: none;
+  transform-origin: 65% 60%;
+}
+.gl-eye,
+.gl-zzz {
+  display: none;
+}
+.gl-wave .gl-wing {
+  display: block;
+}
+.gl-sleep .gl-eye,
+.gl-sleep .gl-zzz {
+  display: block;
+}
+.gl-sleep .gl-head {
+  transform: rotate(-22deg) translateY(2%);
+}
+@keyframes gl-picoteo {
+  0%,
+  40% {
+    transform: rotate(0);
+  }
+  45% {
+    transform: rotate(-18deg);
+  }
+  52% {
+    transform: rotate(0);
+  }
+  57% {
+    transform: rotate(-18deg);
+  }
+  64%,
+  100% {
+    transform: rotate(0);
+  }
+}
+@keyframes gl-pata {
+  0%,
+  75% {
+    transform: none;
+  }
+  80% {
+    transform: translateY(-4%) rotate(-12deg);
+  }
+  90%,
+  100% {
+    transform: none;
+  }
+}
+@keyframes gl-respira {
+  0% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.03);
+  }
+}
+@keyframes gl-z {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  33% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  66% {
+    opacity: 1;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes gl-ala {
+  0% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-38deg);
+  }
+  50% {
+    transform: rotate(-6deg);
+  }
+  75% {
+    transform: rotate(-38deg);
+  }
+}
+@keyframes gl-busca {
+  0% {
+    transform: rotate(-14deg);
+  }
+  33% {
+    transform: rotate(10deg);
+  }
+  66% {
+    transform: rotate(-3deg);
+  }
+}
+@keyframes gl-salto {
+  0% {
+    transform: none;
+  }
+  50% {
+    transform: translateY(-3%);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .gl-idle .gl-head {
+    animation: gl-picoteo 3.2s steps(1, end) infinite;
+  }
+  .gl-idle .gl-leg {
+    animation: gl-pata 3.2s steps(1, end) infinite;
+  }
+  .gl-sleep .gl-body {
+    animation: gl-respira 2.4s steps(1, end) infinite;
+  }
+  .gl-sleep .gl-zzz text {
+    animation: gl-z 2.4s steps(1, end) infinite;
+    animation-delay: calc(var(--k) * 0.8s);
+  }
+  .gl-wave .gl-wing {
+    animation: gl-ala 0.8s steps(1, end) 4;
+  }
+  .gl-search .gl-head {
+    animation: gl-busca 2.4s steps(1, end) infinite;
+  }
+  .gl-search {
+    animation: gl-salto 1.2s steps(1, end) infinite;
+  }
+}
+
 /* Pantalla de carga: solo si la conexión es lenta (ver bootScript en layout.tsx).
    El tractor queda en el lugar y la rueda trasera gira. */
 #cargando {

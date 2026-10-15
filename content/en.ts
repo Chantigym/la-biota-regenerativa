@@ -370,6 +370,13 @@ export const ui = {
   closeMenu: "Close menu",
   toNight: "Switch to night mode",
   toDay: "Switch to day mode",
+  soundOn: "Turn sound on",
+  soundOff: "Turn sound off",
+  notFound: {
+    title: "This page doesn't exist",
+    text: "The little hen searched the whole farm and couldn't find it. The link may be mistyped or the page may have moved.",
+    back: "Back to home",
+  },
   lang: { short: "ES", aria: "Ver el sitio en español", lang: "es" },
   sideIndex: "Section index",
   sections: [

@@ -439,6 +439,13 @@ export const ui = {
   closeMenu: "Cerrar menú",
   toNight: "Cambiar a modo noche",
   toDay: "Cambiar a modo día",
+  soundOn: "Activar sonido",
+  soundOff: "Desactivar sonido",
+  notFound: {
+    title: "Esta página no existe",
+    text: "La gallinita la buscó por todo el campo y no la encontró. Puede que el link esté mal escrito o que la página se haya movido.",
+    back: "Volver al inicio",
+  },
   lang: { short: "EN", aria: "Ver el sitio en inglés", lang: "en" },
   sideIndex: "Índice de secciones",
   sections: [

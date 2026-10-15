@@ -64,7 +64,7 @@ Es un sitio de una sola página que presenta la identidad de un proyecto de muje
 - Un aviso arriba de todo (`SampleBanner`) lo explica. Se apaga con `sample.enabled = false` en `content/site.ts`.
 
 ## Secciones
-Comunidad · El proyecto · Autocertificación (lista de productos ordenable por certificación o por categoría y filtrable por nivel) · Metodología · Objetivos · El presente · Preguntas frecuentes · Instagram.
+Comunidad · El proyecto · Autocertificación (lista de productos ordenable por certificación o por categoría) · Metodología · Objetivos · El presente · Preguntas frecuentes · Instagram.
 
 ## Texto
 - Registro académico e informativo, con vocabulario técnico de agricultura regenerativa y sin metáforas. Castellano rioplatense.

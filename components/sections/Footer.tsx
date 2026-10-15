@@ -24,7 +24,7 @@ export function Footer() {
             </ul>
           </nav>
           <p className="max-w-[48ch] text-[15px] md:text-right">
-            Agricultura regenerativa hecha por mujeres en comunidad, en Traslasierra, Córdoba.
+            Proyecto de agricultura regenerativa integrado por mujeres. Traslasierra, Córdoba.
           </p>
         </div>
       </div>

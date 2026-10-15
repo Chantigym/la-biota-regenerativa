@@ -1,4 +1,5 @@
-import { Check, Tractor } from "@phosphor-icons/react/dist/ssr";
+import { TractorPass } from "@/components/motion/TractorPass";
+import { ArrowRight, Check, Tractor } from "@phosphor-icons/react/dist/ssr";
 import { FurrowPath } from "@/components/motion/FurrowPath";
 import { estadoLabel, haciaDonde, hoy, type HitoEstado } from "@/content/site";
 
@@ -30,8 +31,8 @@ export function DondeEstamos() {
   const progress = current > 0 ? current / (n - 1) : 0;
 
   return (
-    <section id="hoy" aria-labelledby="hoy-title" className="px-4 py-24 sm:px-6 lg:py-36">
-      <div className="mx-auto max-w-[1240px]">
+    <section id="hoy" aria-labelledby="hoy-title" className="px-4 pt-20 pb-24 sm:px-6 lg:pt-28 lg:pb-36">
+      <TractorPass className="mx-auto max-w-[1240px]">
         <h2 id="hoy-title" className="text-4xl font-extrabold sm:text-5xl">
           {hoy.title}
         </h2>
@@ -72,6 +73,7 @@ export function DondeEstamos() {
                       ) : (
                         <span>{estadoLabel[h.estado]}</span>
                       )}
+                      <span className="font-medium text-muted">{h.date}</span>
                     </p>
                     <h3 className={`mt-2 text-2xl font-bold ${isCurrent ? "" : "lg:text-xl"}`}>{h.title}</h3>
                     <p className="mt-2 max-w-[36ch] text-[16px] text-muted lg:mx-auto">{h.text}</p>
@@ -87,7 +89,30 @@ export function DondeEstamos() {
             })}
           </ol>
         </div>
-      </div>
+
+        <div className="mt-16 grid gap-6 lg:mt-24 lg:grid-cols-12">
+          <div className="rounded-[var(--radius-block)] bg-yema p-6 text-on-yema sm:p-10 lg:col-span-7">
+            <h3 className="text-3xl font-extrabold">{hoy.currentTitle}</h3>
+            <p className="mt-2 font-semibold">{current >= 0 ? hoy.hitos[current].title : ""}</p>
+            <div className="mt-5 grid max-w-[60ch] gap-4 leading-relaxed">
+              {hoy.current.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-[var(--radius-block)] p-6 shadow-[inset_0_0_0_1.5px_var(--ink)] sm:p-10 lg:col-span-5">
+            <h3 className="text-3xl font-extrabold">{hoy.nextTitle}</h3>
+            <ul className="mt-5 grid gap-4">
+              {hoy.next.map((n, i) => (
+                <li key={i} className="flex gap-3 text-muted">
+                  <ArrowRight size={20} weight="bold" aria-hidden className="mt-1 shrink-0 text-ink" />
+                  {n}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </TractorPass>
     </section>
   );
 }

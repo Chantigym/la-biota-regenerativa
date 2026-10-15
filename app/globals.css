@@ -15,6 +15,14 @@
   --hero-fg: var(--ink);
   --hero-ink: #1d201b;
 
+  /* Autocertificación: el color siempre va acompañado de su nombre */
+  --cert-verde: #2f7a3b;
+  --on-cert-verde: #fafaf6;
+  --cert-amarillo: #f2b42c;
+  --on-cert-amarillo: #1d201b;
+  --cert-naranja: #e8762b;
+  --on-cert-naranja: #1d201b;
+
   --dur-fast: 150ms;
   --dur-base: 220ms;
   --dur-slow: 320ms;
@@ -52,6 +60,12 @@
   --color-hero-bg: var(--hero-bg);
   --color-hero-fg: var(--hero-fg);
   --color-hero-ink: var(--hero-ink);
+  --color-cert-verde: var(--cert-verde);
+  --color-on-cert-verde: var(--on-cert-verde);
+  --color-cert-amarillo: var(--cert-amarillo);
+  --color-on-cert-amarillo: var(--on-cert-amarillo);
+  --color-cert-naranja: var(--cert-naranja);
+  --color-on-cert-naranja: var(--on-cert-naranja);
 
   --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;

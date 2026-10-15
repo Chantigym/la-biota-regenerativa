@@ -1,10 +1,11 @@
+import { TractorPass } from "@/components/motion/TractorPass";
 import { haciaDonde } from "@/content/site";
 
 export function HaciaDonde() {
   return (
     <section id="hacia-donde" aria-labelledby="hacia-title" className="px-3 sm:px-4">
-      <div className="mx-auto max-w-[1400px] rounded-[var(--radius-block)] bg-monte px-5 py-20 text-on-monte [--focus:var(--on-monte)] sm:px-10 lg:px-14 lg:py-32">
-        <div className="mx-auto max-w-[1240px]">
+      <div className="mx-auto max-w-[1400px] rounded-[var(--radius-block)] bg-monte px-5 pt-10 pb-20 text-on-monte [--focus:var(--on-monte)] sm:px-10 lg:px-14 lg:pt-14 lg:pb-32">
+        <TractorPass className="mx-auto max-w-[1240px]">
           <h2 id="hacia-title" className="text-center text-xl font-bold opacity-80">
             {haciaDonde.title}
           </h2>
@@ -20,6 +21,7 @@ export function HaciaDonde() {
             <div className="lg:col-span-4">
               <h3 className="text-2xl font-bold">{haciaDonde.horizonLabel}</h3>
               <p className="mt-4 max-w-[44ch] text-lg leading-relaxed opacity-90">{haciaDonde.horizon}</p>
+              <p className="mt-4 max-w-[44ch] leading-relaxed opacity-80">{haciaDonde.horizonMore}</p>
             </div>
 
             <div className="lg:col-span-7 lg:col-start-6">
@@ -29,12 +31,22 @@ export function HaciaDonde() {
                   <li key={g.id} id={`objetivo-${g.id}`} className="scroll-mt-28 border-l-[3px] border-yema pl-4">
                     <p className="font-display text-xl font-bold tracking-tight">{g.title}</p>
                     <p className="mt-1 opacity-85">{g.text}</p>
+                    <dl className="mt-3 grid gap-1 text-[15px]">
+                      <div className="flex flex-wrap gap-x-1.5">
+                        <dt className="font-semibold">Indicador:</dt>
+                        <dd className="opacity-85">{g.indicator}</dd>
+                      </div>
+                      <div className="flex flex-wrap gap-x-1.5">
+                        <dt className="font-semibold">Meta:</dt>
+                        <dd className="opacity-85">{g.target}</dd>
+                      </div>
+                    </dl>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
-        </div>
+        </TractorPass>
       </div>
     </section>
   );

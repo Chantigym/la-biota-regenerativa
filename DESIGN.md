@@ -21,6 +21,7 @@ Es un sitio de una sola página que presenta la identidad de un proyecto de muje
 | `--salvia` | #DFE5D5 | #222A21 | tinte suave |
 | `--barro` | #EADFD2 | #2A241F | tinte suave |
 | `--hero-bg` / `--hero-fg` | yema / ink | #1E221B / yema | hero |
+| `--cert-verde` / `--cert-amarillo` / `--cert-naranja` | #2F7A3B / #F2B42C / #E8762B | igual | niveles de autocertificación; siempre con su nombre escrito, nunca solo el color (texto encima: paper sobre verde, ink sobre amarillo y naranja) |
 
 **Reglas de color:**
 - Hay un solo color de marca (yema), siempre plano y nunca en degradé.
@@ -46,20 +47,27 @@ Es un sitio de una sola página que presenta la identidad de un proyecto de muje
 
 ## Movimiento
 - **Tokens** en `lib/motion.ts` y en las variables CSS `--dur-*` y `--ease-out`:
-  - fast 150ms · base 220ms · slow 320ms · path 900ms
+  - fast 150ms · base 220ms · slow 320ms · path 900ms · pass 1.3s
   - ease-out `cubic-bezier(.23,1,.32,1)`
-- **Momentos (son solo dos):**
+- **Momentos de relato:**
   1. La entrada del hero, hecha en CSS para que funcione sin JS: el tractor entra 24px desde la izquierda y el texto aparece en cascada de 40ms.
-  2. El surco de "Dónde estamos hoy", que se dibuja hasta el hito actual (Motion `pathLength`, `whileInView`, `once`).
+  2. **El tractor que ara entre secciones** (`components/motion/TractorPass.tsx`): cuando entra una sección, el tractor del logo (`logo-tractor-solo.webp`) la cruza de derecha a izquierda en 1.3s mientras dibuja el surco que la separa de la anterior. El contenido de la sección aparece detrás (fundido y 16px), con un 45% de retraso. Se dispara una sola vez, solo con transform y opacity.
+  3. El surco de "Dónde estamos hoy", que se dibuja hasta el hito actual (Motion `pathLength`, `whileInView`, `once`).
 - **Respuesta a acciones:** el press en botones (`scale .98`) y el menú móvil con `AnimatePresence`, donde la salida dura el 70% de la entrada.
 - **Reglas:**
   - Solo se animan transform, opacity y pathLength.
   - Se respeta `prefers-reduced-motion` (CSS más `MotionConfig reducedMotion="user"`).
-  - No hay fade-up en cada sección.
 - Motion se carga con `LazyMotion` + `domAnimation` y componentes `m.*`, solo en hojas `'use client'`.
 
+## Contenido de muestra
+- Mientras el contenido real no esté, los párrafos van en lorem ipsum, los datos en "XX" y las fotos en `PhotoSlot` (marco punteado con aspect-ratio final).
+- Un aviso arriba de todo (`SampleBanner`) lo explica. Se apaga con `sample.enabled = false` en `content/site.ts`.
+
+## Secciones
+Comunidad · El proyecto · Autocertificación (lista de productos ordenable por certificación o por categoría y filtrable por nivel) · Metodología · Objetivos · El presente · Preguntas frecuentes · Instagram.
+
 ## Texto
-- Castellano rioplatense y voz activa, en primera persona del plural.
+- Registro académico e informativo, con vocabulario técnico de agricultura regenerativa y sin metáforas. Castellano rioplatense.
 - Cero em-dashes, sin "Paso 1" y sin números inventados.
 - El único CTA es **"Conocé el proyecto"**, en el hero. No hay CTA de contacto ni se ofrecen visitas al campo: el cierre de la página invita a conocer más del proyecto en Instagram.
 - Todos los textos viven en `content/site.ts` y son BORRADOR hasta que el cliente los apruebe.

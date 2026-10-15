@@ -1,3 +1,4 @@
+import { TractorPass } from "@/components/motion/TractorPass";
 import { ArrowUpRight, InstagramLogo, MapPin } from "@phosphor-icons/react/dist/ssr";
 import { seguinos } from "@/content/site";
 
@@ -5,7 +6,8 @@ export function Seguinos() {
   const ig = seguinos.instagram;
   return (
     <section id="seguinos" aria-labelledby="seguinos-title" className="px-4 pb-24 sm:px-6 lg:pb-32">
-      <div className="mx-auto grid max-w-[1240px] gap-12 border-t-[1.5px] border-ink pt-16 lg:grid-cols-12 lg:items-end lg:gap-6 lg:pt-20">
+      <TractorPass className="mx-auto max-w-[1240px]">
+      <div className="grid gap-12 lg:grid-cols-12 lg:items-end lg:gap-6">
         <div className="lg:col-span-5">
           <h2 id="seguinos-title" className="text-4xl font-extrabold sm:text-5xl">
             {seguinos.title}
@@ -39,6 +41,7 @@ export function Seguinos() {
           <span className="sr-only">(se abre en una pestaña nueva)</span>
         </a>
       </div>
+      </TractorPass>
     </section>
   );
 }

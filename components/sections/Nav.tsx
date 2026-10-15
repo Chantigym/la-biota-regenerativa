@@ -24,8 +24,8 @@ export function Nav() {
           <Logo variant="wordmark" className="h-9 text-ink" />
         </a>
 
-        <nav aria-label="Principal" className="hidden lg:block">
-          <ul className="flex items-center gap-7 text-[15px] font-medium">
+        <nav aria-label="Principal" className="hidden xl:block">
+          <ul className="flex items-center gap-6 text-[15px] font-medium">
             {nav.map((item) => (
               <li key={item.href}>
                 <a href={item.href} className="rounded-sm py-2 hover:underline hover:decoration-2 hover:underline-offset-[6px]">
@@ -38,7 +38,7 @@ export function Nav() {
 
         <button
           type="button"
-          className="inline-flex size-11 items-center justify-center rounded-full lg:hidden"
+          className="inline-flex size-11 items-center justify-center rounded-full xl:hidden"
           aria-expanded={open}
           aria-controls="menu-movil"
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
@@ -57,7 +57,7 @@ export function Nav() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0, transition: { duration: dur.base, ease: easeOut } }}
             exit={{ opacity: 0, y: -8, transition: { duration: exitDur(dur.base), ease: easeOut } }}
-            className="absolute inset-x-0 top-full border-b-[1.5px] border-ink/15 bg-paper lg:hidden"
+            className="absolute inset-x-0 top-full max-h-[calc(100dvh-64px)] overflow-y-auto border-b-[1.5px] border-ink/15 bg-paper xl:hidden"
           >
             <ul className="mx-auto flex max-w-[1240px] flex-col px-4 py-3 sm:px-6">
               {nav.map((item) => (

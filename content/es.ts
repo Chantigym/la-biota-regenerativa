@@ -354,6 +354,40 @@ export const gallina = {
   } as Record<string, string>,
 };
 
+// Manejo del agua. TODO: datos reales.
+export const agua = {
+  title: "Manejo del agua",
+  lead: "En un valle con lluvias concentradas en verano, el agua se cosecha, se almacena y se aplica de forma eficiente.",
+  practices: [
+    { title: "Cosecha de lluvia", text: "Captación del agua de lluvia de los techos hacia tanques de almacenamiento. Lorem ipsum dolor sit amet." },
+    { title: "Riego por goteo", text: "El agua llega a cada planta con pérdidas mínimas por evaporación y escurrimiento. Lorem ipsum dolor sit amet." },
+    { title: "Cobertura y mantillo", text: "El suelo cubierto conserva la humedad y reduce la frecuencia de riego. Lorem ipsum dolor sit amet." },
+    { title: "Riego según la estación", text: "La frecuencia se ajusta al clima de cada época y a la humedad del suelo. Lorem ipsum dolor sit amet." },
+  ],
+  facts: [
+    { label: "Capacidad de almacenamiento", value: "XX L" },
+    { label: "Superficie con riego por goteo", value: "XX %" },
+    { label: "Lluvia anual promedio", value: "XX mm" },
+  ],
+  note: "Datos de muestra.",
+};
+
+// Banco de semillas: variedades propias. TODO: lista real.
+export const semillas = {
+  title: "Banco de semillas",
+  lead: "Guardamos semillas de las variedades que mejor se adaptan al predio, para sembrarlas cada temporada y compartirlas.",
+  note: "Variedades de muestra.",
+  labels: { origin: "Origen", sowing: "Siembra", saved: "Guardadas desde" },
+  items: [
+    { name: "Lechuga criolla", crop: "Lechuga", origin: "Lorem ipsum", sowing: "Mar a Oct", saved: "20XX", tone: "salvia" },
+    { name: "Tomate platense", crop: "Tomate", origin: "Lorem ipsum", sowing: "Ago a Oct", saved: "20XX", tone: "barro" },
+    { name: "Zapallo anco", crop: "Zapallo", origin: "Lorem ipsum", sowing: "Sep a Nov", saved: "20XX", tone: "yema" },
+    { name: "Acelga penca blanca", crop: "Acelga", origin: "Lorem ipsum", sowing: "Feb a Abr", saved: "20XX", tone: "salvia" },
+    { name: "Remolacha", crop: "Remolacha", origin: "Lorem ipsum", sowing: "Feb a Sep", saved: "20XX", tone: "barro" },
+    { name: "Maíz morado", crop: "Maíz", origin: "Lorem ipsum", sowing: "Oct a Dic", saved: "20XX", tone: "yema" },
+  ] as { name: string; crop: string; origin: string; sowing: string; saved: string; tone: "salvia" | "barro" | "yema" }[],
+};
+
 // Autocertificación: La Biota respalda con su propio conocimiento el origen de cada producto que ofrece.
 export type Nivel = "verde" | "amarillo" | "naranja";
 export type Categoria = "huerta" | "granja" | "conservas" | "almacen";
@@ -454,6 +488,8 @@ export const ui = {
     { id: "que-hacemos", label: "El proyecto" },
     { id: "autocertificacion", label: "Autocertificación" },
     { id: "metodologia", label: "Metodología" },
+    { id: "agua", label: "Agua" },
+    { id: "semillas", label: "Semillas" },
     { id: "biota", label: "La biota del suelo" },
     { id: "hacia-donde", label: "Objetivos" },
     { id: "hoy", label: "El presente" },

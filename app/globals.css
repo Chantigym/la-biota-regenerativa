@@ -501,19 +501,8 @@ p {
   display: none;
   transform-origin: 65% 60%;
 }
-.gl-eye,
-.gl-zzz {
-  display: none;
-}
 .gl-wave .gl-wing {
   display: block;
-}
-.gl-sleep .gl-eye,
-.gl-sleep .gl-zzz {
-  display: block;
-}
-.gl-sleep .gl-head {
-  transform: rotate(-22deg) translateY(2%);
 }
 @keyframes gl-picoteo {
   0%,
@@ -545,31 +534,6 @@ p {
   90%,
   100% {
     transform: none;
-  }
-}
-@keyframes gl-respira {
-  0% {
-    transform: scaleY(1);
-  }
-  50% {
-    transform: scaleY(1.03);
-  }
-}
-@keyframes gl-z {
-  0% {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  33% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  66% {
-    opacity: 1;
-    transform: translateY(-8px);
-  }
-  100% {
-    opacity: 0;
   }
 }
 @keyframes gl-ala {
@@ -612,13 +576,6 @@ p {
   .gl-idle .gl-leg {
     animation: gl-pata 3.2s steps(1, end) infinite;
   }
-  .gl-sleep .gl-body {
-    animation: gl-respira 2.4s steps(1, end) infinite;
-  }
-  .gl-sleep .gl-zzz text {
-    animation: gl-z 2.4s steps(1, end) infinite;
-    animation-delay: calc(var(--k) * 0.8s);
-  }
   .gl-wave .gl-wing {
     animation: gl-ala 0.8s steps(1, end) 4;
   }
@@ -627,6 +584,41 @@ p {
   }
   .gl-search {
     animation: gl-salto 1.2s steps(1, end) infinite;
+  }
+}
+
+/* Intro de la primera visita (ver bootScript): el logo se revela como trazado y la cortina se retira. */
+#intro {
+  display: none;
+}
+html.intro #intro {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--yema);
+  color: var(--on-yema);
+  animation: intro-salida 0.5s var(--ease-out) 1.5s forwards;
+}
+.intro-logo {
+  width: min(320px, 70vw);
+  aspect-ratio: 640 / 500;
+  animation: intro-trazo 1.1s cubic-bezier(0.65, 0, 0.35, 1) 0.15s both;
+}
+@keyframes intro-trazo {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes intro-salida {
+  to {
+    transform: translateY(-100%);
+    visibility: hidden;
   }
 }
 

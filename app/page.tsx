@@ -1,6 +1,9 @@
 import { Autocertificacion } from "@/components/sections/Autocertificacion";
 import { PageFurrow } from "@/components/motion/PageFurrow";
 import { Mapa } from "@/components/sections/Mapa";
+import { Agua } from "@/components/sections/Agua";
+import { Semillas } from "@/components/sections/Semillas";
+import { ReturnHen } from "@/components/motion/ReturnHen";
 import { Apoyar } from "@/components/sections/Apoyar";
 import { SideIndex } from "@/components/motion/SideIndex";
 import { Suelo } from "@/components/sections/Suelo";
@@ -30,6 +33,8 @@ export default function Home() {
         <QueHacemos />
         <Autocertificacion />
         <Metodologia />
+        <Agua />
+        <Semillas />
         <Suelo />
         <HaciaDonde />
         <DondeEstamos />
@@ -38,6 +43,7 @@ export default function Home() {
         <Seguinos />
       </main>
       <Footer />
+      <ReturnHen />
     </>
   );
 }

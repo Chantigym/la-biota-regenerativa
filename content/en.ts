@@ -311,6 +311,38 @@ export const gallina = {
   } as Record<string, string>,
 };
 
+export const agua = {
+  title: "Water management",
+  lead: "In a valley where rain falls mostly in summer, water is harvested, stored and applied efficiently.",
+  practices: [
+    { title: "Rainwater harvesting", text: "Rain from the roofs is collected into storage tanks. Lorem ipsum dolor sit amet." },
+    { title: "Drip irrigation", text: "Water reaches each plant with minimal losses to evaporation and runoff. Lorem ipsum dolor sit amet." },
+    { title: "Cover and mulch", text: "Covered soil holds moisture and reduces how often we water. Lorem ipsum dolor sit amet." },
+    { title: "Seasonal watering", text: "Frequency is adjusted to each season's weather and soil moisture. Lorem ipsum dolor sit amet." },
+  ],
+  facts: [
+    { label: "Storage capacity", value: "XX L" },
+    { label: "Area under drip irrigation", value: "XX %" },
+    { label: "Average annual rainfall", value: "XX mm" },
+  ],
+  note: "Sample data.",
+};
+
+export const semillas = {
+  title: "Seed bank",
+  lead: "We save seed from the varieties best suited to the plot, to sow them every season and share them.",
+  note: "Sample varieties.",
+  labels: { origin: "Origin", sowing: "Sowing", saved: "Saved since" },
+  items: [
+    { name: "Heirloom lettuce", crop: "Lettuce", origin: "Lorem ipsum", sowing: "Mar to Oct", saved: "20XX", tone: "salvia" },
+    { name: "Platense tomato", crop: "Tomato", origin: "Lorem ipsum", sowing: "Aug to Oct", saved: "20XX", tone: "barro" },
+    { name: "Butternut squash", crop: "Squash", origin: "Lorem ipsum", sowing: "Sep to Nov", saved: "20XX", tone: "yema" },
+    { name: "White-stem chard", crop: "Chard", origin: "Lorem ipsum", sowing: "Feb to Apr", saved: "20XX", tone: "salvia" },
+    { name: "Beetroot", crop: "Beetroot", origin: "Lorem ipsum", sowing: "Feb to Sep", saved: "20XX", tone: "barro" },
+    { name: "Purple corn", crop: "Corn", origin: "Lorem ipsum", sowing: "Oct to Dec", saved: "20XX", tone: "yema" },
+  ] as { name: string; crop: string; origin: string; sowing: string; saved: string; tone: "salvia" | "barro" | "yema" }[],
+};
+
 export const autocert = {
   title: "Self-certification",
   lead: "Our own participatory certification system, showing for each product how much La Biota can vouch for its agroecological origin.",
@@ -385,6 +417,8 @@ export const ui = {
     { id: "que-hacemos", label: "The project" },
     { id: "autocertificacion", label: "Self-certification" },
     { id: "metodologia", label: "Methods" },
+    { id: "agua", label: "Water" },
+    { id: "semillas", label: "Seeds" },
     { id: "biota", label: "Soil biota" },
     { id: "hacia-donde", label: "Goals" },
     { id: "hoy", label: "Today" },

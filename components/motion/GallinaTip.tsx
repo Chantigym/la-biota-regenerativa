@@ -2,18 +2,15 @@
 
 import { useState } from "react";
 import { AnimatePresence, m, useAnimationControls, useReducedMotion } from "motion/react";
-import { Gallinita } from "@/components/motion/Gallinita";
 import { gallina, ui } from "@/content/site";
 import { dur, easeOut, exitDur } from "@/lib/motion";
+import { asset } from "@/lib/asset";
 import { cacarear } from "@/lib/sound";
-import { useIsDark } from "@/lib/useIsDark";
 
-// Gallina guía (gallinita pintada). Aparece con un saltito cuando la sección entra en pantalla.
+// Gallina guía (ilustración en tinta). Aparece con un saltito cuando la sección entra en pantalla.
 // Al tocarla salta (se estira y se aplasta al caer), cacarea si el sonido está activado y muestra un dato.
-// En modo noche duerme.
 export function GallinaTip({ section, className = "" }: { section: string; className?: string }) {
   const [open, setOpen] = useState(false);
-  const dark = useIsDark();
   const reduce = useReducedMotion();
   const jump = useAnimationControls();
   const tip = gallina.tips[section];
@@ -38,14 +35,14 @@ export function GallinaTip({ section, className = "" }: { section: string; class
         onClick={onClick}
         aria-expanded={open}
         aria-label={ui.hen}
-        className="block w-12 sm:w-14"
+        className="block size-16 sm:size-20"
         initial={{ y: 30, opacity: 0 }}
         whileInView={{ y: [30, -10, 0], opacity: 1 }}
         viewport={{ once: true, amount: 0.8 }}
         transition={{ duration: 0.6, ease: easeOut }}
       >
         <m.span animate={jump} className="block origin-bottom">
-          <Gallinita pose={dark ? "sleep" : "idle"} className="w-full" />
+          <span aria-hidden className="ink-mask aspect-square w-full" style={{ ["--src" as string]: `url(${asset("/illustrations/gallina.webp")})` }} />
         </m.span>
       </m.button>
       <AnimatePresence>

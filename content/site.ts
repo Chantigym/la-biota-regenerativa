@@ -30,6 +30,8 @@ export const {
   clima,
   gallina,
   autocert,
+  agua,
+  semillas,
   preguntas,
   seguinos,
   ui,

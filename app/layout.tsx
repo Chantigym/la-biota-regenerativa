@@ -30,7 +30,7 @@ export const viewport: Viewport = {
 
 // Antes de pintar: aplica el tema elegido (modo noche) y, si la carga tarda más de 700 ms,
 // muestra la pantalla del tractor hasta que termine.
-const bootScript = `(function(){var d=document.documentElement;try{var t=localStorage.getItem("biota-tema");if(t)d.dataset.theme=t;}catch(e){}var to=setTimeout(function(){d.classList.add("carga-lenta")},700);window.addEventListener("load",function(){clearTimeout(to);d.classList.remove("carga-lenta");});})();`;
+const bootScript = `(function(){var d=document.documentElement;try{var t=localStorage.getItem("biota-tema");if(t)d.dataset.theme=t;}catch(e){}try{if(!localStorage.getItem("biota-intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){d.classList.add("intro");localStorage.setItem("biota-intro","1");}}catch(e){}var to=setTimeout(function(){d.classList.add("carga-lenta")},700);window.addEventListener("load",function(){clearTimeout(to);d.classList.remove("carga-lenta");});})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -39,6 +39,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: bootScript }} />
       </head>
       <body>
+        <div id="intro" aria-hidden="true">
+          <span className="ink-mask intro-logo" style={{ ["--src" as string]: `url(${asset("/brand/logo-full.webp")})` }} />
+        </div>
         <div id="cargando" role="status" aria-live="polite">
           <span className="cargando-tractor">
             <span className="ink-mask absolute inset-0" style={{ ["--src" as string]: `url(${asset("/brand/logo-tractor-solo.webp")})` }} />

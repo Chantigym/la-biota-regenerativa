@@ -1,10 +1,8 @@
 import { Autocertificacion } from "@/components/sections/Autocertificacion";
-import { PageFurrow } from "@/components/motion/PageFurrow";
 import { Mapa } from "@/components/sections/Mapa";
 import { Agua } from "@/components/sections/Agua";
 import { Semillas } from "@/components/sections/Semillas";
 import { Apoyar } from "@/components/sections/Apoyar";
-import { SideIndex } from "@/components/motion/SideIndex";
 import { Suelo } from "@/components/sections/Suelo";
 import { DondeEstamos } from "@/components/sections/DondeEstamos";
 import { Footer } from "@/components/sections/Footer";
@@ -23,8 +21,6 @@ export default function Home() {
     <>
       <SampleBanner />
       <Nav />
-      <PageFurrow />
-      <SideIndex />
       <main id="contenido">
         <Hero />
         <QuienesSomos />

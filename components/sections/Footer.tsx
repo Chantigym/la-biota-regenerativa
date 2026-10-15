@@ -1,7 +1,6 @@
 import { InstagramLogo, MapPin, QrCode } from "@phosphor-icons/react/dist/ssr";
 import { Logo } from "@/components/brand/Logo";
 import { RiseBlock } from "@/components/motion/RiseBlock";
-import { FooterHen } from "@/components/motion/FooterHen";
 import { nav, seguinos, site, ui } from "@/content/site";
 import { asset } from "@/lib/asset";
 
@@ -11,7 +10,6 @@ export function Footer() {
   return (
     <footer className="px-3 pt-24 pb-3 sm:px-4 sm:pb-4">
       <RiseBlock className="relative mx-auto max-w-[1400px] rounded-[var(--radius-block)] bg-hero-bg px-5 py-12 text-hero-ink sm:px-10 lg:px-14 lg:py-16">
-        <FooterHen />
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-4">
             <Logo variant="full" className="w-44 text-hero-fg sm:w-52" label={site.name} />

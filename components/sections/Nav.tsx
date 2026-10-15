@@ -6,7 +6,6 @@ import { List, X } from "@phosphor-icons/react";
 import { Logo } from "@/components/brand/Logo";
 import { ThemeToggle } from "@/components/motion/ThemeToggle";
 import { SoundToggle } from "@/components/motion/SoundToggle";
-import { Gallinita } from "@/components/motion/Gallinita";
 import { locale, nav, ui } from "@/content/site";
 import { dur, easeOut, exitDur } from "@/lib/motion";
 import { useActiveSection } from "@/lib/useActiveSection";
@@ -107,20 +106,6 @@ export function Nav() {
                 </li>
               ))}
             </ul>
-            {/* la gallinita asoma desde abajo del menú */}
-            <m.div
-              aria-hidden
-              className="pointer-events-none absolute right-6 bottom-0 w-14 overflow-hidden"
-              style={{ height: 72 }}
-            >
-              <m.div
-                initial={{ y: 70 }}
-                animate={{ y: 6, transition: { type: "spring", stiffness: 260, damping: 18, delay: 0.15 } }}
-                exit={{ y: 70, transition: { duration: exitDur(dur.base) } }}
-              >
-                <Gallinita pose="idle" className="w-full" />
-              </m.div>
-            </m.div>
           </m.nav>
         )}
       </AnimatePresence>
